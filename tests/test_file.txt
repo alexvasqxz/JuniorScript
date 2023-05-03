@@ -1,0 +1,16 @@
+mi_programa patito
+variable a, b, c: entero
+variabel d, e, f: decimal
+
+mi_funcion 🐍🐍🐍(paramA: entero, paramB: decimal): entero{
+    variable a, b: entero
+    a = 3 + 5
+    b = 5 / 4
+
+    imprimir(a)
+}
+
+iniciar(){
+    e = funcion_a(3+4, 8.5)
+    imprimir(e)
+}
