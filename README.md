@@ -22,3 +22,6 @@ En este avance 1, este documento se enfoca en presentar los diagramas de sintaxi
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="800" />
 <i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten factorizados y no presenten recursividad del lado izquierdo.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Lexer.png" width="800" />
+<i> Imagen 2: </i>Archivo de texto a ser probado del lado izquierdo, y resultados despues de haber probado el lexico de JuniorScript del lado derecho.

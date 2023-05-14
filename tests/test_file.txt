@@ -1,16 +1,24 @@
-mi_programa patito
-variable a, b, c: entero
-variabel d, e, f: decimal
+mi_programa 🐍🐍
+variable 📖📖 : entero[5][5]
 
-mi_funcion 🐍🐍🐍(paramA: entero, paramB: decimal): entero{
-    variable a, b: entero
-    a = 3 + 5
-    b = 5 / 4
+mi_funcion 🤡 (😈 : entero, paramB : decimal): vacia {
+    😈 = 5
+    imprimir(😈)
 
-    imprimir(a)
+    para_cada (index en_cada lista1) {
+        leer(index)
+    }
+
+    condicion (2 < 3) {
+        paramB = 10
+    } alternativa {
+        paramB = 20
+    }
+
+    regresar(9>10)
 }
 
-iniciar(){
-    e = funcion_a(3+4, 8.5)
-    imprimir(e)
+iniciar() {
+    paramB = 8
+    imprimir(8+5, 8<3, 4!=5, "hola me llamo Gus")
 }
