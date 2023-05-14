@@ -10,4 +10,14 @@ Proveer un lenguaje de programación en español, amigable y divertido para faci
 
 [Propuesta del Proyecto](https://docs.google.com/document/d/11z2FRLNSsaUyNhH4F56Ji7I2Z-IUF0dirjkuAZWErZw/edit?usp=share_link)
 
+[Diagramas de Sintaxis](https://docs.google.com/document/d/1wHO3yVg2jM5AVRkd0oPpn_H7fm2oKyFxUV6hfe6DQbY/edit?usp=share_link)
+
+[Avance 1 - Lexico y Sintaxis](https://docs.google.com/document/d/1hvA9DwypM8TK4CWNyRVYMjA5y9_A5_kaswBOoAzozGg/edit?usp=share_link)
+
 [Historial de Cambios](https://docs.google.com/spreadsheets/d/1WmKcr7Q-DdMOmIYtfitnicqKML57uPOTN1yRzgrm4Jc/edit?usp=share_link)
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 1  }$</h2>  
+
+En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de programación para mi proyecto final, llamado JuniorScript. Además de presentar los diagramas, se presentara su gramática normal, y de ser el caso, su factorización y/o eliminación de recursividad izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a la hora de trasladarlo a Python Lex and Yacc.
+
+![alt text](https://github.com/gussvas/JuniorScript/Docs/images/1.Example.png)
