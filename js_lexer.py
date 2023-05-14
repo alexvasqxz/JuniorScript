@@ -1,5 +1,5 @@
 # ------------------------------------------------------------
-# juniorScript_parser.py
+# js_lexer.py
 #
 # (Python Lex & Yacc)
 # Analisis Lexico
@@ -40,6 +40,8 @@ palabras_reservadas = {
     'ALTERNATIVA': 'ELSE',
     'para_cada' : 'FOR',
     'PARA_CADA' : 'FOR',
+    'en_cada' : 'IN',
+    'EN_CADA' : 'IN',
     'conforme' : 'CONFORME',
     'CONFORME' : 'CONFORME',
     'mientras' : 'WHILE',
