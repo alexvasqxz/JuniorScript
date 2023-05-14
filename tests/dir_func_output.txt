@@ -1,0 +1,113 @@
+Directorio de Funciones
+{
+    "Programa": {
+        "id": "\ud83d\udc0d\ud83d\udc0d",
+        "type": "vacio",
+        "quad_init": 0,
+        "resources": {
+            "vars": [],
+            "temps": []
+        },
+        "variables": {
+            "\ud83d\udcd6\ud83d\udcd6": {
+                "dataType": "entero",
+                "address": "TODO",
+                "size": 25
+            }
+        },
+        "constantes": {}
+    },
+    "Funcion1": {
+        "id": "\ud83e\udd21",
+        "type": "vacio",
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                2,
+                1,
+                2,
+                0
+            ],
+            "temps": []
+        },
+        "param_types": [
+            "entero",
+            "decimal"
+        ],
+        "variables": {
+            "\ud83d\ude08": {
+                "dataType": "entero",
+                "address": "TODO",
+                "size": 1
+            },
+            "paramB": {
+                "dataType": "decimal",
+                "address": "TODO",
+                "size": 1
+            },
+            "abc": {
+                "dataType": "logico",
+                "address": "TODO",
+                "size": 1
+            },
+            "def": {
+                "dataType": "logico",
+                "address": "TODO",
+                "size": 1
+            },
+            "\ud83d\ude2e\ud83d\ude2e\ud83d\ude2e": {
+                "dataType": "entero",
+                "address": "TODO",
+                "size": 1
+            }
+        }
+    },
+    "Funcion2": {
+        "id": "otraFuncion",
+        "type": "entero",
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                0,
+                0,
+                0,
+                1
+            ],
+            "temps": []
+        },
+        "param_types": [],
+        "variables": {
+            "otra_variable": {
+                "dataType": "letra",
+                "address": "TODO",
+                "size": 1
+            }
+        }
+    },
+    "main": {
+        "id": "main_inicio",
+        "type": "vacio",
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                0,
+                2,
+                0,
+                0
+            ],
+            "temps": []
+        },
+        "variables": {
+            "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
+                "dataType": "decimal",
+                "address": "TODO",
+                "size": 1
+            },
+            "\ud83c\udf83": {
+                "dataType": "decimal",
+                "address": "TODO",
+                "size": 6
+            }
+        }
+    }
+}

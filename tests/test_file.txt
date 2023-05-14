@@ -1,7 +1,9 @@
 mi_programa 🐍🐍
 variable 📖📖 : entero[5][5]
 
-mi_funcion 🤡 (😈 : entero, paramB : decimal): vacia {
+mi_funcion 🤡 (😈 : entero, paramB : decimal): vacio {
+    variable abc, def : logico
+    variable 😮😮😮 : entero
     😈 = 5
     imprimir(😈)
 
@@ -14,11 +16,16 @@ mi_funcion 🤡 (😈 : entero, paramB : decimal): vacia {
     } alternativa {
         paramB = 20
     }
+}
 
-    regresar(9>10)
+mi_funcion otraFuncion (): entero {
+    variable otra_variable : letra
+    regresar(3+5)
 }
 
 iniciar() {
+    variable 💩💩💩 : decimal
+    variable 🎃 : decimal[6]
     paramB = 8
     imprimir(8+5, 8<3, 4!=5, "hola me llamo Gus")
 }

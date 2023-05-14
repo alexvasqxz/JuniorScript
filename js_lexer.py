@@ -50,8 +50,8 @@ palabras_reservadas = {
     'REGRESAR' : 'RETURN',
     'YYY' : 'AND',
     'OOO' : 'OR',
-    'vacia' : 'VOID',
-    'VACIA': 'VOID',
+    'vacio' : 'VOID',
+    'VACIO': 'VOID',
 }
 
 # Lista de Tokens

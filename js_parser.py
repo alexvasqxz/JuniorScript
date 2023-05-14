@@ -8,12 +8,24 @@
 # ------------------------------------------------------------
 
 import ply.yacc as yacc
+import json
 from js_lexer import tokens
 
+# Semantica
+from logic.semantica_directorio import DirectorioFunciones
+
 def JSParser():
+    # ------------------------------------------------------------
+    # Variables Globales
+    # ------------------------------------------------------------
+    count_funciones = 1
+
+    # ------------------------------------------------------------
+    # DIAGRAMAS DE SINTAXIS
+    # ------------------------------------------------------------
     def p_programa(p):
         '''
-        programa : PROGRAMA ID programaB programaC inicio
+        programa : PROGRAMA puntos_semantica_1 ID puntos_semantica_2 programaB programaC inicio
         programaB : dec_vars
                 | empty
         programaC : dec_func programaCC
@@ -24,12 +36,13 @@ def JSParser():
 
     def p_dec_vars(p):
         '''
-        dec_vars : VAR dec_varsI COLON tipo dec_varsB dec_varsBB
-        dec_varsI : ID dec_varsII
-        dec_varsII : COMMA ID
+        dec_vars : VAR punto_semantico_3 dec_varsI COLON tipo \
+        punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
+        dec_varsI : ID punto_semantico_4 dec_varsII
+        dec_varsII : COMMA ID punto_semantico_4
                 | empty
-        dec_varsB : LBRACE CTEENT RBRACE
-                | LBRACE CTEENT RBRACE LBRACE CTEENT RBRACE
+        dec_varsB : LBRACE CTEENT punto_semantico_6 RBRACE
+                | LBRACE CTEENT punto_semantico_6 RBRACE LBRACE CTEENT punto_semantico_7 RBRACE
                 | empty
         dec_varsBB : dec_vars
                 | empty
@@ -43,18 +56,20 @@ def JSParser():
             | TIPOLETRA
             | TIPOLOGI
         '''
-        p[0] = None
+        p[0] = p[1]
 
     def p_dec_func(p):
         '''
-        dec_func : FUNCION ID LPAREN dec_params RPAREN COLON tipo_func LCURLY bloque RCURLY
+        dec_func : FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 \
+        dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14
+        dec_funcB : dec_params
+                | empty
         '''
         p[0] = None
 
-
     def p_dec_params(p):
         '''
-        dec_params : ID COLON tipo dec_paramsB
+        dec_params : ID punto_semantico_11 COLON tipo punto_semantico_5 punto_semantico_12 dec_paramsB
         dec_paramsB : COMMA dec_params
                     | empty
         '''
@@ -65,7 +80,7 @@ def JSParser():
         tipo_func : tipo
                 | VOID
         '''
-        p[0] = None
+        p[0] = p[1]
 
     def p_bloque(p):
         '''
@@ -220,9 +235,12 @@ def JSParser():
 
     def p_inicio(p):
         '''
-        inicio : MAIN LPAREN RPAREN LCURLY bloque RCURLY
+        inicio : MAIN puntos_semantica_15 LPAREN RPAREN LCURLY bloque RCURLY punto_semantico_14
         '''
         p[0] = None
+        with open("./tests/dir_func_output.txt", "x") as output_file:
+            output_file.write("Directorio de Funciones\n")
+            output_file.write(json.dumps(dir_func, indent=4))
 
     def p_empty(p):
         '''
@@ -236,6 +254,121 @@ def JSParser():
         else:
             token = f"{p.type}({p.value})"
         print(f"Error de sintaxis: Unexpected {token}")
+
+    # ------------------------------------------------------------
+    # SEMANTICA - PUNTOS NEURONALES
+    # ------------------------------------------------------------
+    def p_puntos_semantica_1(p):
+        '''
+        puntos_semantica_1 :
+        '''
+        global semantica, dir_func, count_funciones
+        count_funciones = 1
+        semantica = DirectorioFunciones()
+        dir_func = semantica.directorio
+
+    def p_puntos_semantica_2(p):
+        '''
+        puntos_semantica_2 :
+        '''
+        global curr_scope
+        curr_scope = 'Programa'
+        dir_func[curr_scope]['id'] = p[-1]
+
+    def p_punto_semantico_3(p):
+        '''
+        punto_semantico_3 :
+        '''
+        global curr_ids
+        semantica.create_vars_dict(curr_scope)
+        curr_ids = []
+
+    def p_punto_semantico_4(p):
+        '''
+        punto_semantico_4 :
+        '''
+        global curr_ids
+        curr_ids.append(p[-1])
+
+    def p_punto_semantico_5(p):
+        '''
+        punto_semantico_5 :
+        '''
+        global curr_type, curr_size
+        curr_size = 1
+        curr_type = p[-1]
+
+    def p_punto_semantico_6(p):
+        '''
+        punto_semantico_6 :
+        '''
+        global curr_size
+        curr_size *= p[-1]
+
+    def p_punto_semantico_7(p):
+        '''
+        punto_semantico_7 :
+        '''
+        global curr_size
+        curr_size *= p[-1]
+
+    def p_punto_semantico_8(p):
+        '''
+        punto_semantico_8 :
+        '''
+        for id in curr_ids:
+            semantica.add_variable(curr_scope, id, curr_type, 'TODO', curr_size)
+
+    def p_punto_semantico_9(p):
+        '''
+        punto_semantico_9 :
+        '''
+        global curr_scope, count_funciones
+        curr_scope = 'Funcion' + str(count_funciones)
+        count_funciones += 1
+        semantica.add_funcion(curr_scope)
+
+    def p_punto_semantico_10(p):
+        '''
+        punto_semantico_10 :
+        '''
+        semantica.update_table(curr_scope, 'id', p[-1])
+
+    def p_punto_semantico_11(p):
+        '''
+        punto_semantico_11 :
+        '''
+        global curr_id
+        curr_id = p[-1]
+
+    def p_punto_semantico_12(p):
+        '''
+        punto_semantico_12 :
+        '''
+        semantica.add_variable(curr_scope, curr_id, curr_type, 'TODO', curr_size)
+        dir_func[curr_scope]['param_types'].append(curr_type)
+
+    def p_punto_semantico_13(p):
+        '''
+        punto_semantico_13 :
+        '''
+        global curr_type
+        curr_type = p[-1]
+        semantica.update_table(curr_scope, 'type', curr_type)
+
+    def p_punto_semantico_14(p):
+        '''
+        punto_semantico_14 :
+        '''
+        semantica.assign_resources(curr_scope)
+
+    def p_puntos_semantica_15(p):
+        '''
+        puntos_semantica_15 :
+        '''
+        global curr_scope
+        curr_scope = 'main'
+        semantica.add_inicio()
 
     return yacc.yacc()
 
