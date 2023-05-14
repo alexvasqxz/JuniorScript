@@ -20,4 +20,5 @@ Proveer un lenguaje de programación en español, amigable y divertido para faci
 
 En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de programación para mi proyecto final, llamado JuniorScript. Además de presentar los diagramas, se presentara su gramática normal, y de ser el caso, su factorización y/o eliminación de recursividad izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a la hora de trasladarlo a Python Lex and Yacc.
 
-![alt text](https://github.com/gussvas/JuniorScript/Docs/images/1.Example.png)
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="800" />
+<i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten factorizados y no presenten recursividad del lado izquierdo.
