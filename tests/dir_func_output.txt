@@ -2,7 +2,7 @@ Directorio de Funciones
 {
     "Programa": {
         "id": "\ud83d\udc0d\ud83d\udc0d",
-        "type": "vacio",
+        "type": 0,
         "quad_init": 0,
         "resources": {
             "vars": [],
@@ -10,66 +10,123 @@ Directorio de Funciones
         },
         "variables": {
             "\ud83d\udcd6\ud83d\udcd6": {
-                "dataType": "entero",
-                "address": "TODO",
+                "dataType": 1,
+                "address": 1000,
                 "size": 25
             }
         },
-        "constantes": {}
+        "constantes": {
+            "verdadero": {
+                "type": 3,
+                "value": "verdadero",
+                "address": 50000
+            },
+            "5.6": {
+                "type": 2,
+                "value": 5.6,
+                "address": 40000
+            },
+            "2": {
+                "type": 1,
+                "value": 2,
+                "address": 30000
+            },
+            "3": {
+                "type": 1,
+                "value": 3,
+                "address": 30001
+            },
+            "10": {
+                "type": 1,
+                "value": 10,
+                "address": 30002
+            },
+            "20": {
+                "type": 1,
+                "value": 20,
+                "address": 30003
+            },
+            "80": {
+                "type": 1,
+                "value": 80,
+                "address": 30004
+            },
+            "8": {
+                "type": 1,
+                "value": 8,
+                "address": 30005
+            },
+            "5": {
+                "type": 1,
+                "value": 5,
+                "address": 30006
+            },
+            "4": {
+                "type": 1,
+                "value": 4,
+                "address": 30007
+            }
+        }
     },
     "Funcion1": {
         "id": "\ud83e\udd21",
-        "type": "vacio",
+        "type": 0,
         "quad_init": null,
         "resources": {
             "vars": [
-                2,
                 1,
                 2,
+                3,
                 0
             ],
             "temps": []
         },
         "param_types": [
-            "entero",
-            "decimal"
+            2,
+            2,
+            3
         ],
         "variables": {
             "\ud83d\ude08": {
-                "dataType": "entero",
-                "address": "TODO",
+                "dataType": 2,
+                "address": 6000,
                 "size": 1
             },
             "paramB": {
-                "dataType": "decimal",
-                "address": "TODO",
+                "dataType": 2,
+                "address": 6001,
+                "size": 1
+            },
+            "otro_param": {
+                "dataType": 3,
+                "address": 7000,
                 "size": 1
             },
             "abc": {
-                "dataType": "logico",
-                "address": "TODO",
+                "dataType": 3,
+                "address": 7001,
                 "size": 1
             },
             "def": {
-                "dataType": "logico",
-                "address": "TODO",
+                "dataType": 3,
+                "address": 7002,
                 "size": 1
             },
             "\ud83d\ude2e\ud83d\ude2e\ud83d\ude2e": {
-                "dataType": "entero",
-                "address": "TODO",
+                "dataType": 1,
+                "address": 5000,
                 "size": 1
             }
         }
     },
     "Funcion2": {
         "id": "otraFuncion",
-        "type": "entero",
+        "type": 1,
         "quad_init": null,
         "resources": {
             "vars": [
                 0,
-                0,
+                1,
                 0,
                 1
             ],
@@ -78,15 +135,20 @@ Directorio de Funciones
         "param_types": [],
         "variables": {
             "otra_variable": {
-                "dataType": "letra",
-                "address": "TODO",
+                "dataType": 4,
+                "address": 8000,
+                "size": 1
+            },
+            "\ud83d\ude35": {
+                "dataType": 2,
+                "address": 6002,
                 "size": 1
             }
         }
     },
     "main": {
         "id": "main_inicio",
-        "type": "vacio",
+        "type": 0,
         "quad_init": null,
         "resources": {
             "vars": [
@@ -99,13 +161,13 @@ Directorio de Funciones
         },
         "variables": {
             "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
-                "dataType": "decimal",
-                "address": "TODO",
+                "dataType": 2,
+                "address": 6003,
                 "size": 1
             },
             "\ud83c\udf83": {
-                "dataType": "decimal",
-                "address": "TODO",
+                "dataType": 2,
+                "address": 6004,
                 "size": 6
             }
         }

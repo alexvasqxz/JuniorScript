@@ -92,7 +92,7 @@ if __name__ == '__main__':
             break
         tokens.append(tok)
 
-    with open("./tests/lexer_output.txt", "x") as output_file:
+    with open("./tests/lexer_output.txt", "w") as output_file:
         output_file.write("Junior Script Lexer\n")
         output_file.write('\n'.join(str(token) for token in tokens))
 

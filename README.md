@@ -29,6 +29,16 @@ se presentara su gramática normal, y de ser el caso, su factorización y/o elim
 izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a 
 la hora de trasladarlo a Python Lex and Yacc.</p>
 
+<h4> Overview Avance </h4>
+<ul>
+    <li>Se crean los tokens y expresiones regulares para todos los simbolos terminales del lenguaje</li>
+    <li>Se crean todos los diagramas de sintaxis factorizados y sin recursion izquierda para todos los
+    simbolos no terminales del lenguaje</li>
+    <li>Se presentan pruebas unitarias para la parte del lexico del lenguaje</li>
+    <li>Se presentan resultados como archivos de texto despues de haber ejecutado el lexico (lex) 
+    "lexer_output.txt"</li>
+</ul>
+
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="800" />
 <i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten 
 factorizados y no presenten recursividad del lado izquierdo.
@@ -47,5 +57,24 @@ información de alguna manera.</p>
 <p>Es importante mencionar que en este lenguaje de programación, se permite la declaración de variables en 
 cualquier lugar dentro de las funciones así como variables locales para el main(), llamado inicio.</p>
 
+<h4> Overview Avance </h4>
+<ul>
+    <li>Se desarrollo la logica por medio de puntos neuronales para representar las acciones necesarias
+    para guardar la información del programa, sus funciones, y las variables</li>
+    <li>Se presenta el resulado del directorio de funciones en un archivo de texto "dir_func_output.txt"</li>
+    <li>Se crean las direcciones virtuales globales y locales para variables, temporales y constantes</li>
+    <li>Se crea un mapeado entre los tipos de variables y los tipos de operaciones y un valor entero</li>
+    <li>Se crea el cubo semantico el cual dicta las reglas para realizar expresiones </li>
+</ul>
+
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Puntos.png" width="800" />
 <i> Imagen 3: </i>Puntos neuronales agregados para la creación del directorio de funciones.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Direcciones.png" width="800" />
+<i> Imagen 4: </i>Direcciones Virtuales y sus limites.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Cubo.png" width="800" />
+<i> Imagen 5: </i>Cubo Semántico.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Output.png" width="800" />
+<i> Imagen 6: </i>Muestra del archivo resultado al momento de crear el directorio de funciones.

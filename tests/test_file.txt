@@ -1,10 +1,12 @@
 mi_programa 🐍🐍
 variable 📖📖 : entero[5][5]
 
-mi_funcion 🤡 (😈 : entero, paramB : decimal): vacio {
+mi_funcion 🤡 (😈 : decimal, paramB : decimal, otro_param : logico): vacio {
     variable abc, def : logico
     variable 😮😮😮 : entero
-    😈 = 5
+
+    abc = verdadero
+    😈 = 5.6
     imprimir(😈)
 
     para_cada (index en_cada lista1) {
@@ -20,7 +22,8 @@ mi_funcion 🤡 (😈 : entero, paramB : decimal): vacio {
 
 mi_funcion otraFuncion (): entero {
     variable otra_variable : letra
-    regresar(3+5)
+    variable 😵:decimal
+    regresar(3+80)
 }
 
 iniciar() {

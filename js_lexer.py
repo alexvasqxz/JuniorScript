@@ -11,47 +11,27 @@ import ply.lex as lex
 
 palabras_reservadas = {
     'mi_programa': 'PROGRAMA',
-    'MI_PROGRAMA': 'PROGRAMA',
     'mi_funcion': 'FUNCION',
-    'MI_FUNCION': 'FUNCION',
     'iniciar' : 'MAIN',
-    'INICIAR' : 'MAIN',
     'variable': 'VAR',
-    'VARIABLE': 'VAR',
     'entero': 'TIPOENT',
-    'ENTERO' : 'TIPOENT',
     'decimal': 'TIPODEC',
-    'DECIMAL': 'TIPODEC',
     'letra' : 'TIPOLETRA',
-    'LETRA': 'TIPOLETRA',
     'logico': 'TIPOLOGI',
-    'LOGICO': 'TIPOLOGI',
     'verdadero': 'TRUE',
-    'VERDADERO': 'TRUE',
     'falso' : 'FALSE',
-    'FALSO' : 'FALSE',
     'imprimir': 'ESCRITURA',
-    'IMPRIMIR': 'ESCRITURA',
     'leer' : 'LECTURA',
-    'LEER' : 'LECTURA',
     'condicion': 'IF',
-    'CONDICION' : 'IF',
     'alternativa' : 'ELSE',
-    'ALTERNATIVA': 'ELSE',
     'para_cada' : 'FOR',
-    'PARA_CADA' : 'FOR',
     'en_cada' : 'IN',
-    'EN_CADA' : 'IN',
     'conforme' : 'CONFORME',
-    'CONFORME' : 'CONFORME',
     'mientras' : 'WHILE',
-    'MIENTRAS' : 'WHILE',
     'regresar' : 'RETURN',
-    'REGRESAR' : 'RETURN',
     'YYY' : 'AND',
     'OOO' : 'OR',
-    'vacio' : 'VOID',
-    'VACIO': 'VOID',
+    'vacio' : 'VOID'
 }
 
 # Lista de Tokens
@@ -80,7 +60,6 @@ tokens = [
     'MINUS',
     'TIMES',
     'DIVIDE',
-    'COMENTARIO',
 ] + list(palabras_reservadas.values())
 
 # Expresiones Regulares - Tokens Sencillos
