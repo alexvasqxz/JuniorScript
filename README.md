@@ -4,10 +4,7 @@ Desarrollado por Gustavo Vasquez
 
 <h2> Objetivo </h2> 
 
-<p>Proveer un lenguaje de programación en español, amigable y divertido para facilitar el aprendizaje de programación 
-y tecnologías en estudiantes del nivel básico (Primaria y Secundaria), quienes no han tenido algun acercamiento con 
-la programación o bien, se les dificulta debido a barreras del idioma inglés o faltas de herramientas lo 
-suficientemente amigables en cuanto a interfaz y usabilidad.</p>
+Proveer un lenguaje de programación en español, amigable y divertido para facilitar el aprendizaje de programación y tecnologías en estudiantes del nivel básico (Primaria y Secundaria), quienes no han tenido algun acercamiento con la programación o bien, se les dificulta debido a barreras del idioma inglés o faltas de herramientas lo suficientemente amigables en cuanto a interfaz y usabilidad.
 
 <h2> Documentos </h2>
 
@@ -17,27 +14,11 @@ suficientemente amigables en cuanto a interfaz y usabilidad.</p>
 
 [Avance 1 - Lexico y Sintaxis](https://docs.google.com/document/d/1hvA9DwypM8TK4CWNyRVYMjA5y9_A5_kaswBOoAzozGg/edit?usp=share_link)
 
-[Avance 2 - Semantica](https://docs.google.com/document/d/1V1VJ3m8oHPbeFgsa1O4hcs0zZGeKQFAKQwYOEwGukjc/edit?usp=share_link)
-
 [Historial de Cambios](https://docs.google.com/spreadsheets/d/1WmKcr7Q-DdMOmIYtfitnicqKML57uPOTN1yRzgrm4Jc/edit?usp=share_link)
 
 <h2>  ${\color{orange} Avance  }$  ${\color{orange} 1  }$</h2>  
 
-<p>En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de 
-programación para mi proyecto final, llamado <i>JuniorScript.</i> Además de presentar los diagramas, 
-se presentara su gramática normal, y de ser el caso, su factorización y/o eliminación de recursividad 
-izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a 
-la hora de trasladarlo a Python Lex and Yacc.</p>
-
-<h4> Overview Avance </h4>
-<ul>
-    <li>Se crean los tokens y expresiones regulares para todos los simbolos terminales del lenguaje</li>
-    <li>Se crean todos los diagramas de sintaxis factorizados y sin recursion izquierda para todos los
-    simbolos no terminales del lenguaje</li>
-    <li>Se presentan pruebas unitarias para la parte del lexico del lenguaje</li>
-    <li>Se presentan resultados como archivos de texto despues de haber ejecutado el lexico (lex) 
-    "lexer_output.txt"</li>
-</ul>
+En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de programación para mi proyecto final, llamado JuniorScript. Además de presentar los diagramas, se presentara su gramática normal, y de ser el caso, su factorización y/o eliminación de recursividad izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a la hora de trasladarlo a Python Lex and Yacc.
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="600" />
 <i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten 
