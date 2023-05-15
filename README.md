@@ -39,11 +39,11 @@ la hora de trasladarlo a Python Lex and Yacc.</p>
     "lexer_output.txt"</li>
 </ul>
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="600" />
 <i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten 
 factorizados y no presenten recursividad del lado izquierdo.
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Lexer.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Lexer.png" width="600" />
 <i> Imagen 2: </i>Archivo de texto a ser probado del lado izquierdo, y resultados despues de haber probado el lexico 
 de JuniorScript del lado derecho.
 
@@ -67,14 +67,14 @@ cualquier lugar dentro de las funciones así como variables locales para el main
     <li>Se crea el cubo semantico el cual dicta las reglas para realizar expresiones </li>
 </ul>
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Puntos.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Puntos.png" width="500" />
 <i> Imagen 3: </i>Puntos neuronales agregados para la creación del directorio de funciones.
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Direcciones.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Direcciones.png" width="500" />
 <i> Imagen 4: </i>Direcciones Virtuales y sus limites.
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Cubo.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Cubo.png" width="500" />
 <i> Imagen 5: </i>Cubo Semántico.
 
-<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Output.png" width="800" />
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Output.png" width="500" />
 <i> Imagen 6: </i>Muestra del archivo resultado al momento de crear el directorio de funciones.
