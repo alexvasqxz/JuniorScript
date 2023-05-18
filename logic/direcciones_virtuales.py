@@ -28,14 +28,14 @@ class DireccionesVirtuales():
             [24000, 25999]
         ]
 
-    def create_virtual_dir(self, scope, type, dataType):
+    def create_virtual_dir(self, scope, type, dataType, size):
         my_scope = 'local'
         if scope == 'Programa':
             my_scope = 'global'
         index = self.switch_cases(my_scope, type, dataType)
         result = self.tabla_direcciones[index][0]
         self.test_offset()
-        self.tabla_direcciones[index][0] += 1
+        self.tabla_direcciones[index][0] += size
         return result
     def switch_cases(self, scope, type, dataType):
         switch = {

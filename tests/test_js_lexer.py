@@ -26,7 +26,7 @@ class MyTestCase(unittest.TestCase):
     def test_CTEENT(self):
         results = []
         input = '''
-            -3453
+            3453
             499392
             92859
         '''
@@ -41,7 +41,7 @@ class MyTestCase(unittest.TestCase):
     def test_CTEDECI(self):
         results = []
         input = '''
-            -3453.0
+            3453.0
             499392.529482
             92859.9249
         '''

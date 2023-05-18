@@ -25,7 +25,7 @@ def JSParser():
     # ------------------------------------------------------------
     def p_programa(p):
         '''
-        programa : PROGRAMA puntos_semantica_1 ID puntos_semantica_2 programaB programaC inicio
+        programa : PROGRAMA puntos_semantica_1 ID puntos_semantica_2 programaB programaC inicio punto_semantico_16
         programaB : dec_vars
                 | empty
         programaC : dec_func programaCC
@@ -247,9 +247,6 @@ def JSParser():
         inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY bloque RCURLY punto_semantico_14
         '''
         p[0] = None
-        with open("./tests/dir_func_output.txt", "w") as output_file:
-            output_file.write("Directorio de Funciones\n")
-            output_file.write(json.dumps(dir_func, indent=4))
 
     def p_empty(p):
         '''
@@ -425,6 +422,20 @@ def JSParser():
         global curr_scope
         curr_scope = 'main'
         semantica.add_inicio()
+
+    """ Descripcion:
+    Al terminar el programa, se limpian los directorios de funciones y
+    el directorio de variables globales """
+    def p_punto_semantico_16(p):
+        '''
+        punto_semantico_16 :
+        '''
+        global curr_scope
+        curr_scope = 'Programa'
+        dir_func = semantica.clear_functions(curr_scope)
+        with open("./tests/dir_func_output.txt", "w") as output_file:
+            output_file.write("Directorio de Funciones\n")
+            output_file.write(json.dumps(dir_func, indent=4))
 
     """ Descripcion:
     Se crea la tabla de constantes con scope global (programa) """

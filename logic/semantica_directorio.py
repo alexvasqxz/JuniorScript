@@ -39,7 +39,7 @@ class DirectorioFunciones:
             self.global_variables.add(id)
         if id in vars_table:
             raise Exception(f"ERROR: '{id}' este nombre ya existe para una variable")
-        virtual_address = self.direcciones_virtuales.create_virtual_dir(scope, 'vars', type)
+        virtual_address = self.assign_virtual_address(scope, 'vars', type, size)
         mapped_type = self.mapa_datos.map_type(type)
         vars_table[id] = {'dataType': mapped_type, 'address': virtual_address, 'size': size}
 
@@ -81,9 +81,9 @@ class DirectorioFunciones:
         if not (id in self.directorio['Programa']['constantes']):
             type = self.get_constant_type(value)
             mapped_type = self.mapa_datos.map_type(type)
-            virtual_address = self.direcciones_virtuales.create_virtual_dir('Programa', 'const', type)
+            virtual_address = self.assign_virtual_address('Programa', 'const', type, 1)
             self.directorio['Programa']['constantes'][id] = {
-                'type': mapped_type,
+                'dataType': mapped_type,
                 'value': value,
                 'address': virtual_address
             }
@@ -114,6 +114,19 @@ class DirectorioFunciones:
         recursos = Counter(vars_types)
         lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
         self.directorio[scope]['resources']['vars'] = lista_recursos
+        del (self.directorio[scope]['variables'])
 
-        # del(self.directorio[scope]['variables'])
+    def clear_functions(self, scope):
+        global_vars = [glob_vars.get('dataType') for glob_vars in self.directorio[scope]['variables'].values()]
+        global_const = [glob_cons.get('dataType') for glob_cons in self.directorio[scope]['constantes'].values()]
+        global_recursos = Counter(global_vars + global_const)
+        lista_recursos = [global_recursos[1], global_recursos[2], global_recursos[3], global_recursos[4]]
+        self.directorio[scope]['resources']['vars'] = lista_recursos
+        # Se borran las tablas de variables y constantes estando ya contabilizadas
+        del(self.directorio[scope]['variables'])
+        del (self.directorio[scope]['constantes'])
+        # Se borran las tablas de funciones
+        return self.directorio[scope]
 
+    def assign_virtual_address(self, scope, type, dataType, size):
+        return self.direcciones_virtuales.create_virtual_dir(scope, type, dataType, size)
