@@ -1,5 +1,6 @@
 mi_programa 🐍🐍
 variable 📖📖 : entero[5][5]
+variable glob : entero
 
 mi_funcion 🤡 (😈 : decimal, paramB : decimal, otro_param : logico): vacio {
     variable abc, def : logico

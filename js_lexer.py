@@ -93,13 +93,13 @@ def t_ID(t):
 
 # Expresion regular para decimales
 def t_CTEDECI(t):
-    r'-?\d+\.\d+'
+    r'\d+\.\d+'
     t.value = float(t.value)
     return t
 
 # Expresion regular para enteros
 def t_CTEENT(t):
-    r'-?\d+'
+    r'\d+'
     t.value = int(t.value)
     return t
 
