@@ -1,15 +1,301 @@
 Directorio de Funciones
 {
-    "id": "\ud83d\udc0d\ud83d\udc0d",
-    "type": 0,
-    "quad_init": 0,
-    "resources": {
-        "vars": [
-            10,
-            1,
-            1,
-            0
+    "Programa": {
+        "id": "\ud83d\udc0d\ud83d\udc0d",
+        "type": 0,
+        "quad_init": 0,
+        "resources": {
+            "vars": [
+                11,
+                3,
+                2,
+                2
+            ],
+            "temps": []
+        },
+        "variables": {
+            "\ud83d\udcd6\ud83d\udcd6": {
+                "dataType": 1,
+                "address": 1000,
+                "size": 25
+            },
+            "glob": {
+                "dataType": 1,
+                "address": 1025,
+                "size": 1
+            }
+        },
+        "constantes": {
+            "verdadero": {
+                "dataType": 3,
+                "value": "verdadero",
+                "address": 50000
+            },
+            "falso": {
+                "dataType": 3,
+                "value": "falso",
+                "address": 50001
+            },
+            "5.6": {
+                "dataType": 2,
+                "value": 5.6,
+                "address": 40000
+            },
+            "3": {
+                "dataType": 1,
+                "value": 3,
+                "address": 30000
+            },
+            "5": {
+                "dataType": 1,
+                "value": 5,
+                "address": 30001
+            },
+            "9": {
+                "dataType": 1,
+                "value": 9,
+                "address": 30002
+            },
+            "10": {
+                "dataType": 1,
+                "value": 10,
+                "address": 30003
+            },
+            "2": {
+                "dataType": 1,
+                "value": 2,
+                "address": 30004
+            },
+            "10.5": {
+                "dataType": 2,
+                "value": 10.5,
+                "address": 40001
+            },
+            "20.4": {
+                "dataType": 2,
+                "value": 20.4,
+                "address": 40002
+            },
+            "80": {
+                "dataType": 1,
+                "value": 80,
+                "address": 30005
+            },
+            "30": {
+                "dataType": 1,
+                "value": 30,
+                "address": 30006
+            },
+            "8": {
+                "dataType": 1,
+                "value": 8,
+                "address": 30007
+            },
+            "4": {
+                "dataType": 1,
+                "value": 4,
+                "address": 30008
+            },
+            "\"hola me llamo Gus\"": {
+                "dataType": 4,
+                "value": "\"hola me llamo Gus\"",
+                "address": 60000
+            },
+            "'e'": {
+                "dataType": 4,
+                "value": "'e'",
+                "address": 60001
+            }
+        }
+    },
+    "Funcion1": {
+        "id": "\ud83e\udd21",
+        "type": 0,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                1,
+                2,
+                3,
+                0
+            ],
+            "temps": []
+        },
+        "param_types": [
+            2,
+            2,
+            3
         ],
-        "temps": []
+        "variables": {
+            "\ud83d\ude08": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 1
+            },
+            "paramB": {
+                "dataType": 2,
+                "address": 6001,
+                "size": 1
+            },
+            "otro_param": {
+                "dataType": 3,
+                "address": 7000,
+                "size": 1
+            },
+            "abc": {
+                "dataType": 3,
+                "address": 7001,
+                "size": 1
+            },
+            "def": {
+                "dataType": 3,
+                "address": 7002,
+                "size": 1
+            },
+            "\ud83d\ude2e\ud83d\ude2e\ud83d\ude2e": {
+                "dataType": 1,
+                "address": 5000,
+                "size": 1
+            }
+        },
+        "temps": {
+            "t1": {
+                "dataType": 3,
+                "address": 22000,
+                "size": 1
+            },
+            "t2": {
+                "dataType": 3,
+                "address": 22001,
+                "size": 1
+            },
+            "t3": {
+                "dataType": 3,
+                "address": 22002,
+                "size": 1
+            },
+            "t4": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t5": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "t6": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "t7": {
+                "dataType": 2,
+                "address": 20000,
+                "size": 1
+            },
+            "t8": {
+                "dataType": 2,
+                "address": 20001,
+                "size": 1
+            },
+            "t9": {
+                "dataType": 3,
+                "address": 22003,
+                "size": 1
+            }
+        }
+    },
+    "Funcion2": {
+        "id": "otraFuncion",
+        "type": 1,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                0,
+                1,
+                0,
+                1
+            ],
+            "temps": []
+        },
+        "param_types": [],
+        "variables": {
+            "otra_variable": {
+                "dataType": 4,
+                "address": 8000,
+                "size": 1
+            },
+            "\ud83d\ude35": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 1
+            }
+        },
+        "temps": {
+            "t10": {
+                "dataType": 2,
+                "address": 20000,
+                "size": 1
+            },
+            "t11": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t12": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            }
+        }
+    },
+    "main": {
+        "id": "main_inicio",
+        "type": 0,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                0,
+                2,
+                0,
+                0
+            ],
+            "temps": []
+        },
+        "variables": {
+            "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 1
+            },
+            "\ud83c\udf83": {
+                "dataType": 2,
+                "address": 6001,
+                "size": 6
+            }
+        },
+        "temps": {
+            "t13": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t14": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "t15": {
+                "dataType": 3,
+                "address": 22000,
+                "size": 1
+            },
+            "t16": {
+                "dataType": 3,
+                "address": 22001,
+                "size": 1
+            }
+        }
     }
 }

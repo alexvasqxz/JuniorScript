@@ -59,3 +59,36 @@ cualquier lugar dentro de las funciones así como variables locales para el main
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/2.Output.png" width="500" />
 <i> Imagen 6: </i>Muestra del archivo resultado al momento de crear el directorio de funciones.
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 3  }$</h2>  
+
+<p>En este avance 3, se muestran los diagramas de sintaxis a los que se les han agregado puntos neuronales como 
+lógica para poder representar la creación de cuadruplos de expresiones aritmeticas y estatutos lineales sencillos, 
+este avance presenta la posibilidad de guardar variables temporales sobre las funciones y generar una lista
+de cuadruplos que muestran las direcciones de las constantes o variables siendo utilizadas en las
+expresiones aritmeticas y estatutos, asi como la direccion virtual asignada para cada temporal</p>
+
+<h4> Overview Avance </h4>
+<ul>
+    <li>Se desarrollo la logica por medio de puntos neuronales para representar las acciones necesarias
+    para crear los cuadruplos de expresiones artimeticas y estatutos</li>
+    <li>Se cubren expresiones aritmeticas logicas de tipo logico (YYY), comparacion (< >), sumas y restas (+ -),
+    multiplicaciones y divisiones (* /)</li>
+    <li>De igual forma se cubre asociatividad derecha y se distingue cuando se tiene una expresion dentro de otra
+    por medio de parentesis e.j. 5 * (9 + 8)</li>
+    <li>Se cubren estatutos como: imprimir, leer y asignar (=)</li>
+    <li>En el caso de la asignacion y expresiones logicas, se valida que el tipo de los datos sea correcto haciendo
+    uso del cubo semantico</li>
+</ul>
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/3.PuntosI.png" width="500" />
+<i> Imagen 7: </i>Puntos neuronales para expresiones aritmeticas.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/3.PuntosII.png" width="500" />
+<i> Imagen 8: </i>Puntos neuronales para estatutos sencillos.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/3.OutputI.png" width="500" />
+<i> Imagen 9: </i>Ejemplo impresion de cuadruplos antes del direccionamiento virtual.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/3.OutputII.png" width="500" />
+<i> Imagen 9: </i>Ejemplo impresion de cuadruplos despues del direccionamiento virtual.

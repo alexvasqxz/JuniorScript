@@ -19,6 +19,8 @@ class MapeoDatos():
             '/': 20,
             'YYY': 21,
             'OOO': 22,
+            'imprimir': 30,
+            'leer': 31,
         }
 
     def map_type(self, type):

@@ -39,8 +39,8 @@ class DirectorioFunciones:
             self.global_variables.add(id)
         if id in vars_table:
             raise Exception(f"ERROR: '{id}' este nombre ya existe para una variable")
-        virtual_address = self.assign_virtual_address(scope, 'vars', type, size)
         mapped_type = self.mapa_datos.map_type(type)
+        virtual_address = self.assign_virtual_address(scope, 'vars', mapped_type, size)
         vars_table[id] = {'dataType': mapped_type, 'address': virtual_address, 'size': size}
 
     def get_variable(self, scope, id):
@@ -81,7 +81,7 @@ class DirectorioFunciones:
         if not (id in self.directorio['Programa']['constantes']):
             type = self.get_constant_type(value)
             mapped_type = self.mapa_datos.map_type(type)
-            virtual_address = self.assign_virtual_address('Programa', 'const', type, 1)
+            virtual_address = self.assign_virtual_address('Programa', 'const', mapped_type, 1)
             self.directorio['Programa']['constantes'][id] = {
                 'dataType': mapped_type,
                 'value': value,
@@ -114,7 +114,8 @@ class DirectorioFunciones:
         recursos = Counter(vars_types)
         lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
         self.directorio[scope]['resources']['vars'] = lista_recursos
-        del (self.directorio[scope]['variables'])
+        self.direcciones_virtuales.delete_function_space()
+        # del (self.directorio[scope]['variables'])
 
     def clear_functions(self, scope):
         global_vars = [glob_vars.get('dataType') for glob_vars in self.directorio[scope]['variables'].values()]
@@ -123,10 +124,38 @@ class DirectorioFunciones:
         lista_recursos = [global_recursos[1], global_recursos[2], global_recursos[3], global_recursos[4]]
         self.directorio[scope]['resources']['vars'] = lista_recursos
         # Se borran las tablas de variables y constantes estando ya contabilizadas
-        del(self.directorio[scope]['variables'])
-        del (self.directorio[scope]['constantes'])
+        # del(self.directorio[scope]['variables'])
+        # del (self.directorio[scope]['constantes'])
         # Se borran las tablas de funciones
-        return self.directorio[scope]
+        return self.directorio
+        #[scope]
 
     def assign_virtual_address(self, scope, type, dataType, size):
         return self.direcciones_virtuales.create_virtual_dir(scope, type, dataType, size)
+
+    def get_vars_address(self, scope, id):
+        if id in self.directorio[scope]['variables']:
+            return self.directorio[scope]['variables'][id]['address']
+        elif id in self.directorio['Programa']['variables']:
+            return self.directorio['Programa']['variables'][id]['address']
+        elif str(id) in self.directorio['Programa']['constantes']:
+            return self.directorio['Programa']['constantes'][str(id)]['address']
+        else:
+            raise Exception(f"ERROR: '{id}' no existe")
+
+    def create_temp_dict(self, scope):
+        if not ('temps' in self.directorio[scope] and isinstance(self.directorio[scope]['temps'], dict)):
+            self.directorio[scope]['temps'] = {}
+
+    def get_temp_dict(self, scope):
+        if ('temps' in self.directorio[scope] and isinstance(self.directorio[scope]['temps'], dict)):
+            return self.directorio[scope]['temps']
+        else:
+            raise Exception(f"ERROR: '{scope}' el directorio de temporales no existe en este scope")
+
+    def add_temp(self, scope, type, count):
+        self.create_temp_dict(scope)
+        temp_table = self.get_temp_dict(scope)
+        virtual_address = self.assign_virtual_address(scope, 'temp', type, 1)
+        temp_table["t" + str(count)] = {'dataType': type, 'address': virtual_address, 'size': 1}
+        return virtual_address

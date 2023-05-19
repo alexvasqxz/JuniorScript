@@ -6,30 +6,31 @@ mi_funcion 🤡 (😈 : decimal, paramB : decimal, otro_param : logico): vacio {
     variable abc, def : logico
     variable 😮😮😮 : entero
 
-    abc = verdadero
-    😈 = 5.6
+    abc = (verdadero YYY falso) OOO (falso YYY falso)
+    😈 = 5.6 * (3 + 5 * 9 * 10)/glob
     imprimir(😈)
 
     para_cada (index en_cada lista1) {
-        leer(index)
+        leer(def)
     }
 
     condicion (2 < 3) {
-        paramB = 10
+        paramB = 10.5
     } alternativa {
-        paramB = 20
+        paramB = 20.4
     }
 }
 
 mi_funcion otraFuncion (): entero {
     variable otra_variable : letra
     variable 😵:decimal
-    regresar(3+80)
+    😵 = 5/2
+    imprimir(3+80, 5*30)
 }
 
 iniciar() {
     variable 💩💩💩 : decimal
     variable 🎃 : decimal[6]
-    paramB = 8
-    imprimir(8+5, 8<3, 4!=5, "hola me llamo Gus")
+    imprimir(8*(5-3), 8<3, 4!=5, "hola me llamo Gus", 'e', 🎃)
+    leer(💩💩💩)
 }
