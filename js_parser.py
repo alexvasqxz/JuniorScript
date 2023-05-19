@@ -14,6 +14,11 @@ from js_lexer import tokens
 # Semantica
 from logic.semantica_directorio import DirectorioFunciones
 
+# Codigo Expresiones y Estatutos
+from logic.generacion_codigo_I import CodigoExpresionesEstatutos
+# Quadruplos
+from logic.quadruple import Quadruple
+
 def JSParser():
     # ------------------------------------------------------------
     # Variables Globales
@@ -25,7 +30,7 @@ def JSParser():
     # ------------------------------------------------------------
     def p_programa(p):
         '''
-        programa : PROGRAMA puntos_semantica_1 ID puntos_semantica_2 programaB programaC inicio punto_semantico_16
+        programa : PROGRAMA puntos_semantica_1 punto_codigoI_0 ID puntos_semantica_2 programaB programaC inicio punto_semantico_16
         programaB : dec_vars
                 | empty
         programaC : dec_func programaCC
@@ -101,13 +106,13 @@ def JSParser():
 
     def p_asignacion(p):
         '''
-        asignacion : llam_vars ASSIGN expresion
+        asignacion : llam_vars ASSIGN expresion punto_codigoI_12
         '''
         p[0] = None
 
     def p_llam_vars(p):
         '''
-        llam_vars : ID llam_varsB
+        llam_vars : ID punto_codigoI_1 llam_varsB
         llam_varsB : LBRACE CTEENT RBRACE
                 | LBRACE CTEENT RBRACE LBRACE CTEENT RBRACE
                 | empty
@@ -116,60 +121,58 @@ def JSParser():
 
     def p_expresion(p):
         '''
-        expresion : peta_exp expresionB
-        expresionB : ASSIGN expresion
-                | empty
+        expresion : peta_exp
         '''
         p[0] = None
 
     def p_peta_exp(p):
         '''
-        peta_exp : tera_exp peta_expB
-        peta_expB : AND peta_exp
-                | OR peta_exp
+        peta_exp : tera_exp punto_codigoI_4 peta_expB
+        peta_expB : AND punto_codigoI_3 peta_exp
+                | OR punto_codigoI_3 peta_exp
                 | empty
         '''
         p[0] = None
 
     def p_tera_exp(p):
         '''
-        tera_exp : mega_exp tera_expB
-        tera_expB : LT tera_exp
-                | GT tera_exp
-                | LTE tera_exp
-                | GTE tera_exp
-                | EQUAL tera_exp
-                | NEQUAL tera_exp
+        tera_exp : mega_exp punto_codigoI_5 tera_expB
+        tera_expB : LT punto_codigoI_3 tera_exp
+                | GT punto_codigoI_3 tera_exp
+                | LTE punto_codigoI_3 tera_exp
+                | GTE punto_codigoI_3 tera_exp
+                | EQUAL punto_codigoI_3 tera_exp
+                | NEQUAL punto_codigoI_3 tera_exp
                 | empty
         '''
         p[0] = None
 
     def p_mega_exp(p):
         '''
-        mega_exp : kilo_exp mega_expB
-        mega_expB : PLUS mega_exp
-                | MINUS mega_exp
+        mega_exp : kilo_exp punto_codigoI_6 mega_expB
+        mega_expB : PLUS punto_codigoI_3 mega_exp
+                | MINUS punto_codigoI_3 mega_exp
                 | empty
         '''
         p[0] = None
 
     def p_kilo_exp(p):
         '''
-        kilo_exp : factor kilo_expB
-        kilo_expB : TIMES kilo_exp
-                | DIVIDE kilo_exp
+        kilo_exp : factor punto_codigoI_7 kilo_expB
+        kilo_expB : TIMES punto_codigoI_3 kilo_exp
+                | DIVIDE punto_codigoI_3 kilo_exp
                 | empty
         '''
         p[0] = None
 
     def p_factor(p):
         '''
-        factor : LPAREN expresion RPAREN
+        factor : LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
             | llam_vars
             | llam_func
-            | CTEENT punto_semantico_17
-            | CTEDECI punto_semantico_17
-            | cte_bool punto_semantico_17
+            | CTEENT punto_semantico_17 punto_codigoI_2
+            | CTEDECI punto_semantico_17 punto_codigoI_2
+            | cte_bool punto_semantico_17 punto_codigoI_2
         '''
         p[0] = None
 
@@ -219,9 +222,9 @@ def JSParser():
     def p_escribir(p):
         '''
         escribir : ESCRITURA LPAREN escribirB RPAREN
-        escribirB : expresion escribirBB
-                | CTEFRASE escribirBB
-                | CTELETRA escribirBB
+        escribirB : expresion punto_codigoI_10 escribirBB
+                | CTEFRASE punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB
+                | CTELETRA punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB
         escribirBB : COMMA escribirB
                 | empty
         '''
@@ -230,7 +233,7 @@ def JSParser():
     def p_leer(p):
         '''
         leer : LECTURA LPAREN leerI RPAREN
-        leerI : ID leerII
+        leerI : ID punto_codigoI_1 punto_codigoI_11 leerII
         leerII : COMMA ID
             | empty
         '''
@@ -247,6 +250,7 @@ def JSParser():
         inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY bloque RCURLY punto_semantico_14
         '''
         p[0] = None
+        codigoI.debug()
 
     def p_empty(p):
         '''
@@ -437,6 +441,11 @@ def JSParser():
             output_file.write("Directorio de Funciones\n")
             output_file.write(json.dumps(dir_func, indent=4))
 
+        with open("./tests/lista_cuadruplos.txt", "w") as output_file:
+            output_file.write("Lista de Cuadruplos\n")
+            for quadruple in quadruplos.obtener_quadruplos():
+                output_file.write(str(quadruple) + '\n')
+
     """ Descripcion:
     Se crea la tabla de constantes con scope global (programa) """
     def p_punto_semantico_17(p):
@@ -444,6 +453,126 @@ def JSParser():
         punto_semantico_17 :
         '''
         semantica.add_constant(p[-1])
+
+    # ------------------------------------------------------------
+    # CODIGO - QUADRUPLOS EXPRESIONES Y ESTATUTOS
+    # ------------------------------------------------------------
+    """ Descripcion:
+    Se crea la llamada a la clase para trabajar con expresiones
+    aritmeticas y estatutos y su correspondiente creacion de cuadruplos.
+    De igual forma se crea la lista de quadruplos que generara el codigo """
+    def p_punto_codigoI_0(p):
+        '''
+        punto_codigoI_0 :
+        '''
+        global codigoI, quadruplos
+        codigoI = CodigoExpresionesEstatutos()
+        quadruplos = Quadruple()
+
+    """ Descripcion:
+    Se guardan los IDs de las expresiones aritmeticas y estatutos
+    y su direccion virtual correspondiente """
+    def p_punto_codigoI_1(p):
+        '''
+        punto_codigoI_1 :
+        '''
+        global address
+        address = semantica.get_vars_address(curr_scope, p[-1])
+        codigoI.push_operando(address)
+
+    """ Descripcion:
+    Se guardan las constantes de las expresiones aritmeticas y estatutos
+    y su direccion virtual correspondiente """
+    def p_punto_codigoI_2(p):
+        '''
+        punto_codigoI_2 :
+        '''
+        global address
+        address = semantica.get_vars_address(curr_scope, p[-2])
+        codigoI.push_operando(address)
+
+    """ Descripcion:
+    Se guardan los operadores en la pila de Operadores """
+    def p_punto_codigoI_3(p):
+        '''
+        punto_codigoI_3 :
+        '''
+        codigoI.push_operador(p[-1])
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_4(p):
+        '''
+        punto_codigoI_4 :
+        '''
+        codigoI.create_expression_quad(1, curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_5(p):
+        '''
+        punto_codigoI_5 :
+        '''
+        codigoI.create_expression_quad(2, curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_6(p):
+        '''
+        punto_codigoI_6 :
+        '''
+        codigoI.create_expression_quad(3, curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_7(p):
+        '''
+        punto_codigoI_7 :
+        '''
+        codigoI.create_expression_quad(4, curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_8(p):
+        '''
+        punto_codigoI_8 :
+        '''
+        codigoI.agregar_fondo()
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_9(p):
+        '''
+        punto_codigoI_9 :
+        '''
+        codigoI.quitar_fondo()
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_10(p):
+        '''
+        punto_codigoI_10 :
+        '''
+        codigoI.push_operador('imprimir')
+        codigoI.create_estatuto_quad(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_11(p):
+        '''
+        punto_codigoI_11 :
+        '''
+        codigoI.push_operador('leer')
+        codigoI.create_estatuto_quad(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoI_12(p):
+        '''
+        punto_codigoI_12 :
+        '''
+        codigoI.push_operador('=')
+        codigoI.create_estatuto_quad(quadruplos)
 
     return yacc.yacc()
 
