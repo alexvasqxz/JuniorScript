@@ -92,3 +92,12 @@ expresiones aritmeticas y estatutos, asi como la direccion virtual asignada para
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/3.OutputII.png" width="500" />
 <i> Imagen 9: </i>Ejemplo impresion de cuadruplos despues del direccionamiento virtual.
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 4  }$</h2> 
+
+<p>En este avance 4, se muestran los diagramas de sintaxis a los que se les han agregado puntos neuronales como 
+lógica para poder representar la creación de cuadruplos de expresiones estatutos condicionales, como lo es el
+if, while y for, conocidos como condicion, mientras, y para cada en el lenguaje <i>JuniorScript.</i> </p>
+<p> De igual forma que en el avance 3, la creación de cuadruplos para estatutos condicionales funciona por
+medio de direcciones virtuales, por lo que se vera el número de operación de los saltos, la dirección de la
+respuesta que se esta evaluando y la línea de salto </p>

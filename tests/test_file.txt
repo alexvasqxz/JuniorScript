@@ -26,6 +26,10 @@ mi_funcion otraFuncion (): entero {
     variable 😵:decimal
     😵 = 5/2
     imprimir(3+80, 5*30)
+
+    mientras(20 > 3 * 9){
+        imprimir("Hola")
+    }
 }
 
 iniciar() {

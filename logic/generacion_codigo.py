@@ -9,6 +9,8 @@ class CodigoExpresionesEstatutos:
         self.pilaOperandos = Stack()
         # Pila de un solo elemento conteniendo los Operadores
         self.pilaOperadores = Stack()
+        # Pila de saltos para estatutos condiconales
+        self.pilaSaltos = Stack()
 
         self.direccionesVirtuales = DireccionesVirtuales()
         self.mapeoDatos = MapeoDatos()
@@ -25,6 +27,12 @@ class CodigoExpresionesEstatutos:
         mapped_type = self.mapeoDatos.map_type(id)
         self.pilaOperadores.append(mapped_type)
 
+    def push_salto(self, count):
+        self.pilaSaltos.append(count)
+
+    # ------------------------------------------------------------
+    # CODIGO - QUADRUPLOS EXPRESIONES Y ESTATUTOS
+    # ------------------------------------------------------------
     def create_expression_quad(self, depth_level, scope, quadObj, semanticaObj):
         if (not bool(self.pilaOperadores)):
             return
@@ -77,10 +85,57 @@ class CodigoExpresionesEstatutos:
         else:
             raise Exception(f"ERROR: El fondo falso ha fallado")
 
+    # ------------------------------------------------------------
+    # CODIGO - ESTATUTOS CONDICIONALES -- IF
+    # ------------------------------------------------------------
+    def estatuto_if(self, quadObj):
+        expresion = self.pilaOperandos.pop()
+        if expresion[1] != 3:
+            raise Exception(f"ERROR: Tipo Incompatible '{expresion[0], expresion[1]}'")
+        else:
+            result = expresion[0]
+            operador = self.pilaOperadores.pop()
+            quadObj.agregar(operador, result, None, None)
+            self.push_salto(quadObj.quads_len() - 1)
+
+    def estatuto_if_else(self, quadObj):
+        operador = self.pilaOperadores.pop()
+        quadObj.agregar(operador, None, None, None)
+        if_a_modificar = self.pilaSaltos.pop()
+        self.push_salto(quadObj.quads_len() - 1)
+        quadObj.modificar_quad(if_a_modificar, [None, None, None, quadObj.quads_len()])
+
+    def estatuto_if_end(self, quadObj):
+        end = self.pilaSaltos.pop()
+        quadObj.modificar_quad(end, [None, None, None, quadObj.quads_len()])
+
+    # ------------------------------------------------------------
+    # CODIGO - ESTATUTOS CONDICIONALES -- WHILE
+    # ------------------------------------------------------------
+    def estatuto_while(self, quadObj):
+        expresion = self.pilaOperandos.pop()
+        if expresion[1] != 3:
+            raise Exception(f"ERROR: Tipo Incompatible '{expresion[0], expresion[1]}'")
+        else:
+            result = expresion[0]
+            operador = self.pilaOperadores.pop()
+            quadObj.agregar(operador, result, None, None)
+            self.push_salto(quadObj.quads_len() - 1)
+
+    def estatuto_while_end(self, quadObj):
+        while_a_modificar = self.pilaSaltos.pop()
+        inicio = self.pilaSaltos.pop()
+        operador = self.pilaOperadores.pop()
+        quadObj.agregar(operador, None, None, inicio)
+        quadObj.modificar_quad(while_a_modificar, [None, None, None, quadObj.quads_len()])
+
     def debug(self):
         print("Pila Operadores")
         for item in self.pilaOperadores:
             print(item)
         print("Pila Operandos")
         for item in self.pilaOperandos:
+            print(item)
+        print("Pila Saltos")
+        for item in self.pilaSaltos:
             print(item)

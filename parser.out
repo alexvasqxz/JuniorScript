@@ -83,9 +83,9 @@ Rule 77    llam_paramsB -> empty
 Rule 78    ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
 Rule 79    ciclo_para_cadaB -> CONFORME expresion
 Rule 80    ciclo_para_cadaB -> empty
-Rule 81    ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-Rule 82    condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
-Rule 83    condicionB -> ELSE LCURLY bloque RCURLY
+Rule 81    ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+Rule 82    condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
+Rule 83    condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY
 Rule 84    condicionB -> empty
 Rule 85    escribir -> ESCRITURA LPAREN escribirB RPAREN
 Rule 86    escribirB -> expresion punto_codigoI_10 escribirBB
@@ -130,6 +130,12 @@ Rule 124   punto_codigoI_9 -> <empty>
 Rule 125   punto_codigoI_10 -> <empty>
 Rule 126   punto_codigoI_11 -> <empty>
 Rule 127   punto_codigoI_12 -> <empty>
+Rule 128   punto_codigoII_1 -> <empty>
+Rule 129   punto_codigoII_2 -> <empty>
+Rule 130   punto_codigoII_3 -> <empty>
+Rule 131   punto_codigoII_4 -> <empty>
+Rule 132   punto_codigoII_5 -> <empty>
+Rule 133   punto_codigoII_6 -> <empty>
 
 Terminals, with rules where they appear
 
@@ -227,6 +233,12 @@ programa             : 0
 programaB            : 1
 programaC            : 1 5
 programaCC           : 4
+punto_codigoII_1     : 82
+punto_codigoII_2     : 83
+punto_codigoII_3     : 82
+punto_codigoII_4     : 81
+punto_codigoII_5     : 81
+punto_codigoII_6     : 81
 punto_codigoI_0      : 1
 punto_codigoI_1      : 41 92
 punto_codigoI_10     : 86 87 88
@@ -720,8 +732,8 @@ state 42
     (37) bloqueB -> . regresar
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -839,8 +851,8 @@ state 49
     (97) empty -> .
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -1035,14 +1047,16 @@ state 61
 
 state 62
 
-    (81) ciclo_mientras -> WHILE . LPAREN expresion RPAREN LCURLY bloque RCURLY
+    (81) ciclo_mientras -> WHILE . punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (131) punto_codigoII_4 -> .
 
-    LPAREN          shift and go to state 81
+    LPAREN          reduce using rule 131 (punto_codigoII_4 -> .)
 
+    punto_codigoII_4               shift and go to state 81
 
 state 63
 
-    (82) condicion -> IF . LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (82) condicion -> IF . LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
 
     LPAREN          shift and go to state 82
 
@@ -1160,8 +1174,8 @@ state 74
     (97) empty -> .
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -1327,43 +1341,14 @@ state 80
 
 state 81
 
-    (81) ciclo_mientras -> WHILE LPAREN . expresion RPAREN LCURLY bloque RCURLY
-    (45) expresion -> . peta_exp
-    (46) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
-    (50) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
-    (58) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
-    (62) kilo_exp -> . factor punto_codigoI_7 kilo_expB
-    (66) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
-    (67) factor -> . llam_vars
-    (68) factor -> . llam_func
-    (69) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
-    (70) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
-    (71) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
-    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
-    (72) llam_func -> . ID LPAREN llam_params RPAREN
-    (73) cte_bool -> . TRUE
-    (74) cte_bool -> . FALSE
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 . LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
 
-    LPAREN          shift and go to state 101
-    CTEENT          shift and go to state 103
-    CTEDECI         shift and go to state 104
-    ID              shift and go to state 106
-    TRUE            shift and go to state 107
-    FALSE           shift and go to state 108
+    LPAREN          shift and go to state 115
 
-    expresion                      shift and go to state 115
-    peta_exp                       shift and go to state 96
-    tera_exp                       shift and go to state 97
-    mega_exp                       shift and go to state 98
-    kilo_exp                       shift and go to state 99
-    factor                         shift and go to state 100
-    llam_vars                      shift and go to state 94
-    llam_func                      shift and go to state 102
-    cte_bool                       shift and go to state 105
 
 state 82
 
-    (82) condicion -> IF LPAREN . expresion RPAREN LCURLY bloque RCURLY condicionB
+    (82) condicion -> IF LPAREN . expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (45) expresion -> . peta_exp
     (46) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
     (50) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
@@ -2064,17 +2049,48 @@ state 114
 
 state 115
 
-    (81) ciclo_mientras -> WHILE LPAREN expresion . RPAREN LCURLY bloque RCURLY
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN . expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (45) expresion -> . peta_exp
+    (46) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
+    (50) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
+    (58) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
+    (62) kilo_exp -> . factor punto_codigoI_7 kilo_expB
+    (66) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
+    (67) factor -> . llam_vars
+    (68) factor -> . llam_func
+    (69) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
+    (70) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
+    (71) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
+    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
+    (72) llam_func -> . ID LPAREN llam_params RPAREN
+    (73) cte_bool -> . TRUE
+    (74) cte_bool -> . FALSE
 
-    RPAREN          shift and go to state 142
+    LPAREN          shift and go to state 101
+    CTEENT          shift and go to state 103
+    CTEDECI         shift and go to state 104
+    ID              shift and go to state 106
+    TRUE            shift and go to state 107
+    FALSE           shift and go to state 108
 
+    expresion                      shift and go to state 142
+    peta_exp                       shift and go to state 96
+    tera_exp                       shift and go to state 97
+    mega_exp                       shift and go to state 98
+    kilo_exp                       shift and go to state 99
+    factor                         shift and go to state 100
+    llam_vars                      shift and go to state 94
+    llam_func                      shift and go to state 102
+    cte_bool                       shift and go to state 105
 
 state 116
 
-    (82) condicion -> IF LPAREN expresion . RPAREN LCURLY bloque RCURLY condicionB
+    (82) condicion -> IF LPAREN expresion . punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
+    (128) punto_codigoII_1 -> .
 
-    RPAREN          shift and go to state 143
+    RPAREN          reduce using rule 128 (punto_codigoII_1 -> .)
 
+    punto_codigoII_1               shift and go to state 143
 
 state 117
 
@@ -2559,16 +2575,18 @@ state 141
 
 state 142
 
-    (81) ciclo_mientras -> WHILE LPAREN expresion RPAREN . LCURLY bloque RCURLY
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion . punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (132) punto_codigoII_5 -> .
 
-    LCURLY          shift and go to state 183
+    RPAREN          reduce using rule 132 (punto_codigoII_5 -> .)
 
+    punto_codigoII_5               shift and go to state 183
 
 state 143
 
-    (82) condicion -> IF LPAREN expresion RPAREN . LCURLY bloque RCURLY condicionB
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 . RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
 
-    LCURLY          shift and go to state 184
+    RPAREN          shift and go to state 184
 
 
 state 144
@@ -3191,95 +3209,17 @@ state 182
 
 state 183
 
-    (81) ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY . bloque RCURLY
-    (28) bloque -> . bloqueB bloqueBB
-    (29) bloqueB -> . asignacion
-    (30) bloqueB -> . ciclo_para_cada
-    (31) bloqueB -> . ciclo_mientras
-    (32) bloqueB -> . condicion
-    (33) bloqueB -> . escribir
-    (34) bloqueB -> . leer
-    (35) bloqueB -> . dec_vars
-    (36) bloqueB -> . llam_func
-    (37) bloqueB -> . regresar
-    (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
-    (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
-    (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
-    (91) leer -> . LECTURA LPAREN leerI RPAREN
-    (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
-    (72) llam_func -> . ID LPAREN llam_params RPAREN
-    (95) regresar -> . RETURN LPAREN expresion RPAREN
-    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 . RPAREN LCURLY bloque RCURLY punto_codigoII_6
 
-    FOR             shift and go to state 60
-    WHILE           shift and go to state 62
-    IF              shift and go to state 63
-    ESCRITURA       shift and go to state 64
-    LECTURA         shift and go to state 65
-    VAR             shift and go to state 10
-    ID              shift and go to state 61
-    RETURN          shift and go to state 66
+    RPAREN          shift and go to state 211
 
-    bloque                         shift and go to state 211
-    bloqueB                        shift and go to state 49
-    asignacion                     shift and go to state 50
-    ciclo_para_cada                shift and go to state 51
-    ciclo_mientras                 shift and go to state 52
-    condicion                      shift and go to state 53
-    escribir                       shift and go to state 54
-    leer                           shift and go to state 55
-    dec_vars                       shift and go to state 56
-    llam_func                      shift and go to state 57
-    regresar                       shift and go to state 58
-    llam_vars                      shift and go to state 59
 
 state 184
 
-    (82) condicion -> IF LPAREN expresion RPAREN LCURLY . bloque RCURLY condicionB
-    (28) bloque -> . bloqueB bloqueBB
-    (29) bloqueB -> . asignacion
-    (30) bloqueB -> . ciclo_para_cada
-    (31) bloqueB -> . ciclo_mientras
-    (32) bloqueB -> . condicion
-    (33) bloqueB -> . escribir
-    (34) bloqueB -> . leer
-    (35) bloqueB -> . dec_vars
-    (36) bloqueB -> . llam_func
-    (37) bloqueB -> . regresar
-    (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
-    (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
-    (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
-    (91) leer -> . LECTURA LPAREN leerI RPAREN
-    (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
-    (72) llam_func -> . ID LPAREN llam_params RPAREN
-    (95) regresar -> . RETURN LPAREN expresion RPAREN
-    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN . LCURLY bloque RCURLY condicionB punto_codigoII_3
 
-    FOR             shift and go to state 60
-    WHILE           shift and go to state 62
-    IF              shift and go to state 63
-    ESCRITURA       shift and go to state 64
-    LECTURA         shift and go to state 65
-    VAR             shift and go to state 10
-    ID              shift and go to state 61
-    RETURN          shift and go to state 66
+    LCURLY          shift and go to state 212
 
-    bloque                         shift and go to state 212
-    bloqueB                        shift and go to state 49
-    asignacion                     shift and go to state 50
-    ciclo_para_cada                shift and go to state 51
-    ciclo_mientras                 shift and go to state 52
-    condicion                      shift and go to state 53
-    escribir                       shift and go to state 54
-    leer                           shift and go to state 55
-    dec_vars                       shift and go to state 56
-    llam_func                      shift and go to state 57
-    regresar                       shift and go to state 58
-    llam_vars                      shift and go to state 59
 
 state 185
 
@@ -3862,17 +3802,56 @@ state 210
 
 state 211
 
-    (81) ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque . RCURLY
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN . LCURLY bloque RCURLY punto_codigoII_6
 
-    RCURLY          shift and go to state 238
+    LCURLY          shift and go to state 238
 
 
 state 212
 
-    (82) condicion -> IF LPAREN expresion RPAREN LCURLY bloque . RCURLY condicionB
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY . bloque RCURLY condicionB punto_codigoII_3
+    (28) bloque -> . bloqueB bloqueBB
+    (29) bloqueB -> . asignacion
+    (30) bloqueB -> . ciclo_para_cada
+    (31) bloqueB -> . ciclo_mientras
+    (32) bloqueB -> . condicion
+    (33) bloqueB -> . escribir
+    (34) bloqueB -> . leer
+    (35) bloqueB -> . dec_vars
+    (36) bloqueB -> . llam_func
+    (37) bloqueB -> . regresar
+    (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
+    (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
+    (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
+    (91) leer -> . LECTURA LPAREN leerI RPAREN
+    (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
+    (72) llam_func -> . ID LPAREN llam_params RPAREN
+    (95) regresar -> . RETURN LPAREN expresion RPAREN
+    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
 
-    RCURLY          shift and go to state 239
+    FOR             shift and go to state 60
+    WHILE           shift and go to state 62
+    IF              shift and go to state 63
+    ESCRITURA       shift and go to state 64
+    LECTURA         shift and go to state 65
+    VAR             shift and go to state 10
+    ID              shift and go to state 61
+    RETURN          shift and go to state 66
 
+    bloque                         shift and go to state 239
+    bloqueB                        shift and go to state 49
+    asignacion                     shift and go to state 50
+    ciclo_para_cada                shift and go to state 51
+    ciclo_mientras                 shift and go to state 52
+    condicion                      shift and go to state 53
+    escribir                       shift and go to state 54
+    leer                           shift and go to state 55
+    dec_vars                       shift and go to state 56
+    llam_func                      shift and go to state 57
+    regresar                       shift and go to state 58
+    llam_vars                      shift and go to state 59
 
 state 213
 
@@ -3956,8 +3935,8 @@ state 220
     (37) bloqueB -> . regresar
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -4298,39 +4277,56 @@ state 237
 
 state 238
 
-    (81) ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY . bloque RCURLY punto_codigoII_6
+    (28) bloque -> . bloqueB bloqueBB
+    (29) bloqueB -> . asignacion
+    (30) bloqueB -> . ciclo_para_cada
+    (31) bloqueB -> . ciclo_mientras
+    (32) bloqueB -> . condicion
+    (33) bloqueB -> . escribir
+    (34) bloqueB -> . leer
+    (35) bloqueB -> . dec_vars
+    (36) bloqueB -> . llam_func
+    (37) bloqueB -> . regresar
+    (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
+    (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
+    (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
+    (91) leer -> . LECTURA LPAREN leerI RPAREN
+    (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
+    (72) llam_func -> . ID LPAREN llam_params RPAREN
+    (95) regresar -> . RETURN LPAREN expresion RPAREN
+    (41) llam_vars -> . ID punto_codigoI_1 llam_varsB
 
-    FOR             reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    WHILE           reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    IF              reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    ESCRITURA       reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    LECTURA         reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    VAR             reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    ID              reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    RETURN          reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
-    RCURLY          reduce using rule 81 (ciclo_mientras -> WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY .)
+    FOR             shift and go to state 60
+    WHILE           shift and go to state 62
+    IF              shift and go to state 63
+    ESCRITURA       shift and go to state 64
+    LECTURA         shift and go to state 65
+    VAR             shift and go to state 10
+    ID              shift and go to state 61
+    RETURN          shift and go to state 66
 
+    bloque                         shift and go to state 250
+    bloqueB                        shift and go to state 49
+    asignacion                     shift and go to state 50
+    ciclo_para_cada                shift and go to state 51
+    ciclo_mientras                 shift and go to state 52
+    condicion                      shift and go to state 53
+    escribir                       shift and go to state 54
+    leer                           shift and go to state 55
+    dec_vars                       shift and go to state 56
+    llam_func                      shift and go to state 57
+    regresar                       shift and go to state 58
+    llam_vars                      shift and go to state 59
 
 state 239
 
-    (82) condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY . condicionB
-    (83) condicionB -> . ELSE LCURLY bloque RCURLY
-    (84) condicionB -> . empty
-    (97) empty -> .
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque . RCURLY condicionB punto_codigoII_3
 
-    ELSE            shift and go to state 251
-    FOR             reduce using rule 97 (empty -> .)
-    WHILE           reduce using rule 97 (empty -> .)
-    IF              reduce using rule 97 (empty -> .)
-    ESCRITURA       reduce using rule 97 (empty -> .)
-    LECTURA         reduce using rule 97 (empty -> .)
-    VAR             reduce using rule 97 (empty -> .)
-    ID              reduce using rule 97 (empty -> .)
-    RETURN          reduce using rule 97 (empty -> .)
-    RCURLY          reduce using rule 97 (empty -> .)
+    RCURLY          shift and go to state 251
 
-    condicionB                     shift and go to state 250
-    empty                          shift and go to state 252
 
 state 240
 
@@ -4367,7 +4363,7 @@ state 244
 
     ID              shift and go to state 67
 
-    dec_params                     shift and go to state 253
+    dec_params                     shift and go to state 252
 
 state 245
 
@@ -4380,7 +4376,7 @@ state 246
 
     (20) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque . RCURLY punto_semantico_14
 
-    RCURLY          shift and go to state 254
+    RCURLY          shift and go to state 253
 
 
 state 247
@@ -4414,8 +4410,8 @@ state 248
     (37) bloqueB -> . regresar
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -4432,7 +4428,7 @@ state 248
     ID              shift and go to state 61
     RETURN          shift and go to state 66
 
-    bloque                         shift and go to state 255
+    bloque                         shift and go to state 254
     bloqueB                        shift and go to state 49
     asignacion                     shift and go to state 50
     ciclo_para_cada                shift and go to state 51
@@ -4477,27 +4473,100 @@ state 249
 
 state 250
 
-    (82) condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque . RCURLY punto_codigoII_6
 
-    FOR             reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    WHILE           reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    IF              reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    ESCRITURA       reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    LECTURA         reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    VAR             reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    ID              reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    RETURN          reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
-    RCURLY          reduce using rule 82 (condicion -> IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB .)
+    RCURLY          shift and go to state 255
 
 
 state 251
 
-    (83) condicionB -> ELSE . LCURLY bloque RCURLY
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY . condicionB punto_codigoII_3
+    (83) condicionB -> . ELSE punto_codigoII_2 LCURLY bloque RCURLY
+    (84) condicionB -> . empty
+    (97) empty -> .
 
-    LCURLY          shift and go to state 256
+    ELSE            shift and go to state 257
+    FOR             reduce using rule 97 (empty -> .)
+    WHILE           reduce using rule 97 (empty -> .)
+    IF              reduce using rule 97 (empty -> .)
+    ESCRITURA       reduce using rule 97 (empty -> .)
+    LECTURA         reduce using rule 97 (empty -> .)
+    VAR             reduce using rule 97 (empty -> .)
+    ID              reduce using rule 97 (empty -> .)
+    RETURN          reduce using rule 97 (empty -> .)
+    RCURLY          reduce using rule 97 (empty -> .)
 
+    condicionB                     shift and go to state 256
+    empty                          shift and go to state 258
 
 state 252
+
+    (24) dec_paramsB -> COMMA dec_params .
+
+    RPAREN          reduce using rule 24 (dec_paramsB -> COMMA dec_params .)
+
+
+state 253
+
+    (20) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY . punto_semantico_14
+    (111) punto_semantico_14 -> .
+
+    FUNCION         reduce using rule 111 (punto_semantico_14 -> .)
+    MAIN            reduce using rule 111 (punto_semantico_14 -> .)
+
+    punto_semantico_14             shift and go to state 259
+
+state 254
+
+    (78) ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque . RCURLY
+
+    RCURLY          shift and go to state 260
+
+
+state 255
+
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY . punto_codigoII_6
+    (133) punto_codigoII_6 -> .
+
+    FOR             reduce using rule 133 (punto_codigoII_6 -> .)
+    WHILE           reduce using rule 133 (punto_codigoII_6 -> .)
+    IF              reduce using rule 133 (punto_codigoII_6 -> .)
+    ESCRITURA       reduce using rule 133 (punto_codigoII_6 -> .)
+    LECTURA         reduce using rule 133 (punto_codigoII_6 -> .)
+    VAR             reduce using rule 133 (punto_codigoII_6 -> .)
+    ID              reduce using rule 133 (punto_codigoII_6 -> .)
+    RETURN          reduce using rule 133 (punto_codigoII_6 -> .)
+    RCURLY          reduce using rule 133 (punto_codigoII_6 -> .)
+
+    punto_codigoII_6               shift and go to state 261
+
+state 256
+
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB . punto_codigoII_3
+    (130) punto_codigoII_3 -> .
+
+    FOR             reduce using rule 130 (punto_codigoII_3 -> .)
+    WHILE           reduce using rule 130 (punto_codigoII_3 -> .)
+    IF              reduce using rule 130 (punto_codigoII_3 -> .)
+    ESCRITURA       reduce using rule 130 (punto_codigoII_3 -> .)
+    LECTURA         reduce using rule 130 (punto_codigoII_3 -> .)
+    VAR             reduce using rule 130 (punto_codigoII_3 -> .)
+    ID              reduce using rule 130 (punto_codigoII_3 -> .)
+    RETURN          reduce using rule 130 (punto_codigoII_3 -> .)
+    RCURLY          reduce using rule 130 (punto_codigoII_3 -> .)
+
+    punto_codigoII_3               shift and go to state 262
+
+state 257
+
+    (83) condicionB -> ELSE . punto_codigoII_2 LCURLY bloque RCURLY
+    (129) punto_codigoII_2 -> .
+
+    LCURLY          reduce using rule 129 (punto_codigoII_2 -> .)
+
+    punto_codigoII_2               shift and go to state 263
+
+state 258
 
     (84) condicionB -> empty .
 
@@ -4512,33 +4581,69 @@ state 252
     RCURLY          reduce using rule 84 (condicionB -> empty .)
 
 
-state 253
+state 259
 
-    (24) dec_paramsB -> COMMA dec_params .
+    (20) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .
 
-    RPAREN          reduce using rule 24 (dec_paramsB -> COMMA dec_params .)
-
-
-state 254
-
-    (20) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY . punto_semantico_14
-    (111) punto_semantico_14 -> .
-
-    FUNCION         reduce using rule 111 (punto_semantico_14 -> .)
-    MAIN            reduce using rule 111 (punto_semantico_14 -> .)
-
-    punto_semantico_14             shift and go to state 257
-
-state 255
-
-    (78) ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque . RCURLY
-
-    RCURLY          shift and go to state 258
+    FUNCION         reduce using rule 20 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
+    MAIN            reduce using rule 20 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
 
 
-state 256
+state 260
 
-    (83) condicionB -> ELSE LCURLY . bloque RCURLY
+    (78) ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .
+
+    FOR             reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    WHILE           reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    IF              reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    ESCRITURA       reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    LECTURA         reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    VAR             reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    ID              reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    RETURN          reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    RCURLY          reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+
+
+state 261
+
+    (81) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .
+
+    FOR             reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    WHILE           reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    IF              reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    ESCRITURA       reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    LECTURA         reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    VAR             reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    ID              reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    RETURN          reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    RCURLY          reduce using rule 81 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+
+
+state 262
+
+    (82) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .
+
+    FOR             reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    WHILE           reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    IF              reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    ESCRITURA       reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    LECTURA         reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    VAR             reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    ID              reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    RETURN          reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    RCURLY          reduce using rule 82 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+
+
+state 263
+
+    (83) condicionB -> ELSE punto_codigoII_2 . LCURLY bloque RCURLY
+
+    LCURLY          shift and go to state 264
+
+
+state 264
+
+    (83) condicionB -> ELSE punto_codigoII_2 LCURLY . bloque RCURLY
     (28) bloque -> . bloqueB bloqueBB
     (29) bloqueB -> . asignacion
     (30) bloqueB -> . ciclo_para_cada
@@ -4551,8 +4656,8 @@ state 256
     (37) bloqueB -> . regresar
     (40) asignacion -> . llam_vars ASSIGN expresion punto_codigoI_12
     (78) ciclo_para_cada -> . FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-    (81) ciclo_mientras -> . WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
-    (82) condicion -> . IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
+    (81) ciclo_mientras -> . WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
+    (82) condicion -> . IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
     (85) escribir -> . ESCRITURA LPAREN escribirB RPAREN
     (91) leer -> . LECTURA LPAREN leerI RPAREN
     (7) dec_vars -> . VAR punto_semantico_3 dec_varsI COLON tipo punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
@@ -4569,7 +4674,7 @@ state 256
     ID              shift and go to state 61
     RETURN          shift and go to state 66
 
-    bloque                         shift and go to state 259
+    bloque                         shift and go to state 265
     bloqueB                        shift and go to state 49
     asignacion                     shift and go to state 50
     ciclo_para_cada                shift and go to state 51
@@ -4582,49 +4687,26 @@ state 256
     regresar                       shift and go to state 58
     llam_vars                      shift and go to state 59
 
-state 257
+state 265
 
-    (20) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .
+    (83) condicionB -> ELSE punto_codigoII_2 LCURLY bloque . RCURLY
 
-    FUNCION         reduce using rule 20 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
-    MAIN            reduce using rule 20 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
-
-
-state 258
-
-    (78) ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .
-
-    FOR             reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    WHILE           reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    IF              reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    ESCRITURA       reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    LECTURA         reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    VAR             reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    ID              reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    RETURN          reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
-    RCURLY          reduce using rule 78 (ciclo_para_cada -> FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY .)
+    RCURLY          shift and go to state 266
 
 
-state 259
+state 266
 
-    (83) condicionB -> ELSE LCURLY bloque . RCURLY
+    (83) condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .
 
-    RCURLY          shift and go to state 260
-
-
-state 260
-
-    (83) condicionB -> ELSE LCURLY bloque RCURLY .
-
-    FOR             reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    WHILE           reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    IF              reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    ESCRITURA       reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    LECTURA         reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    VAR             reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    ID              reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    RETURN          reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
-    RCURLY          reduce using rule 83 (condicionB -> ELSE LCURLY bloque RCURLY .)
+    FOR             reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    WHILE           reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    IF              reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    ESCRITURA       reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    LECTURA         reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    VAR             reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    ID              reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    RETURN          reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
+    RCURLY          reduce using rule 83 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
 
 WARNING: 
 WARNING: Conflicts:
