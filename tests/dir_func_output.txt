@@ -6,10 +6,10 @@ Directorio de Funciones
         "quad_init": 0,
         "resources": {
             "vars": [
-                11,
+                12,
                 3,
                 2,
-                2
+                3
             ],
             "temps": []
         },
@@ -86,25 +86,35 @@ Directorio de Funciones
                 "value": 30,
                 "address": 30006
             },
+            "20": {
+                "dataType": 1,
+                "value": 20,
+                "address": 30007
+            },
+            "\"Hola\"": {
+                "dataType": 4,
+                "value": "\"Hola\"",
+                "address": 60000
+            },
             "8": {
                 "dataType": 1,
                 "value": 8,
-                "address": 30007
+                "address": 30008
             },
             "4": {
                 "dataType": 1,
                 "value": 4,
-                "address": 30008
+                "address": 30009
             },
             "\"hola me llamo Gus\"": {
                 "dataType": 4,
                 "value": "\"hola me llamo Gus\"",
-                "address": 60000
+                "address": 60001
             },
             "'e'": {
                 "dataType": 4,
                 "value": "'e'",
-                "address": 60001
+                "address": 60002
             }
         }
     },
@@ -247,6 +257,16 @@ Directorio de Funciones
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
+            },
+            "t13": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "t14": {
+                "dataType": 3,
+                "address": 22000,
+                "size": 1
             }
         }
     },
@@ -276,22 +296,22 @@ Directorio de Funciones
             }
         },
         "temps": {
-            "t13": {
+            "t15": {
                 "dataType": 1,
                 "address": 18000,
                 "size": 1
             },
-            "t14": {
+            "t16": {
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
             },
-            "t15": {
+            "t17": {
                 "dataType": 3,
                 "address": 22000,
                 "size": 1
             },
-            "t16": {
+            "t18": {
                 "dataType": 3,
                 "address": 22001,
                 "size": 1

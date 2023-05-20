@@ -15,7 +15,7 @@ from js_lexer import tokens
 from logic.semantica_directorio import DirectorioFunciones
 
 # Codigo Expresiones y Estatutos
-from logic.generacion_codigo_I import CodigoExpresionesEstatutos
+from logic.generacion_codigo import CodigoExpresionesEstatutos
 # Quadruplos
 from logic.quadruple import Quadruple
 
@@ -207,14 +207,14 @@ def JSParser():
 
     def p_ciclo_mientras(p):
         '''
-        ciclo_mientras : WHILE LPAREN expresion RPAREN LCURLY bloque RCURLY
+        ciclo_mientras : WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
         '''
         p[0] = None
 
     def p_condicion(p):
         '''
-        condicion : IF LPAREN expresion RPAREN LCURLY bloque RCURLY condicionB
-        condicionB : ELSE LCURLY bloque RCURLY
+        condicion : IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
+        condicionB : ELSE punto_codigoII_2 LCURLY bloque RCURLY
                 | empty
         '''
         p[0] = None
@@ -573,6 +573,61 @@ def JSParser():
         '''
         codigoI.push_operador('=')
         codigoI.create_estatuto_quad(quadruplos)
+
+    # ------------------------------------------------------------
+    # CODIGO - ESTATUTOS CONDICIONALES
+    # ------------------------------------------------------------
+    """ Descripcion:
+     """
+    def p_punto_codigoII_1(p):
+        '''
+        punto_codigoII_1 :
+        '''
+        codigoI.push_operador('SALTOF')
+        codigoI.estatuto_if(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoII_2(p):
+        '''
+        punto_codigoII_2 :
+        '''
+        codigoI.push_operador('SALTO')
+        codigoI.estatuto_if_else(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoII_3(p):
+        '''
+        punto_codigoII_3 :
+        '''
+        codigoI.estatuto_if_end(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoII_4(p):
+        '''
+        punto_codigoII_4 :
+        '''
+        codigoI.push_salto(len(quadruplos.obtener_quadruplos()))
+
+    """ Descripcion:
+     """
+    def p_punto_codigoII_5(p):
+        '''
+        punto_codigoII_5 :
+        '''
+        codigoI.push_operador('SALTOF')
+        codigoI.estatuto_while(quadruplos)
+
+    """ Descripcion:
+     """
+    def p_punto_codigoII_6(p):
+        '''
+        punto_codigoII_6 :
+        '''
+        codigoI.push_operador('SALTO')
+        codigoI.estatuto_while_end(quadruplos)
 
     return yacc.yacc()
 

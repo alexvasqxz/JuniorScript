@@ -21,6 +21,9 @@ class MapeoDatos():
             'OOO': 22,
             'imprimir': 30,
             'leer': 31,
+            'SALTO' : 40,
+            'SALTOV' : 41,
+            'SALTOF' : 42,
         }
 
     def map_type(self, type):
