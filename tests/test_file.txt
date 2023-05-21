@@ -10,10 +10,6 @@ mi_funcion 🤡 (😈 : decimal, paramB : decimal, otro_param : logico): vacio {
     😈 = 5.6 * (3 + 5 * 9 * 10)/glob
     imprimir(😈)
 
-    para_cada (index en_cada lista1) {
-        leer(def)
-    }
-
     condicion (2 < 3) {
         paramB = 10.5
     } alternativa {
@@ -26,15 +22,32 @@ mi_funcion otraFuncion (): entero {
     variable 😵:decimal
     😵 = 5/2
     imprimir(3+80, 5*30)
+    leer(📖📖)
 
     mientras(20 > 3 * 9){
         imprimir("Hola")
     }
 }
 
+mi_funcion ciclo_for (): vacio {
+    variable a, b, c, d, e, f, g, h, i, k : entero
+    a = b + c * (d - e)
+        b = e - f
+        desde (variable j : entero = 1 hasta a+b*c) {
+            h = j * k +b
+            condicion(b < h){
+                b = h + j
+                imprimir(a+b*c, j)
+            }
+        }
+        f = a + b
+}
+
 iniciar() {
     variable 💩💩💩 : decimal
     variable 🎃 : decimal[6]
-    imprimir(8*(5-3), 8<3, 4!=5, "hola me llamo Gus", 'e', 🎃)
+    variable abc : entero
+    abc = 4
+    imprimir(2*(5-3), 40<3, 4!=5, "hola me llamo Gus", 'e', 🎃)
     leer(💩💩💩)
 }

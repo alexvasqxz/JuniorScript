@@ -44,7 +44,7 @@ def JSParser():
         dec_vars : VAR punto_semantico_3 dec_varsI COLON tipo \
         punto_semantico_5 dec_varsB punto_semantico_8 dec_varsBB
         dec_varsI : ID punto_semantico_4 dec_varsII
-        dec_varsII : COMMA ID punto_semantico_4
+        dec_varsII : COMMA ID punto_semantico_4 dec_varsII
                 | empty
         dec_varsB : LBRACE CTEENT punto_semantico_6 RBRACE
                 | LBRACE CTEENT punto_semantico_6 RBRACE LBRACE CTEENT punto_semantico_7 RBRACE
@@ -173,6 +173,8 @@ def JSParser():
             | CTEENT punto_semantico_17 punto_codigoI_2
             | CTEDECI punto_semantico_17 punto_codigoI_2
             | cte_bool punto_semantico_17 punto_codigoI_2
+            | CTELETRA punto_semantico_17 punto_codigoI_2
+            | CTEFRASE punto_semantico_17 punto_codigoI_2
         '''
         p[0] = None
 
@@ -199,9 +201,10 @@ def JSParser():
 
     def p_ciclo_para_cada(p):
         '''
-        ciclo_para_cada : FOR LPAREN ID IN ID ciclo_para_cadaB RPAREN LCURLY bloque RCURLY
-        ciclo_para_cadaB : CONFORME expresion
-                        | empty
+        ciclo_para_cada : FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY \
+        bloque RCURLY punto_codigoII_10
+        ciclo_para_cadaB : VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 \
+        punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
         '''
         p[0] = None
 
@@ -232,9 +235,9 @@ def JSParser():
 
     def p_leer(p):
         '''
-        leer : LECTURA LPAREN leerI RPAREN
-        leerI : ID punto_codigoI_1 punto_codigoI_11 leerII
-        leerII : COMMA ID
+        leer : LECTURA LPAREN leerB RPAREN
+        leerB : ID punto_codigoI_1 punto_codigoI_11 leerBB
+        leerBB : COMMA leerB
             | empty
         '''
         p[0] = None
@@ -628,6 +631,53 @@ def JSParser():
         '''
         codigoI.push_operador('SALTO')
         codigoI.estatuto_while_end(quadruplos)
+
+    """ Descripcion:
+    
+     """
+    def p_punto_codigoII_7(p):
+        '''
+        punto_codigoII_7 :
+        '''
+        if p[-3] != 'entero':
+            raise Exception(f"ERROR: Tipo Incompatible '{p[-3]}' en ciclo, debe ser entero")
+        global address
+        address = semantica.get_vars_address(curr_scope, p[-6])
+        codigoI.push_operando(address)
+
+    """ Descripcion:
+
+     """
+    def p_punto_codigoII_8(p):
+        '''
+        punto_codigoII_8 :
+        '''
+        codigoI.push_operador('=')
+        codigoI.estatuto_for(curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+
+     """
+    def p_punto_codigoII_9(p):
+        '''
+        punto_codigoII_9 :
+        '''
+        codigoI.push_operador('SALTOF')
+        codigoI.push_operador('<')
+        codigoI.push_operador('=')
+        codigoI.estatuto_for_middle(curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+
+     """
+    def p_punto_codigoII_10(p):
+        '''
+        punto_codigoII_10 :
+        '''
+        codigoI.push_operador('SALTO')
+        codigoI.push_operador('=')
+        codigoI.push_operador('+')
+        codigoI.estatuto_for_end(curr_scope, quadruplos, semantica)
 
     return yacc.yacc()
 

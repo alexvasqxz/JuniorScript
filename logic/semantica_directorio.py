@@ -12,8 +12,7 @@ class DirectorioFunciones:
                 'type': 0,
                 'quad_init': 0,
                 'resources': {
-                    'vars': [],
-                    'temps': []
+                    'vars': []
                 },
                 'variables': {},
                 'constantes': {},
@@ -110,12 +109,13 @@ class DirectorioFunciones:
         }
 
     def assign_resources(self, scope):
-        vars_types = [dir_vars.get('dataType') for dir_vars in self.directorio[scope]['variables'].values()]
-        recursos = Counter(vars_types)
-        lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
-        self.directorio[scope]['resources']['vars'] = lista_recursos
-        self.direcciones_virtuales.delete_function_space()
-        # del (self.directorio[scope]['variables'])
+        if 'variables' in self.directorio[scope]:
+            vars_types = [dir_vars.get('dataType') for dir_vars in self.directorio[scope]['variables'].values()]
+            recursos = Counter(vars_types)
+            lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
+            self.directorio[scope]['resources']['vars'] = lista_recursos
+            self.direcciones_virtuales.delete_function_space()
+            # del (self.directorio[scope]['variables'])
 
     def clear_functions(self, scope):
         global_vars = [glob_vars.get('dataType') for glob_vars in self.directorio[scope]['variables'].values()]
@@ -134,14 +134,32 @@ class DirectorioFunciones:
         return self.direcciones_virtuales.create_virtual_dir(scope, type, dataType, size)
 
     def get_vars_address(self, scope, id):
-        if id in self.directorio[scope]['variables']:
-            return self.directorio[scope]['variables'][id]['address']
-        elif id in self.directorio['Programa']['variables']:
-            return self.directorio['Programa']['variables'][id]['address']
-        elif str(id) in self.directorio['Programa']['constantes']:
-            return self.directorio['Programa']['constantes'][str(id)]['address']
+        id_str = str(id)
+        # Tipo Constante
+        if id_str in self.directorio['Programa']['constantes']:
+            return self.directorio['Programa']['constantes'][id_str]['address']
+        # Tipo Variable
+        # Buscar dentro de la misma funcion
+        if 'variables' in self.directorio[scope] and isinstance(self.directorio[scope]['variables'], dict):
+            if id in self.directorio[scope]['variables']:
+                return self.directorio[scope]['variables'][id]['address']
+            # Buscar en variables globales
+            elif id in self.global_variables:
+                return self.directorio['Programa']['variables'][id]['address']
+            else:
+                raise Exception(f"ERROR: '{id}' no existe")
         else:
             raise Exception(f"ERROR: '{id}' no existe")
+
+    def get_temp_address(self, scope, id):
+        id_str = 't' + str(id)
+        # Buscar dentro de la misma funcion
+        if 'temps' in self.directorio[scope] and isinstance(self.directorio[scope]['temps'], dict):
+            if id_str in self.directorio[scope]['temps']:
+                return self.directorio[scope]['temps'][id_str]['address']
+        else:
+            raise Exception(f"ERROR: '{id_str}' no existe")
+
 
     def create_temp_dict(self, scope):
         if not ('temps' in self.directorio[scope] and isinstance(self.directorio[scope]['temps'], dict)):

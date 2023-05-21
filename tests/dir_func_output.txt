@@ -6,12 +6,11 @@ Directorio de Funciones
         "quad_init": 0,
         "resources": {
             "vars": [
-                12,
+                13,
                 3,
                 2,
                 3
-            ],
-            "temps": []
+            ]
         },
         "variables": {
             "\ud83d\udcd6\ud83d\udcd6": {
@@ -96,15 +95,20 @@ Directorio de Funciones
                 "value": "\"Hola\"",
                 "address": 60000
             },
-            "8": {
+            "1": {
                 "dataType": 1,
-                "value": 8,
+                "value": 1,
                 "address": 30008
             },
             "4": {
                 "dataType": 1,
                 "value": 4,
                 "address": 30009
+            },
+            "40": {
+                "dataType": 1,
+                "value": 40,
+                "address": 30010
             },
             "\"hola me llamo Gus\"": {
                 "dataType": 4,
@@ -270,13 +274,172 @@ Directorio de Funciones
             }
         }
     },
+    "Funcion3": {
+        "id": "ciclo_for",
+        "type": 0,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                11,
+                0,
+                0,
+                0
+            ],
+            "temps": []
+        },
+        "param_types": [],
+        "variables": {
+            "a": {
+                "dataType": 1,
+                "address": 5000,
+                "size": 1
+            },
+            "b": {
+                "dataType": 1,
+                "address": 5001,
+                "size": 1
+            },
+            "c": {
+                "dataType": 1,
+                "address": 5002,
+                "size": 1
+            },
+            "d": {
+                "dataType": 1,
+                "address": 5003,
+                "size": 1
+            },
+            "e": {
+                "dataType": 1,
+                "address": 5004,
+                "size": 1
+            },
+            "f": {
+                "dataType": 1,
+                "address": 5005,
+                "size": 1
+            },
+            "g": {
+                "dataType": 1,
+                "address": 5006,
+                "size": 1
+            },
+            "h": {
+                "dataType": 1,
+                "address": 5007,
+                "size": 1
+            },
+            "i": {
+                "dataType": 1,
+                "address": 5008,
+                "size": 1
+            },
+            "k": {
+                "dataType": 1,
+                "address": 5009,
+                "size": 1
+            },
+            "j": {
+                "dataType": 1,
+                "address": 5010,
+                "size": 1
+            }
+        },
+        "temps": {
+            "t15": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t16": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "t17": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "t18": {
+                "dataType": 1,
+                "address": 18003,
+                "size": 1
+            },
+            "tVC": {
+                "dataType": 1,
+                "address": 18004,
+                "size": 1
+            },
+            "t20": {
+                "dataType": 1,
+                "address": 18005,
+                "size": 1
+            },
+            "t21": {
+                "dataType": 1,
+                "address": 18006,
+                "size": 1
+            },
+            "tVF": {
+                "dataType": 1,
+                "address": 18007,
+                "size": 1
+            },
+            "t23": {
+                "dataType": 1,
+                "address": 18008,
+                "size": 1
+            },
+            "t24": {
+                "dataType": 1,
+                "address": 18009,
+                "size": 1
+            },
+            "t25": {
+                "dataType": 1,
+                "address": 18010,
+                "size": 1
+            },
+            "t26": {
+                "dataType": 3,
+                "address": 22000,
+                "size": 1
+            },
+            "t27": {
+                "dataType": 1,
+                "address": 18011,
+                "size": 1
+            },
+            "t28": {
+                "dataType": 1,
+                "address": 18012,
+                "size": 1
+            },
+            "t29": {
+                "dataType": 1,
+                "address": 18013,
+                "size": 1
+            },
+            "t30": {
+                "dataType": 1,
+                "address": 18014,
+                "size": 1
+            },
+            "t31": {
+                "dataType": 1,
+                "address": 18015,
+                "size": 1
+            }
+        }
+    },
     "main": {
         "id": "main_inicio",
         "type": 0,
         "quad_init": null,
         "resources": {
             "vars": [
-                0,
+                1,
                 2,
                 0,
                 0
@@ -293,25 +456,30 @@ Directorio de Funciones
                 "dataType": 2,
                 "address": 6001,
                 "size": 6
+            },
+            "abc": {
+                "dataType": 1,
+                "address": 5000,
+                "size": 1
             }
         },
         "temps": {
-            "t15": {
+            "t32": {
                 "dataType": 1,
                 "address": 18000,
                 "size": 1
             },
-            "t16": {
+            "t33": {
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
             },
-            "t17": {
+            "t34": {
                 "dataType": 3,
                 "address": 22000,
                 "size": 1
             },
-            "t18": {
+            "t35": {
                 "dataType": 3,
                 "address": 22001,
                 "size": 1
