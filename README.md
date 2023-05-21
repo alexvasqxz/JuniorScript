@@ -101,3 +101,12 @@ if, while y for, conocidos como condicion, mientras, y para cada en el lenguaje 
 <p> De igual forma que en el avance 3, la creación de cuadruplos para estatutos condicionales funciona por
 medio de direcciones virtuales, por lo que se vera el número de operación de los saltos, la dirección de la
 respuesta que se esta evaluando y la línea de salto </p>
+<p> Cabe mencionar que el ciclo for, en el lenguaje <i>JuniorScript.</i> conocido como desde y hasta,
+es un ciclo controlado, por lo que toma una fotografía del limite superior para evitar modificaciones y un
+posible ciclo infinito</p>
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/4.Puntos.png" width="500" />
+<i> Imagen 10: </i>Puntos neuronales para estatutos condicionales.
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/4.for.png" width="500" />
+<i> Imagen 11: </i>Ejemplo ciclo for, del lado izquierda los cuadruplos generador por JuniorScript
