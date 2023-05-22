@@ -46,8 +46,9 @@ def JSParser():
         dec_varsI : ID punto_semantico_4 dec_varsII
         dec_varsII : COMMA ID punto_semantico_4 dec_varsII
                 | empty
-        dec_varsB : LBRACE CTEENT punto_semantico_6 RBRACE
-                | LBRACE CTEENT punto_semantico_6 RBRACE LBRACE CTEENT punto_semantico_7 RBRACE
+        dec_varsB : LBRACE CTEENT punto_semantico_6 RBRACE dec_varsB2
+                | empty
+        dec_varsB2 : LBRACE CTEENT punto_semantico_7 RBRACE
                 | empty
         dec_varsBB : dec_vars
                 | empty
@@ -112,9 +113,10 @@ def JSParser():
 
     def p_llam_vars(p):
         '''
-        llam_vars : ID punto_codigoI_1 llam_varsB
-        llam_varsB : LBRACE CTEENT RBRACE
-                | LBRACE CTEENT RBRACE LBRACE CTEENT RBRACE
+        llam_vars : ID punto_codigoI_1 llam_varsB punto_arreglos_6
+        llam_varsB : LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
+                | empty
+        llam_varsB2 : LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE
                 | empty
         '''
         p[0] = None
@@ -325,9 +327,11 @@ def JSParser():
         '''
         punto_semantico_5 :
         '''
-        global curr_type, curr_size
+        global curr_type, curr_size, isArray, dim
         curr_size = 1
         curr_type = p[-1]
+        isArray = False
+        dim = []
 
     """ Descripcion:
     En caso de ser un arreglo, se modifica el tamanño para representar el numero de casillas
@@ -336,8 +340,10 @@ def JSParser():
         '''
         punto_semantico_6 :
         '''
-        global curr_size
+        global curr_size, isArray, dim
         curr_size *= p[-1]
+        isArray = True
+        dim.append(p[-1])
 
     """ Descripcion:
     En caso de ser una matriz, se modifica el tamanño para representar el numero de casillas
@@ -346,8 +352,9 @@ def JSParser():
         '''
         punto_semantico_7 :
         '''
-        global curr_size
+        global curr_size, dim
         curr_size *= p[-1]
+        dim.append(p[-1])
 
     """ Descripcion:
     Una vez contando con la informacion necesario, se agrega la o las variables en el directorio """
@@ -356,7 +363,7 @@ def JSParser():
         punto_semantico_8 :
         '''
         for id in curr_ids:
-            semantica.add_variable(curr_scope, id, curr_type, curr_size)
+            semantica.add_variable(curr_scope, id, curr_type, curr_size, isArray, dim)
 
     """ Descripcion:
     Dentro de una funcion, se obtiene el scope de esa funcion y agrega un espacio en el directorio
@@ -396,7 +403,7 @@ def JSParser():
         '''
         punto_semantico_12 :
         '''
-        semantica.add_variable(curr_scope, curr_id, curr_type, curr_size)
+        semantica.add_variable(curr_scope, curr_id, curr_type, curr_size, isArray, dim)
         semantica.add_param_type(curr_scope, curr_type)
 
     """ Descripcion:
@@ -417,7 +424,9 @@ def JSParser():
         '''
         punto_semantico_14 :
         '''
-        semantica.assign_resources(curr_scope)
+        semantica.assign_resources_vars(curr_scope)
+        codigoI.reiniciar_temps()
+        semantica.assign_resources_temps(curr_scope)
 
     """ Descripcion:
     Dentro del inicio, se obtiene el scope y agrega un espacio en el directorio
@@ -440,6 +449,7 @@ def JSParser():
         global curr_scope
         curr_scope = 'Programa'
         dir_func = semantica.clear_functions(curr_scope)
+        # PRUEBAS
         with open("./tests/dir_func_output.txt", "w") as output_file:
             output_file.write("Directorio de Funciones\n")
             output_file.write(json.dumps(dir_func, indent=4))
@@ -678,6 +688,71 @@ def JSParser():
         codigoI.push_operador('=')
         codigoI.push_operador('+')
         codigoI.estatuto_for_end(curr_scope, quadruplos, semantica)
+
+    # ------------------------------------------------------------
+    # CODIGO - ARREGLOS
+    # ------------------------------------------------------------
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_1(p):
+        '''
+        punto_arreglos_1 :
+        '''
+        codigoI.arr_start(curr_scope, semantica)
+
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_2(p):
+        '''
+        punto_arreglos_2 :
+        '''
+        codigoI.push_operador('LIMSUP')
+        codigoI.push_operador('LIMINF')
+        codigoI.arr_validar_limites(curr_scope, quadruplos, semantica, 1)
+
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_3(p):
+        '''
+        punto_arreglos_3 :
+        '''
+        codigoI.push_operador('LIMSUP')
+        codigoI.push_operador('LIMINF')
+        codigoI.arr_validar_limites(curr_scope, quadruplos, semantica, 2)
+
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_4(p):
+        '''
+        punto_arreglos_4 :
+        '''
+        codigoI.arr_primera_dimension(curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_5(p):
+        '''
+        punto_arreglos_5 :
+        '''
+        codigoI.arr_segunda_dimension(curr_scope, quadruplos, semantica)
+
+    """ Descripcion:
+
+     """
+    def p_punto_arreglos_6(p):
+        '''
+        punto_arreglos_6 :
+        '''
+        codigoI.arr_end()
+
+    # ------------------------------------------------------------
+    # CODIGO - MODULOS
+    # ------------------------------------------------------------
 
     return yacc.yacc()
 

@@ -4,19 +4,21 @@ Directorio de Funciones
         "id": "\ud83d\udc0d\ud83d\udc0d",
         "type": 0,
         "quad_init": 0,
-        "resources": {
-            "vars": [
-                13,
-                3,
-                2,
-                3
-            ]
-        },
+        "resources": [
+            16,
+            4,
+            2,
+            3
+        ],
         "variables": {
             "\ud83d\udcd6\ud83d\udcd6": {
                 "dataType": 1,
                 "address": 1000,
-                "size": 25
+                "size": 25,
+                "dimensions": [
+                    5,
+                    5
+                ]
             },
             "glob": {
                 "dataType": 1,
@@ -105,10 +107,30 @@ Directorio de Funciones
                 "value": 4,
                 "address": 30009
             },
+            "0": {
+                "dataType": 1,
+                "value": 0,
+                "address": 30010
+            },
+            "6.7": {
+                "dataType": 2,
+                "value": 6.7,
+                "address": 40003
+            },
+            "7": {
+                "dataType": 1,
+                "value": 7,
+                "address": 30011
+            },
+            "6": {
+                "dataType": 1,
+                "value": 6,
+                "address": 30012
+            },
             "40": {
                 "dataType": 1,
                 "value": 40,
-                "address": 30010
+                "address": 30013
             },
             "\"hola me llamo Gus\"": {
                 "dataType": 4,
@@ -133,7 +155,12 @@ Directorio de Funciones
                 3,
                 0
             ],
-            "temps": []
+            "temps": [
+                3,
+                2,
+                4,
+                0
+            ]
         },
         "param_types": [
             2,
@@ -231,7 +258,12 @@ Directorio de Funciones
                 0,
                 1
             ],
-            "temps": []
+            "temps": [
+                3,
+                1,
+                1,
+                0
+            ]
         },
         "param_types": [],
         "variables": {
@@ -247,27 +279,27 @@ Directorio de Funciones
             }
         },
         "temps": {
-            "t10": {
+            "t1": {
                 "dataType": 2,
                 "address": 20000,
                 "size": 1
             },
-            "t11": {
+            "t2": {
                 "dataType": 1,
                 "address": 18000,
                 "size": 1
             },
-            "t12": {
+            "t3": {
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
             },
-            "t13": {
+            "t4": {
                 "dataType": 1,
                 "address": 18002,
                 "size": 1
             },
-            "t14": {
+            "t5": {
                 "dataType": 3,
                 "address": 22000,
                 "size": 1
@@ -285,7 +317,12 @@ Directorio de Funciones
                 0,
                 0
             ],
-            "temps": []
+            "temps": [
+                16,
+                0,
+                1,
+                0
+            ]
         },
         "param_types": [],
         "variables": {
@@ -346,22 +383,22 @@ Directorio de Funciones
             }
         },
         "temps": {
-            "t15": {
+            "t1": {
                 "dataType": 1,
                 "address": 18000,
                 "size": 1
             },
-            "t16": {
+            "t2": {
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
             },
-            "t17": {
+            "t3": {
                 "dataType": 1,
                 "address": 18002,
                 "size": 1
             },
-            "t18": {
+            "t4": {
                 "dataType": 1,
                 "address": 18003,
                 "size": 1
@@ -371,12 +408,12 @@ Directorio de Funciones
                 "address": 18004,
                 "size": 1
             },
-            "t20": {
+            "t6": {
                 "dataType": 1,
                 "address": 18005,
                 "size": 1
             },
-            "t21": {
+            "t7": {
                 "dataType": 1,
                 "address": 18006,
                 "size": 1
@@ -386,49 +423,115 @@ Directorio de Funciones
                 "address": 18007,
                 "size": 1
             },
-            "t23": {
+            "t9": {
                 "dataType": 1,
                 "address": 18008,
                 "size": 1
             },
-            "t24": {
+            "t10": {
                 "dataType": 1,
                 "address": 18009,
                 "size": 1
             },
-            "t25": {
+            "t11": {
                 "dataType": 1,
                 "address": 18010,
                 "size": 1
             },
-            "t26": {
+            "t12": {
                 "dataType": 3,
                 "address": 22000,
                 "size": 1
             },
-            "t27": {
+            "t13": {
                 "dataType": 1,
                 "address": 18011,
                 "size": 1
             },
-            "t28": {
+            "t14": {
                 "dataType": 1,
                 "address": 18012,
                 "size": 1
             },
-            "t29": {
+            "t15": {
                 "dataType": 1,
                 "address": 18013,
                 "size": 1
             },
-            "t30": {
+            "t16": {
                 "dataType": 1,
                 "address": 18014,
                 "size": 1
             },
-            "t31": {
+            "t17": {
                 "dataType": 1,
                 "address": 18015,
+                "size": 1
+            }
+        }
+    },
+    "Funcion4": {
+        "id": "arreglos",
+        "type": 0,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                42,
+                5,
+                0,
+                0
+            ],
+            "temps": [
+                5,
+                0,
+                0,
+                0
+            ]
+        },
+        "param_types": [],
+        "variables": {
+            "mat": {
+                "dataType": 1,
+                "address": 5000,
+                "size": 42,
+                "dimensions": [
+                    6,
+                    7
+                ]
+            },
+            "arr": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 5,
+                "dimensions": [
+                    5
+                ]
+            }
+        },
+        "temps": {
+            "t1": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t2": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "t3": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "t4": {
+                "dataType": 1,
+                "address": 18003,
+                "size": 1
+            },
+            "t5": {
+                "dataType": 1,
+                "address": 18004,
                 "size": 1
             }
         }
@@ -440,22 +543,22 @@ Directorio de Funciones
         "resources": {
             "vars": [
                 1,
-                2,
+                1,
                 0,
                 0
             ],
-            "temps": []
+            "temps": [
+                2,
+                0,
+                2,
+                0
+            ]
         },
         "variables": {
             "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
                 "dataType": 2,
                 "address": 6000,
                 "size": 1
-            },
-            "\ud83c\udf83": {
-                "dataType": 2,
-                "address": 6001,
-                "size": 6
             },
             "abc": {
                 "dataType": 1,
@@ -464,22 +567,22 @@ Directorio de Funciones
             }
         },
         "temps": {
-            "t32": {
+            "t1": {
                 "dataType": 1,
                 "address": 18000,
                 "size": 1
             },
-            "t33": {
+            "t2": {
                 "dataType": 1,
                 "address": 18001,
                 "size": 1
             },
-            "t34": {
+            "t3": {
                 "dataType": 3,
                 "address": 22000,
                 "size": 1
             },
-            "t35": {
+            "t4": {
                 "dataType": 3,
                 "address": 22001,
                 "size": 1

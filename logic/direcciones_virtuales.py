@@ -99,4 +99,4 @@ class DireccionesVirtuales():
                 or (address in range(60000, 70000))):
                     return 4
         else:
-            return -1
+            raise Exception("ERROR: Tipo no existe para direccion '{address}'")

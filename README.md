@@ -110,3 +110,19 @@ posible ciclo infinito</p>
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/4.for.png" width="500" />
 <i> Imagen 11: </i>Ejemplo ciclo for, del lado izquierda los cuadruplos generador por JuniorScript
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 5  }$</h2> 
+
+<p> En este avance 5, se muestran los diagramas de sintaxis a los que se les han agregado puntos neuronales
+como lógica para poder representar la declaración y llamada de estructuras homogenicas, como lo son
+arreglos y matrices.</p>
+<p> Se cubren casos como declaración de tamaños y dimensiones en la tabla de variables, direcciones
+virtuales considerando el tamaño de las estructuras. A la hora de llamar el arreglo, se valida que los
+indices sean enteros, que esten dentro de los limites inferiores y superiores y se realiza la lógica en
+cuadruplos para poder acceder a la dirección virtual especifica de la casilla a la que se quiere acceder.</p>
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/5.Puntos.png" width="500" />
+<i> Imagen 12: </i>Puntos neuronales para estructuras homogenicas. 
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/5.Code.png" width="500" />
+<i> Imagen 13: </i>Ejemplo de arreglo y matriz
