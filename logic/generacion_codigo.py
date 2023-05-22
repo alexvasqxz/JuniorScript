@@ -11,6 +11,8 @@ class CodigoExpresionesEstatutos:
         self.pilaOperadores = Stack()
         # Pila de saltos para estatutos condiconales
         self.pilaSaltos = Stack()
+        # Pila de dimensiones para arreglos
+        self.pilaDim = Stack()
 
         self.direccionesVirtuales = DireccionesVirtuales()
         self.mapeoDatos = MapeoDatos()
@@ -216,6 +218,105 @@ class CodigoExpresionesEstatutos:
         # Rellenar Quadruplo [quad_to_modify]
         quadObj.modificar_quad(quad_to_modify, [None, None, None, quadObj.quads_len()])
 
+    # ------------------------------------------------------------
+    # CODIGO - ARREGLOS
+    # ------------------------------------------------------------
+    def arr_start(self, scope, semanticaObj):
+        dims = self.obtener_dimensiones(scope, semanticaObj)
+        id = self.pilaOperandos.pop()
+        self.pilaDim.append((id[0], dims, id[1]))
+
+    def obtener_dimensiones(self, scope, semanticaObj):
+        arr_id = self.pilaOperandos[-1]
+        # Verifica que el id tenga dimension y obtiene dimensiones
+        dimensiones = semanticaObj.find_var_by_address(scope, arr_id[0])
+        return dimensiones
+
+    def arr_validar_limites(self, scope, quadObj, semanticaObj, plano):
+        # Obtener limite inferior (0)
+        semanticaObj.add_constant(0)
+        zero_address = semanticaObj.get_vars_address(scope, 0)
+        # Generar quad limite inferior
+        expression_result = self.pilaOperandos[-1]
+        expression_type = expression_result[1]
+        if expression_type != 1:
+            raise Exception(f"ERROR: El indice de arreglo debe dar como resultado un entero")
+        op_inf = self.pilaOperadores.pop()
+        quadObj.agregar(op_inf, expression_result[0], zero_address, None)
+        # Obtener limite superior (dimensiones)
+        # Primera Dimension
+        if plano == 1:
+            lim_sup = self.pilaDim[-1][1][0] - 1
+        # Segunda Dimension
+        elif plano == 2 and self.pilaDim:
+            lim_sup = self.pilaDim[-1][1][1] - 1
+        else:
+            raise Exception(f"ERROR: El arreglo solo puede ser de una dimension")
+        semanticaObj.add_constant(lim_sup)
+        lim_address = semanticaObj.get_vars_address(scope, lim_sup)
+        op_sup = self.pilaOperadores.pop()
+        quadObj.agregar(op_sup, expression_result[0], lim_address, None)
+
+    def arr_primera_dimension(self, scope, quadObj, semanticaObj):
+        dir_dimensiones = self.pilaDim.pop()
+        dir_virtual = dir_dimensiones[0]
+        dimensiones = dir_dimensiones[1]
+        tipo_arreglo = dir_dimensiones[2]
+
+        res_expression = self.pilaOperandos.pop()
+        # Para Arreglos se sumara a la direccion virtual del arreglo
+        # el resultado de la expresion y guardara en un temporal (Tn)
+        if len(dimensiones) == 1:
+            self.push_operador('+')
+            sum_op = self.pilaOperadores.pop()
+            temp_address = semanticaObj.add_temp(scope, 1, self.temp_count)
+            self.temp_count += 1
+            quadObj.agregar(sum_op, res_expression[0], dir_virtual, temp_address)
+            self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
+        # Para Matrices se multiplicara el resultado de la expresion
+        # por el numero de columnas y guardara en un temporal Tx
+        elif len(dimensiones) == 2:
+            columnas = dimensiones[1]
+            semanticaObj.add_constant(columnas)
+            col_address = semanticaObj.get_vars_address(scope, columnas)
+            self.push_operador('*')
+            operator = self.pilaOperadores.pop()
+            temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.temp_count)
+            self.temp_count += 1
+            quadObj.agregar(operator, res_expression[0], col_address, temp_address)
+            self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
+            self.pilaDim.append((dir_virtual, dimensiones, tipo_arreglo))
+
+    def arr_segunda_dimension(self, scope, quadObj, semanticaObj):
+        dir_dimensiones = self.pilaDim.pop()
+        dir_virtual = dir_dimensiones[0]
+        tipo_arreglo = dir_dimensiones[2]
+        res_expression = self.pilaOperandos.pop()
+        res_1d = self.pilaOperandos.pop()
+
+        # Generar Quadruplo (+, res_exp, res_1d, Tx)
+        self.push_operador('+')
+        operator = self.pilaOperadores.pop()
+        temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.temp_count)
+        self.temp_count += 1
+        quadObj.agregar(operator, res_expression[0], res_1d[0], temp_address)
+        # Generar Quadruplo (+, resultado_anterior, dir_virtual, (Tn)
+        res_anterior = temp_address
+        temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.temp_count)
+        self.temp_count += 1
+        quadObj.agregar(operator, res_anterior, dir_virtual, temp_address)
+        self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
+
+    def arr_end(self):
+        # Si el stack de dimensiones no esta vacio es que algo salio mal
+        if bool(self.pilaDim):
+            raise Exception(f"ERROR: Asegurate de haber indexado bien la matriz")
+
+    # ------------------------------------------------------------
+    # CODIGO - MODULOS
+    # ------------------------------------------------------------
+    def reiniciar_temps(self):
+        self.temp_count = 1
 
     def debug(self):
         print("Pila Operadores")
@@ -226,4 +327,7 @@ class CodigoExpresionesEstatutos:
             print(item)
         print("Pila Saltos")
         for item in self.pilaSaltos:
+            print(item)
+        print("Pila Dim")
+        for item in self.pilaDim:
             print(item)

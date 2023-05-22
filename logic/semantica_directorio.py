@@ -11,9 +11,7 @@ class DirectorioFunciones:
                 'id': None,
                 'type': 0,
                 'quad_init': 0,
-                'resources': {
-                    'vars': []
-                },
+                'resources': [],
                 'variables': {},
                 'constantes': {},
             }
@@ -32,7 +30,7 @@ class DirectorioFunciones:
         else:
             raise Exception(f"ERROR: '{id}' el directorio de variables no existe en este scope")
 
-    def add_variable(self, scope, id, type, size):
+    def add_variable(self, scope, id, type, size, isArray, dim):
         vars_table = self.get_vars_dict(scope)
         if scope == 'Programa':
             self.global_variables.add(id)
@@ -40,7 +38,12 @@ class DirectorioFunciones:
             raise Exception(f"ERROR: '{id}' este nombre ya existe para una variable")
         mapped_type = self.mapa_datos.map_type(type)
         virtual_address = self.assign_virtual_address(scope, 'vars', mapped_type, size)
-        vars_table[id] = {'dataType': mapped_type, 'address': virtual_address, 'size': size}
+        # Variables Regulares
+        if not isArray:
+            vars_table[id] = {'dataType': mapped_type, 'address': virtual_address, 'size': size}
+        # Arreglos y Matrices
+        else:
+            vars_table[id] = {'dataType': mapped_type, 'address': virtual_address, 'size': size, 'dimensions': dim}
 
     def get_variable(self, scope, id):
         if (id in self.directorio[scope]['variables'] and isinstance(self.directorio[scope]['variables'][id], dict)):
@@ -108,27 +111,44 @@ class DirectorioFunciones:
             }
         }
 
-    def assign_resources(self, scope):
+    def assign_resources_vars(self, scope):
+        # Variables
         if 'variables' in self.directorio[scope]:
-            vars_types = [dir_vars.get('dataType') for dir_vars in self.directorio[scope]['variables'].values()]
-            recursos = Counter(vars_types)
-            lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
-            self.directorio[scope]['resources']['vars'] = lista_recursos
-            self.direcciones_virtuales.delete_function_space()
+            vars = self.get_vars_dict(scope)
+            resources_aux = [0, 0, 0, 0]
+            for value in vars.values():
+                if value['dataType'] == 1:
+                    resources_aux[0] += value['size']
+                elif value['dataType'] == 2:
+                    resources_aux[1] += value['size']
+                elif value['dataType'] == 3:
+                    resources_aux[2] += value['size']
+                elif value['dataType'] == 4:
+                    resources_aux[3] += value['size']
+            self.directorio[scope]['resources']['vars'] = resources_aux
             # del (self.directorio[scope]['variables'])
+
+    def assign_resources_temps(self, scope):
+        # Temps
+        if 'temps' in self.directorio[scope]:
+            temp_types = [dir_temps.get('dataType') for dir_temps in self.directorio[scope]['temps'].values()]
+            recursos = Counter(temp_types)
+            lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
+            self.directorio[scope]['resources']['temps'] = lista_recursos
+            self.direcciones_virtuales.delete_function_space()
+            # del (self.directorio[scope]['temps'])
 
     def clear_functions(self, scope):
         global_vars = [glob_vars.get('dataType') for glob_vars in self.directorio[scope]['variables'].values()]
         global_const = [glob_cons.get('dataType') for glob_cons in self.directorio[scope]['constantes'].values()]
         global_recursos = Counter(global_vars + global_const)
         lista_recursos = [global_recursos[1], global_recursos[2], global_recursos[3], global_recursos[4]]
-        self.directorio[scope]['resources']['vars'] = lista_recursos
+        self.directorio[scope]['resources'] = lista_recursos
         # Se borran las tablas de variables y constantes estando ya contabilizadas
         # del(self.directorio[scope]['variables'])
         # del (self.directorio[scope]['constantes'])
         # Se borran las tablas de funciones
         return self.directorio
-        #[scope]
 
     def assign_virtual_address(self, scope, type, dataType, size):
         return self.direcciones_virtuales.create_virtual_dir(scope, type, dataType, size)
@@ -177,3 +197,12 @@ class DirectorioFunciones:
         virtual_address = self.assign_virtual_address(scope, 'temp', type, 1)
         temp_table["t" + str(count)] = {'dataType': type, 'address': virtual_address, 'size': 1}
         return virtual_address
+
+    def find_var_by_address(self, scope, address):
+        vars_dict = self.get_vars_dict(scope)
+        for key, values in vars_dict.items():
+            if values['address'] == address:
+                if 'dimensions' in vars_dict[key]:
+                    return vars_dict[key]['dimensions']
+                else:
+                    raise Exception(f"ERROR: Este id no es de tipo arreglo '{key}'")
