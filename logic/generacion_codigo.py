@@ -20,6 +20,8 @@ class CodigoExpresionesEstatutos:
 
         # Conteo temporales
         self.temp_count = 1
+        # Conteo Pointers para Arreglos
+        self.pointer_count = 1
 
     def push_operando(self, address):
         type = self.direccionesVirtuales.get_type_with_address(address)
@@ -75,7 +77,7 @@ class CodigoExpresionesEstatutos:
             if self.cuboSemantico.get_cube_type(value_to_assign[1], assignee[1], operador) != -1:
                 quadObj.agregar(operador, value_to_assign[0], None, assignee[0])
             else:
-                raise Exception(f"ERROR: Tipos Incompatibles '{value_to_assign[1], assignee[1]}'")
+                raise Exception(f"ERROR: Tipos Incompatibles '{value_to_assign, assignee}'")
         else :
             top_operand = self.pilaOperandos.pop()
             op_to_print = top_operand[0]
@@ -240,6 +242,7 @@ class CodigoExpresionesEstatutos:
         expression_result = self.pilaOperandos[-1]
         expression_type = expression_result[1]
         if expression_type != 1:
+            print(quadObj.obtener_quadruplos())
             raise Exception(f"ERROR: El indice de arreglo debe dar como resultado un entero")
         op_inf = self.pilaOperadores.pop()
         quadObj.agregar(op_inf, expression_result[0], zero_address, None)
@@ -269,10 +272,11 @@ class CodigoExpresionesEstatutos:
         if len(dimensiones) == 1:
             self.push_operador('+')
             sum_op = self.pilaOperadores.pop()
-            temp_address = semanticaObj.add_temp(scope, 1, self.temp_count)
+            temp_address = semanticaObj.add_temp(scope, 5, f"point{self.pointer_count}")
             self.temp_count += 1
-            quadObj.agregar(sum_op, res_expression[0], dir_virtual, temp_address)
-            self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
+            self.pointer_count += 1
+            quadObj.agregar(sum_op, res_expression[0], dir_virtual, f"p*{temp_address}")
+            self.pilaOperandos.append((f"p*{temp_address}", tipo_arreglo, 'temp'))
         # Para Matrices se multiplicara el resultado de la expresion
         # por el numero de columnas y guardara en un temporal Tx
         elif len(dimensiones) == 2:
@@ -297,19 +301,20 @@ class CodigoExpresionesEstatutos:
         # Generar Quadruplo (+, res_exp, res_1d, Tx)
         self.push_operador('+')
         operator = self.pilaOperadores.pop()
-        temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.temp_count)
+        temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.pointer_count)
         self.temp_count += 1
         quadObj.agregar(operator, res_expression[0], res_1d[0], temp_address)
         # Generar Quadruplo (+, resultado_anterior, dir_virtual, (Tn)
         res_anterior = temp_address
-        temp_address = semanticaObj.add_temp(scope, tipo_arreglo, self.temp_count)
+        temp_address = semanticaObj.add_temp(scope, 5, f"point{self.pointer_count}")
         self.temp_count += 1
-        quadObj.agregar(operator, res_anterior, dir_virtual, temp_address)
-        self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
+        self.pointer_count += 1
+        quadObj.agregar(operator, res_anterior, dir_virtual, f"p*{temp_address}")
+        self.pilaOperandos.append((f"p*{temp_address}", tipo_arreglo, 'temp'))
 
     def arr_end(self):
         # Si el stack de dimensiones no esta vacio es que algo salio mal
-        if bool(self.pilaDim):
+        if bool(self.pilaDim) and not bool(self.pilaOperadores):
             raise Exception(f"ERROR: Asegurate de haber indexado bien la matriz")
 
     # ------------------------------------------------------------
@@ -317,6 +322,7 @@ class CodigoExpresionesEstatutos:
     # ------------------------------------------------------------
     def reiniciar_temps(self):
         self.temp_count = 1
+        self.pointer_count = 1
 
     def debug(self):
         print("Pila Operadores")

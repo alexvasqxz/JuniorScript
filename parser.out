@@ -45,9 +45,9 @@ Rule 39    bloqueBB -> bloqueB bloqueBB
 Rule 40    bloqueBB -> empty
 Rule 41    asignacion -> llam_vars ASSIGN expresion punto_codigoI_12
 Rule 42    llam_vars -> ID punto_codigoI_1 llam_varsB punto_arreglos_6
-Rule 43    llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
+Rule 43    llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
 Rule 44    llam_varsB -> empty
-Rule 45    llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE
+Rule 45    llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
 Rule 46    llam_varsB2 -> empty
 Rule 47    expresion -> peta_exp
 Rule 48    peta_exp -> tera_exp punto_codigoI_4 peta_expB
@@ -274,8 +274,8 @@ punto_codigoI_4      : 48
 punto_codigoI_5      : 52
 punto_codigoI_6      : 60
 punto_codigoI_7      : 64
-punto_codigoI_8      : 68
-punto_codigoI_9      : 68
+punto_codigoI_8      : 43 45 68
+punto_codigoI_9      : 43 45 68
 punto_semantico_10   : 21
 punto_semantico_11   : 24
 punto_semantico_12   : 24
@@ -1454,7 +1454,7 @@ state 84
 state 85
 
     (42) llam_vars -> ID punto_codigoI_1 . llam_varsB punto_arreglos_6
-    (43) llam_varsB -> . LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
+    (43) llam_varsB -> . LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (44) llam_varsB -> . empty
     (100) empty -> .
 
@@ -2306,7 +2306,7 @@ state 124
 
 state 125
 
-    (43) llam_varsB -> LBRACE . punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
+    (43) llam_varsB -> LBRACE . punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (141) punto_arreglos_1 -> .
 
     LPAREN          reduce using rule 141 (punto_arreglos_1 -> .)
@@ -3054,43 +3054,19 @@ state 156
 
 state 157
 
-    (43) llam_varsB -> LBRACE punto_arreglos_1 . expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
-    (47) expresion -> . peta_exp
-    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
-    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
-    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
-    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
-    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
-    (69) factor -> . llam_vars
-    (70) factor -> . llam_func
-    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
-    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
-    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
-    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
-    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
-    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
-    (76) llam_func -> . ID LPAREN llam_params RPAREN
-    (77) cte_bool -> . TRUE
-    (78) cte_bool -> . FALSE
+    (43) llam_varsB -> LBRACE punto_arreglos_1 . punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
+    (126) punto_codigoI_8 -> .
 
-    LPAREN          shift and go to state 102
-    CTEENT          shift and go to state 104
-    CTEDECI         shift and go to state 105
-    CTELETRA        shift and go to state 107
-    CTEFRASE        shift and go to state 108
-    ID              shift and go to state 109
-    TRUE            shift and go to state 110
-    FALSE           shift and go to state 111
+    LPAREN          reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEENT          reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEDECI         reduce using rule 126 (punto_codigoI_8 -> .)
+    CTELETRA        reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEFRASE        reduce using rule 126 (punto_codigoI_8 -> .)
+    ID              reduce using rule 126 (punto_codigoI_8 -> .)
+    TRUE            reduce using rule 126 (punto_codigoI_8 -> .)
+    FALSE           reduce using rule 126 (punto_codigoI_8 -> .)
 
-    expresion                      shift and go to state 203
-    peta_exp                       shift and go to state 97
-    tera_exp                       shift and go to state 98
-    mega_exp                       shift and go to state 99
-    kilo_exp                       shift and go to state 100
-    factor                         shift and go to state 101
-    llam_vars                      shift and go to state 95
-    llam_func                      shift and go to state 103
-    cte_bool                       shift and go to state 106
+    punto_codigoI_8                shift and go to state 203
 
 state 158
 
@@ -3893,12 +3869,43 @@ state 202
 
 state 203
 
-    (43) llam_varsB -> LBRACE punto_arreglos_1 expresion . punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
-    (142) punto_arreglos_2 -> .
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 . expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
+    (47) expresion -> . peta_exp
+    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
+    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
+    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
+    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
+    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
+    (69) factor -> . llam_vars
+    (70) factor -> . llam_func
+    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
+    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
+    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
+    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
+    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
+    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
+    (76) llam_func -> . ID LPAREN llam_params RPAREN
+    (77) cte_bool -> . TRUE
+    (78) cte_bool -> . FALSE
 
-    RBRACE          reduce using rule 142 (punto_arreglos_2 -> .)
+    LPAREN          shift and go to state 102
+    CTEENT          shift and go to state 104
+    CTEDECI         shift and go to state 105
+    CTELETRA        shift and go to state 107
+    CTEFRASE        shift and go to state 108
+    ID              shift and go to state 109
+    TRUE            shift and go to state 110
+    FALSE           shift and go to state 111
 
-    punto_arreglos_2               shift and go to state 230
+    expresion                      shift and go to state 230
+    peta_exp                       shift and go to state 97
+    tera_exp                       shift and go to state 98
+    mega_exp                       shift and go to state 99
+    kilo_exp                       shift and go to state 100
+    factor                         shift and go to state 101
+    llam_vars                      shift and go to state 95
+    llam_func                      shift and go to state 103
+    cte_bool                       shift and go to state 106
 
 state 204
 
@@ -4508,12 +4515,12 @@ state 229
 
 state 230
 
-    (43) llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 . punto_arreglos_4 RBRACE llam_varsB2
-    (144) punto_arreglos_4 -> .
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion . punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
+    (142) punto_arreglos_2 -> .
 
-    RBRACE          reduce using rule 144 (punto_arreglos_4 -> .)
+    RBRACE          reduce using rule 142 (punto_arreglos_2 -> .)
 
-    punto_arreglos_4               shift and go to state 254
+    punto_arreglos_2               shift and go to state 254
 
 state 231
 
@@ -4986,10 +4993,12 @@ state 253
 
 state 254
 
-    (43) llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 . RBRACE llam_varsB2
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 . punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
+    (144) punto_arreglos_4 -> .
 
-    RBRACE          shift and go to state 264
+    RBRACE          reduce using rule 144 (punto_arreglos_4 -> .)
 
+    punto_arreglos_4               shift and go to state 264
 
 state 255
 
@@ -5122,12 +5131,216 @@ state 263
 
 state 264
 
-    (43) llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE . llam_varsB2
-    (45) llam_varsB2 -> . LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 . RBRACE punto_codigoI_9 llam_varsB2
+
+    RBRACE          shift and go to state 273
+
+
+state 265
+
+    (25) dec_paramsB -> COMMA dec_params .
+
+    RPAREN          reduce using rule 25 (dec_paramsB -> COMMA dec_params .)
+
+
+state 266
+
+    (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY . punto_semantico_14
+    (114) punto_semantico_14 -> .
+
+    FUNCION         reduce using rule 114 (punto_semantico_14 -> .)
+    MAIN            reduce using rule 114 (punto_semantico_14 -> .)
+
+    punto_semantico_14             shift and go to state 274
+
+state 267
+
+    (82) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque . RCURLY punto_codigoII_10
+
+    RCURLY          shift and go to state 275
+
+
+state 268
+
+    (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 . punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
+    (108) punto_semantico_8 -> .
+
+    ASSIGN          reduce using rule 108 (punto_semantico_8 -> .)
+
+    punto_semantico_8              shift and go to state 276
+
+state 269
+
+    (84) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY . punto_codigoII_6
+    (136) punto_codigoII_6 -> .
+
+    FOR             reduce using rule 136 (punto_codigoII_6 -> .)
+    WHILE           reduce using rule 136 (punto_codigoII_6 -> .)
+    IF              reduce using rule 136 (punto_codigoII_6 -> .)
+    ESCRITURA       reduce using rule 136 (punto_codigoII_6 -> .)
+    LECTURA         reduce using rule 136 (punto_codigoII_6 -> .)
+    VAR             reduce using rule 136 (punto_codigoII_6 -> .)
+    ID              reduce using rule 136 (punto_codigoII_6 -> .)
+    RETURN          reduce using rule 136 (punto_codigoII_6 -> .)
+    RCURLY          reduce using rule 136 (punto_codigoII_6 -> .)
+
+    punto_codigoII_6               shift and go to state 277
+
+state 270
+
+    (85) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB . punto_codigoII_3
+    (133) punto_codigoII_3 -> .
+
+    FOR             reduce using rule 133 (punto_codigoII_3 -> .)
+    WHILE           reduce using rule 133 (punto_codigoII_3 -> .)
+    IF              reduce using rule 133 (punto_codigoII_3 -> .)
+    ESCRITURA       reduce using rule 133 (punto_codigoII_3 -> .)
+    LECTURA         reduce using rule 133 (punto_codigoII_3 -> .)
+    VAR             reduce using rule 133 (punto_codigoII_3 -> .)
+    ID              reduce using rule 133 (punto_codigoII_3 -> .)
+    RETURN          reduce using rule 133 (punto_codigoII_3 -> .)
+    RCURLY          reduce using rule 133 (punto_codigoII_3 -> .)
+
+    punto_codigoII_3               shift and go to state 278
+
+state 271
+
+    (86) condicionB -> ELSE . punto_codigoII_2 LCURLY bloque RCURLY
+    (132) punto_codigoII_2 -> .
+
+    LCURLY          reduce using rule 132 (punto_codigoII_2 -> .)
+
+    punto_codigoII_2               shift and go to state 279
+
+state 272
+
+    (87) condicionB -> empty .
+
+    FOR             reduce using rule 87 (condicionB -> empty .)
+    WHILE           reduce using rule 87 (condicionB -> empty .)
+    IF              reduce using rule 87 (condicionB -> empty .)
+    ESCRITURA       reduce using rule 87 (condicionB -> empty .)
+    LECTURA         reduce using rule 87 (condicionB -> empty .)
+    VAR             reduce using rule 87 (condicionB -> empty .)
+    ID              reduce using rule 87 (condicionB -> empty .)
+    RETURN          reduce using rule 87 (condicionB -> empty .)
+    RCURLY          reduce using rule 87 (condicionB -> empty .)
+
+
+state 273
+
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE . punto_codigoI_9 llam_varsB2
+    (127) punto_codigoI_9 -> .
+
+    LBRACE          reduce using rule 127 (punto_codigoI_9 -> .)
+    ASSIGN          reduce using rule 127 (punto_codigoI_9 -> .)
+    TIMES           reduce using rule 127 (punto_codigoI_9 -> .)
+    DIVIDE          reduce using rule 127 (punto_codigoI_9 -> .)
+    PLUS            reduce using rule 127 (punto_codigoI_9 -> .)
+    MINUS           reduce using rule 127 (punto_codigoI_9 -> .)
+    LT              reduce using rule 127 (punto_codigoI_9 -> .)
+    GT              reduce using rule 127 (punto_codigoI_9 -> .)
+    LTE             reduce using rule 127 (punto_codigoI_9 -> .)
+    GTE             reduce using rule 127 (punto_codigoI_9 -> .)
+    EQUAL           reduce using rule 127 (punto_codigoI_9 -> .)
+    NEQUAL          reduce using rule 127 (punto_codigoI_9 -> .)
+    AND             reduce using rule 127 (punto_codigoI_9 -> .)
+    OR              reduce using rule 127 (punto_codigoI_9 -> .)
+    FOR             reduce using rule 127 (punto_codigoI_9 -> .)
+    WHILE           reduce using rule 127 (punto_codigoI_9 -> .)
+    IF              reduce using rule 127 (punto_codigoI_9 -> .)
+    ESCRITURA       reduce using rule 127 (punto_codigoI_9 -> .)
+    LECTURA         reduce using rule 127 (punto_codigoI_9 -> .)
+    VAR             reduce using rule 127 (punto_codigoI_9 -> .)
+    ID              reduce using rule 127 (punto_codigoI_9 -> .)
+    RETURN          reduce using rule 127 (punto_codigoI_9 -> .)
+    RCURLY          reduce using rule 127 (punto_codigoI_9 -> .)
+    RPAREN          reduce using rule 127 (punto_codigoI_9 -> .)
+    COMMA           reduce using rule 127 (punto_codigoI_9 -> .)
+    RBRACE          reduce using rule 127 (punto_codigoI_9 -> .)
+    TO              reduce using rule 127 (punto_codigoI_9 -> .)
+
+    punto_codigoI_9                shift and go to state 280
+
+state 274
+
+    (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .
+
+    FUNCION         reduce using rule 21 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
+    MAIN            reduce using rule 21 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
+
+
+state 275
+
+    (82) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY . punto_codigoII_10
+    (140) punto_codigoII_10 -> .
+
+    FOR             reduce using rule 140 (punto_codigoII_10 -> .)
+    WHILE           reduce using rule 140 (punto_codigoII_10 -> .)
+    IF              reduce using rule 140 (punto_codigoII_10 -> .)
+    ESCRITURA       reduce using rule 140 (punto_codigoII_10 -> .)
+    LECTURA         reduce using rule 140 (punto_codigoII_10 -> .)
+    VAR             reduce using rule 140 (punto_codigoII_10 -> .)
+    ID              reduce using rule 140 (punto_codigoII_10 -> .)
+    RETURN          reduce using rule 140 (punto_codigoII_10 -> .)
+    RCURLY          reduce using rule 140 (punto_codigoII_10 -> .)
+
+    punto_codigoII_10              shift and go to state 281
+
+state 276
+
+    (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 . punto_codigoII_7 ASSIGN expresion punto_codigoII_8
+    (137) punto_codigoII_7 -> .
+
+    ASSIGN          reduce using rule 137 (punto_codigoII_7 -> .)
+
+    punto_codigoII_7               shift and go to state 282
+
+state 277
+
+    (84) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .
+
+    FOR             reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    WHILE           reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    IF              reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    ESCRITURA       reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    LECTURA         reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    VAR             reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    ID              reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    RETURN          reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+    RCURLY          reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
+
+
+state 278
+
+    (85) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .
+
+    FOR             reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    WHILE           reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    IF              reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    ESCRITURA       reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    LECTURA         reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    VAR             reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    ID              reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    RETURN          reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+    RCURLY          reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
+
+
+state 279
+
+    (86) condicionB -> ELSE punto_codigoII_2 . LCURLY bloque RCURLY
+
+    LCURLY          shift and go to state 283
+
+
+state 280
+
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 . llam_varsB2
+    (45) llam_varsB2 -> . LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
     (46) llam_varsB2 -> . empty
     (100) empty -> .
 
-    LBRACE          shift and go to state 273
+    LBRACE          shift and go to state 284
     ASSIGN          reduce using rule 100 (empty -> .)
     TIMES           reduce using rule 100 (empty -> .)
     DIVIDE          reduce using rule 100 (empty -> .)
@@ -5155,285 +5368,10 @@ state 264
     RBRACE          reduce using rule 100 (empty -> .)
     TO              reduce using rule 100 (empty -> .)
 
-    llam_varsB2                    shift and go to state 274
-    empty                          shift and go to state 275
-
-state 265
-
-    (25) dec_paramsB -> COMMA dec_params .
-
-    RPAREN          reduce using rule 25 (dec_paramsB -> COMMA dec_params .)
-
-
-state 266
-
-    (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY . punto_semantico_14
-    (114) punto_semantico_14 -> .
-
-    FUNCION         reduce using rule 114 (punto_semantico_14 -> .)
-    MAIN            reduce using rule 114 (punto_semantico_14 -> .)
-
-    punto_semantico_14             shift and go to state 276
-
-state 267
-
-    (82) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque . RCURLY punto_codigoII_10
-
-    RCURLY          shift and go to state 277
-
-
-state 268
-
-    (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 . punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
-    (108) punto_semantico_8 -> .
-
-    ASSIGN          reduce using rule 108 (punto_semantico_8 -> .)
-
-    punto_semantico_8              shift and go to state 278
-
-state 269
-
-    (84) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY . punto_codigoII_6
-    (136) punto_codigoII_6 -> .
-
-    FOR             reduce using rule 136 (punto_codigoII_6 -> .)
-    WHILE           reduce using rule 136 (punto_codigoII_6 -> .)
-    IF              reduce using rule 136 (punto_codigoII_6 -> .)
-    ESCRITURA       reduce using rule 136 (punto_codigoII_6 -> .)
-    LECTURA         reduce using rule 136 (punto_codigoII_6 -> .)
-    VAR             reduce using rule 136 (punto_codigoII_6 -> .)
-    ID              reduce using rule 136 (punto_codigoII_6 -> .)
-    RETURN          reduce using rule 136 (punto_codigoII_6 -> .)
-    RCURLY          reduce using rule 136 (punto_codigoII_6 -> .)
-
-    punto_codigoII_6               shift and go to state 279
-
-state 270
-
-    (85) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB . punto_codigoII_3
-    (133) punto_codigoII_3 -> .
-
-    FOR             reduce using rule 133 (punto_codigoII_3 -> .)
-    WHILE           reduce using rule 133 (punto_codigoII_3 -> .)
-    IF              reduce using rule 133 (punto_codigoII_3 -> .)
-    ESCRITURA       reduce using rule 133 (punto_codigoII_3 -> .)
-    LECTURA         reduce using rule 133 (punto_codigoII_3 -> .)
-    VAR             reduce using rule 133 (punto_codigoII_3 -> .)
-    ID              reduce using rule 133 (punto_codigoII_3 -> .)
-    RETURN          reduce using rule 133 (punto_codigoII_3 -> .)
-    RCURLY          reduce using rule 133 (punto_codigoII_3 -> .)
-
-    punto_codigoII_3               shift and go to state 280
-
-state 271
-
-    (86) condicionB -> ELSE . punto_codigoII_2 LCURLY bloque RCURLY
-    (132) punto_codigoII_2 -> .
-
-    LCURLY          reduce using rule 132 (punto_codigoII_2 -> .)
-
-    punto_codigoII_2               shift and go to state 281
-
-state 272
-
-    (87) condicionB -> empty .
-
-    FOR             reduce using rule 87 (condicionB -> empty .)
-    WHILE           reduce using rule 87 (condicionB -> empty .)
-    IF              reduce using rule 87 (condicionB -> empty .)
-    ESCRITURA       reduce using rule 87 (condicionB -> empty .)
-    LECTURA         reduce using rule 87 (condicionB -> empty .)
-    VAR             reduce using rule 87 (condicionB -> empty .)
-    ID              reduce using rule 87 (condicionB -> empty .)
-    RETURN          reduce using rule 87 (condicionB -> empty .)
-    RCURLY          reduce using rule 87 (condicionB -> empty .)
-
-
-state 273
-
-    (45) llam_varsB2 -> LBRACE . expresion punto_arreglos_3 punto_arreglos_5 RBRACE
-    (47) expresion -> . peta_exp
-    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
-    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
-    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
-    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
-    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
-    (69) factor -> . llam_vars
-    (70) factor -> . llam_func
-    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
-    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
-    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
-    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
-    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
-    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
-    (76) llam_func -> . ID LPAREN llam_params RPAREN
-    (77) cte_bool -> . TRUE
-    (78) cte_bool -> . FALSE
-
-    LPAREN          shift and go to state 102
-    CTEENT          shift and go to state 104
-    CTEDECI         shift and go to state 105
-    CTELETRA        shift and go to state 107
-    CTEFRASE        shift and go to state 108
-    ID              shift and go to state 109
-    TRUE            shift and go to state 110
-    FALSE           shift and go to state 111
-
-    expresion                      shift and go to state 282
-    peta_exp                       shift and go to state 97
-    tera_exp                       shift and go to state 98
-    mega_exp                       shift and go to state 99
-    kilo_exp                       shift and go to state 100
-    factor                         shift and go to state 101
-    llam_vars                      shift and go to state 95
-    llam_func                      shift and go to state 103
-    cte_bool                       shift and go to state 106
-
-state 274
-
-    (43) llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .
-
-    ASSIGN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    TIMES           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    DIVIDE          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    PLUS            reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    MINUS           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    LT              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    GT              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    LTE             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    GTE             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    EQUAL           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    NEQUAL          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    AND             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    OR              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    FOR             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    WHILE           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    IF              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    ESCRITURA       reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    LECTURA         reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    VAR             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    ID              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    RETURN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    RCURLY          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    RPAREN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    COMMA           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    RBRACE          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-    TO              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2 .)
-
-
-state 275
-
-    (46) llam_varsB2 -> empty .
-
-    ASSIGN          reduce using rule 46 (llam_varsB2 -> empty .)
-    TIMES           reduce using rule 46 (llam_varsB2 -> empty .)
-    DIVIDE          reduce using rule 46 (llam_varsB2 -> empty .)
-    PLUS            reduce using rule 46 (llam_varsB2 -> empty .)
-    MINUS           reduce using rule 46 (llam_varsB2 -> empty .)
-    LT              reduce using rule 46 (llam_varsB2 -> empty .)
-    GT              reduce using rule 46 (llam_varsB2 -> empty .)
-    LTE             reduce using rule 46 (llam_varsB2 -> empty .)
-    GTE             reduce using rule 46 (llam_varsB2 -> empty .)
-    EQUAL           reduce using rule 46 (llam_varsB2 -> empty .)
-    NEQUAL          reduce using rule 46 (llam_varsB2 -> empty .)
-    AND             reduce using rule 46 (llam_varsB2 -> empty .)
-    OR              reduce using rule 46 (llam_varsB2 -> empty .)
-    FOR             reduce using rule 46 (llam_varsB2 -> empty .)
-    WHILE           reduce using rule 46 (llam_varsB2 -> empty .)
-    IF              reduce using rule 46 (llam_varsB2 -> empty .)
-    ESCRITURA       reduce using rule 46 (llam_varsB2 -> empty .)
-    LECTURA         reduce using rule 46 (llam_varsB2 -> empty .)
-    VAR             reduce using rule 46 (llam_varsB2 -> empty .)
-    ID              reduce using rule 46 (llam_varsB2 -> empty .)
-    RETURN          reduce using rule 46 (llam_varsB2 -> empty .)
-    RCURLY          reduce using rule 46 (llam_varsB2 -> empty .)
-    RPAREN          reduce using rule 46 (llam_varsB2 -> empty .)
-    COMMA           reduce using rule 46 (llam_varsB2 -> empty .)
-    RBRACE          reduce using rule 46 (llam_varsB2 -> empty .)
-    TO              reduce using rule 46 (llam_varsB2 -> empty .)
-
-
-state 276
-
-    (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .
-
-    FUNCION         reduce using rule 21 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
-    MAIN            reduce using rule 21 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14 .)
-
-
-state 277
-
-    (82) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY . punto_codigoII_10
-    (140) punto_codigoII_10 -> .
-
-    FOR             reduce using rule 140 (punto_codigoII_10 -> .)
-    WHILE           reduce using rule 140 (punto_codigoII_10 -> .)
-    IF              reduce using rule 140 (punto_codigoII_10 -> .)
-    ESCRITURA       reduce using rule 140 (punto_codigoII_10 -> .)
-    LECTURA         reduce using rule 140 (punto_codigoII_10 -> .)
-    VAR             reduce using rule 140 (punto_codigoII_10 -> .)
-    ID              reduce using rule 140 (punto_codigoII_10 -> .)
-    RETURN          reduce using rule 140 (punto_codigoII_10 -> .)
-    RCURLY          reduce using rule 140 (punto_codigoII_10 -> .)
-
-    punto_codigoII_10              shift and go to state 283
-
-state 278
-
-    (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 . punto_codigoII_7 ASSIGN expresion punto_codigoII_8
-    (137) punto_codigoII_7 -> .
-
-    ASSIGN          reduce using rule 137 (punto_codigoII_7 -> .)
-
-    punto_codigoII_7               shift and go to state 284
-
-state 279
-
-    (84) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .
-
-    FOR             reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    WHILE           reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    IF              reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    ESCRITURA       reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    LECTURA         reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    VAR             reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    ID              reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    RETURN          reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-    RCURLY          reduce using rule 84 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
-
-
-state 280
-
-    (85) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .
-
-    FOR             reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    WHILE           reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    IF              reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    ESCRITURA       reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    LECTURA         reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    VAR             reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    ID              reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    RETURN          reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-    RCURLY          reduce using rule 85 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
-
+    llam_varsB2                    shift and go to state 285
+    empty                          shift and go to state 286
 
 state 281
-
-    (86) condicionB -> ELSE punto_codigoII_2 . LCURLY bloque RCURLY
-
-    LCURLY          shift and go to state 285
-
-
-state 282
-
-    (45) llam_varsB2 -> LBRACE expresion . punto_arreglos_3 punto_arreglos_5 RBRACE
-    (143) punto_arreglos_3 -> .
-
-    RBRACE          reduce using rule 143 (punto_arreglos_3 -> .)
-
-    punto_arreglos_3               shift and go to state 286
-
-state 283
 
     (82) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10 .
 
@@ -5448,14 +5386,14 @@ state 283
     RCURLY          reduce using rule 82 (ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10 .)
 
 
-state 284
+state 282
 
     (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 . ASSIGN expresion punto_codigoII_8
 
     ASSIGN          shift and go to state 287
 
 
-state 285
+state 283
 
     (86) condicionB -> ELSE punto_codigoII_2 LCURLY . bloque RCURLY
     (29) bloque -> . bloqueB bloqueBB
@@ -5501,14 +5439,85 @@ state 285
     regresar                       shift and go to state 58
     llam_vars                      shift and go to state 59
 
+state 284
+
+    (45) llam_varsB2 -> LBRACE . punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
+    (126) punto_codigoI_8 -> .
+
+    LPAREN          reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEENT          reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEDECI         reduce using rule 126 (punto_codigoI_8 -> .)
+    CTELETRA        reduce using rule 126 (punto_codigoI_8 -> .)
+    CTEFRASE        reduce using rule 126 (punto_codigoI_8 -> .)
+    ID              reduce using rule 126 (punto_codigoI_8 -> .)
+    TRUE            reduce using rule 126 (punto_codigoI_8 -> .)
+    FALSE           reduce using rule 126 (punto_codigoI_8 -> .)
+
+    punto_codigoI_8                shift and go to state 289
+
+state 285
+
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .
+
+    ASSIGN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    TIMES           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    DIVIDE          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    PLUS            reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    MINUS           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    LT              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    GT              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    LTE             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    GTE             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    EQUAL           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    NEQUAL          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    AND             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    OR              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    FOR             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    WHILE           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    IF              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    ESCRITURA       reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    LECTURA         reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    VAR             reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    ID              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    RETURN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    RCURLY          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    RPAREN          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    COMMA           reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    RBRACE          reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+    TO              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
+
+
 state 286
 
-    (45) llam_varsB2 -> LBRACE expresion punto_arreglos_3 . punto_arreglos_5 RBRACE
-    (145) punto_arreglos_5 -> .
+    (46) llam_varsB2 -> empty .
 
-    RBRACE          reduce using rule 145 (punto_arreglos_5 -> .)
+    ASSIGN          reduce using rule 46 (llam_varsB2 -> empty .)
+    TIMES           reduce using rule 46 (llam_varsB2 -> empty .)
+    DIVIDE          reduce using rule 46 (llam_varsB2 -> empty .)
+    PLUS            reduce using rule 46 (llam_varsB2 -> empty .)
+    MINUS           reduce using rule 46 (llam_varsB2 -> empty .)
+    LT              reduce using rule 46 (llam_varsB2 -> empty .)
+    GT              reduce using rule 46 (llam_varsB2 -> empty .)
+    LTE             reduce using rule 46 (llam_varsB2 -> empty .)
+    GTE             reduce using rule 46 (llam_varsB2 -> empty .)
+    EQUAL           reduce using rule 46 (llam_varsB2 -> empty .)
+    NEQUAL          reduce using rule 46 (llam_varsB2 -> empty .)
+    AND             reduce using rule 46 (llam_varsB2 -> empty .)
+    OR              reduce using rule 46 (llam_varsB2 -> empty .)
+    FOR             reduce using rule 46 (llam_varsB2 -> empty .)
+    WHILE           reduce using rule 46 (llam_varsB2 -> empty .)
+    IF              reduce using rule 46 (llam_varsB2 -> empty .)
+    ESCRITURA       reduce using rule 46 (llam_varsB2 -> empty .)
+    LECTURA         reduce using rule 46 (llam_varsB2 -> empty .)
+    VAR             reduce using rule 46 (llam_varsB2 -> empty .)
+    ID              reduce using rule 46 (llam_varsB2 -> empty .)
+    RETURN          reduce using rule 46 (llam_varsB2 -> empty .)
+    RCURLY          reduce using rule 46 (llam_varsB2 -> empty .)
+    RPAREN          reduce using rule 46 (llam_varsB2 -> empty .)
+    COMMA           reduce using rule 46 (llam_varsB2 -> empty .)
+    RBRACE          reduce using rule 46 (llam_varsB2 -> empty .)
+    TO              reduce using rule 46 (llam_varsB2 -> empty .)
 
-    punto_arreglos_5               shift and go to state 289
 
 state 287
 
@@ -5559,10 +5568,43 @@ state 288
 
 state 289
 
-    (45) llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 . RBRACE
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 . expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
+    (47) expresion -> . peta_exp
+    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
+    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
+    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
+    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
+    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
+    (69) factor -> . llam_vars
+    (70) factor -> . llam_func
+    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
+    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
+    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
+    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
+    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
+    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
+    (76) llam_func -> . ID LPAREN llam_params RPAREN
+    (77) cte_bool -> . TRUE
+    (78) cte_bool -> . FALSE
 
-    RBRACE          shift and go to state 292
+    LPAREN          shift and go to state 102
+    CTEENT          shift and go to state 104
+    CTEDECI         shift and go to state 105
+    CTELETRA        shift and go to state 107
+    CTEFRASE        shift and go to state 108
+    ID              shift and go to state 109
+    TRUE            shift and go to state 110
+    FALSE           shift and go to state 111
 
+    expresion                      shift and go to state 292
+    peta_exp                       shift and go to state 97
+    tera_exp                       shift and go to state 98
+    mega_exp                       shift and go to state 99
+    kilo_exp                       shift and go to state 100
+    factor                         shift and go to state 101
+    llam_vars                      shift and go to state 95
+    llam_func                      shift and go to state 103
+    cte_bool                       shift and go to state 106
 
 state 290
 
@@ -5590,41 +5632,100 @@ state 291
 
 state 292
 
-    (45) llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion . punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
+    (143) punto_arreglos_3 -> .
 
-    ASSIGN          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    TIMES           reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    DIVIDE          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    PLUS            reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    MINUS           reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    LT              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    GT              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    LTE             reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    GTE             reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    EQUAL           reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    NEQUAL          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    AND             reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    OR              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    FOR             reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    WHILE           reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    IF              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    ESCRITURA       reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    LECTURA         reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    VAR             reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    ID              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    RETURN          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    RCURLY          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    RPAREN          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    COMMA           reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    RBRACE          reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
-    TO              reduce using rule 45 (llam_varsB2 -> LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE .)
+    RBRACE          reduce using rule 143 (punto_arreglos_3 -> .)
 
+    punto_arreglos_3               shift and go to state 294
 
 state 293
 
     (83) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8 .
 
     TO              reduce using rule 83 (ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8 .)
+
+
+state 294
+
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 . punto_arreglos_5 RBRACE punto_codigoI_9
+    (145) punto_arreglos_5 -> .
+
+    RBRACE          reduce using rule 145 (punto_arreglos_5 -> .)
+
+    punto_arreglos_5               shift and go to state 295
+
+state 295
+
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 . RBRACE punto_codigoI_9
+
+    RBRACE          shift and go to state 296
+
+
+state 296
+
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE . punto_codigoI_9
+    (127) punto_codigoI_9 -> .
+
+    ASSIGN          reduce using rule 127 (punto_codigoI_9 -> .)
+    TIMES           reduce using rule 127 (punto_codigoI_9 -> .)
+    DIVIDE          reduce using rule 127 (punto_codigoI_9 -> .)
+    PLUS            reduce using rule 127 (punto_codigoI_9 -> .)
+    MINUS           reduce using rule 127 (punto_codigoI_9 -> .)
+    LT              reduce using rule 127 (punto_codigoI_9 -> .)
+    GT              reduce using rule 127 (punto_codigoI_9 -> .)
+    LTE             reduce using rule 127 (punto_codigoI_9 -> .)
+    GTE             reduce using rule 127 (punto_codigoI_9 -> .)
+    EQUAL           reduce using rule 127 (punto_codigoI_9 -> .)
+    NEQUAL          reduce using rule 127 (punto_codigoI_9 -> .)
+    AND             reduce using rule 127 (punto_codigoI_9 -> .)
+    OR              reduce using rule 127 (punto_codigoI_9 -> .)
+    FOR             reduce using rule 127 (punto_codigoI_9 -> .)
+    WHILE           reduce using rule 127 (punto_codigoI_9 -> .)
+    IF              reduce using rule 127 (punto_codigoI_9 -> .)
+    ESCRITURA       reduce using rule 127 (punto_codigoI_9 -> .)
+    LECTURA         reduce using rule 127 (punto_codigoI_9 -> .)
+    VAR             reduce using rule 127 (punto_codigoI_9 -> .)
+    ID              reduce using rule 127 (punto_codigoI_9 -> .)
+    RETURN          reduce using rule 127 (punto_codigoI_9 -> .)
+    RCURLY          reduce using rule 127 (punto_codigoI_9 -> .)
+    RPAREN          reduce using rule 127 (punto_codigoI_9 -> .)
+    COMMA           reduce using rule 127 (punto_codigoI_9 -> .)
+    RBRACE          reduce using rule 127 (punto_codigoI_9 -> .)
+    TO              reduce using rule 127 (punto_codigoI_9 -> .)
+
+    punto_codigoI_9                shift and go to state 297
+
+state 297
+
+    (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .
+
+    ASSIGN          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    TIMES           reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    DIVIDE          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    PLUS            reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    MINUS           reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    LT              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    GT              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    LTE             reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    GTE             reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    EQUAL           reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    NEQUAL          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    AND             reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    OR              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    FOR             reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    WHILE           reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    IF              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    ESCRITURA       reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    LECTURA         reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    VAR             reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    ID              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    RETURN          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    RCURLY          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    RPAREN          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    COMMA           reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    RBRACE          reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
+    TO              reduce using rule 45 (llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .)
 
 WARNING: 
 WARNING: Conflicts:
