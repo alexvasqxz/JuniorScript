@@ -133,7 +133,7 @@ class DirectorioFunciones:
         if 'temps' in self.directorio[scope]:
             temp_types = [dir_temps.get('dataType') for dir_temps in self.directorio[scope]['temps'].values()]
             recursos = Counter(temp_types)
-            lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4]]
+            lista_recursos = [recursos[1], recursos[2], recursos[3], recursos[4], recursos[5]]
             self.directorio[scope]['resources']['temps'] = lista_recursos
             self.direcciones_virtuales.delete_function_space()
             # del (self.directorio[scope]['temps'])
@@ -199,6 +199,7 @@ class DirectorioFunciones:
         return virtual_address
 
     def find_var_by_address(self, scope, address):
+        # Local
         vars_dict = self.get_vars_dict(scope)
         for key, values in vars_dict.items():
             if values['address'] == address:
@@ -206,3 +207,11 @@ class DirectorioFunciones:
                     return vars_dict[key]['dimensions']
                 else:
                     raise Exception(f"ERROR: Este id no es de tipo arreglo '{key}'")
+        # Global
+        global_vars_dict = self.directorio['Programa']['variables']
+        for var_global in self.global_variables:
+            if address == global_vars_dict[var_global]['address']:
+                if 'dimensions' in  global_vars_dict[var_global]:
+                    return global_vars_dict[var_global]['dimensions']
+                else:
+                    raise Exception(f"ERROR: Este id no es de tipo arreglo '{var_global}'")

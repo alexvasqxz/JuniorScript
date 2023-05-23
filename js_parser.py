@@ -114,9 +114,10 @@ def JSParser():
     def p_llam_vars(p):
         '''
         llam_vars : ID punto_codigoI_1 llam_varsB punto_arreglos_6
-        llam_varsB : LBRACE punto_arreglos_1 expresion punto_arreglos_2 punto_arreglos_4 RBRACE llam_varsB2
+        llam_varsB : LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 \
+        RBRACE punto_codigoI_9 llam_varsB2
                 | empty
-        llam_varsB2 : LBRACE expresion punto_arreglos_3 punto_arreglos_5 RBRACE
+        llam_varsB2 : LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
                 | empty
         '''
         p[0] = None

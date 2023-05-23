@@ -5,10 +5,10 @@ Directorio de Funciones
         "type": 0,
         "quad_init": 0,
         "resources": [
-            16,
+            19,
             4,
             2,
-            3
+            1
         ],
         "variables": {
             "\ud83d\udcd6\ud83d\udcd6": {
@@ -23,6 +23,21 @@ Directorio de Funciones
             "glob": {
                 "dataType": 1,
                 "address": 1025,
+                "size": 1
+            },
+            "i": {
+                "dataType": 1,
+                "address": 1026,
+                "size": 1
+            },
+            "j": {
+                "dataType": 1,
+                "address": 1027,
+                "size": 1
+            },
+            "p": {
+                "dataType": 1,
+                "address": 1028,
                 "size": 1
             }
         },
@@ -102,45 +117,35 @@ Directorio de Funciones
                 "value": 1,
                 "address": 30008
             },
-            "4": {
-                "dataType": 1,
-                "value": 4,
-                "address": 30009
-            },
             "0": {
                 "dataType": 1,
                 "value": 0,
-                "address": 30010
+                "address": 30009
             },
-            "6.7": {
-                "dataType": 2,
-                "value": 6.7,
-                "address": 40003
-            },
-            "7": {
+            "4": {
                 "dataType": 1,
-                "value": 7,
-                "address": 30011
+                "value": 4,
+                "address": 30010
             },
             "6": {
                 "dataType": 1,
                 "value": 6,
+                "address": 30011
+            },
+            "8": {
+                "dataType": 1,
+                "value": 8,
                 "address": 30012
             },
-            "40": {
+            "8.0": {
+                "dataType": 2,
+                "value": 8.0,
+                "address": 40003
+            },
+            "456": {
                 "dataType": 1,
-                "value": 40,
+                "value": 456,
                 "address": 30013
-            },
-            "\"hola me llamo Gus\"": {
-                "dataType": 4,
-                "value": "\"hola me llamo Gus\"",
-                "address": 60001
-            },
-            "'e'": {
-                "dataType": 4,
-                "value": "'e'",
-                "address": 60002
             }
         }
     },
@@ -159,6 +164,7 @@ Directorio de Funciones
                 3,
                 2,
                 4,
+                0,
                 0
             ]
         },
@@ -262,6 +268,7 @@ Directorio de Funciones
                 3,
                 1,
                 1,
+                0,
                 0
             ]
         },
@@ -321,6 +328,7 @@ Directorio de Funciones
                 16,
                 0,
                 1,
+                0,
                 0
             ]
         },
@@ -471,47 +479,152 @@ Directorio de Funciones
         }
     },
     "Funcion4": {
-        "id": "arreglos",
+        "id": "\ud83d\udc7b\ud83d\udc7b\ud83d\udc7b",
         "type": 0,
         "quad_init": null,
         "resources": {
             "vars": [
-                42,
                 5,
+                36,
                 0,
                 0
             ],
             "temps": [
                 5,
+                5,
                 0,
                 0,
-                0
+                5
             ]
         },
         "param_types": [],
         "variables": {
-            "mat": {
+            "arr": {
                 "dataType": 1,
                 "address": 5000,
-                "size": 42,
-                "dimensions": [
-                    6,
-                    7
-                ]
-            },
-            "arr": {
-                "dataType": 2,
-                "address": 6000,
                 "size": 5,
                 "dimensions": [
                     5
                 ]
+            },
+            "mat": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 36,
+                "dimensions": [
+                    6,
+                    6
+                ]
+            }
+        },
+        "temps": {
+            "tpoint1": {
+                "dataType": 5,
+                "address": 24000,
+                "size": 1
+            },
+            "t2": {
+                "dataType": 1,
+                "address": 18000,
+                "size": 1
+            },
+            "t3": {
+                "dataType": 2,
+                "address": 20001,
+                "size": 1
+            },
+            "t4": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "tpoint2": {
+                "dataType": 5,
+                "address": 24001,
+                "size": 1
+            },
+            "t6": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "tpoint3": {
+                "dataType": 5,
+                "address": 24002,
+                "size": 1
+            },
+            "t9": {
+                "dataType": 1,
+                "address": 18003,
+                "size": 1
+            },
+            "t10": {
+                "dataType": 1,
+                "address": 18004,
+                "size": 1
+            },
+            "t11": {
+                "dataType": 2,
+                "address": 20002,
+                "size": 1
+            },
+            "tpoint4": {
+                "dataType": 5,
+                "address": 24003,
+                "size": 1
+            },
+            "t13": {
+                "dataType": 2,
+                "address": 20003,
+                "size": 1
+            },
+            "t14": {
+                "dataType": 2,
+                "address": 20004,
+                "size": 1
+            },
+            "t5": {
+                "dataType": 2,
+                "address": 20005,
+                "size": 1
+            },
+            "tpoint5": {
+                "dataType": 5,
+                "address": 24004,
+                "size": 1
+            }
+        }
+    },
+    "main": {
+        "id": "main_inicio",
+        "type": 0,
+        "quad_init": null,
+        "resources": {
+            "vars": [
+                0,
+                1,
+                0,
+                0
+            ],
+            "temps": [
+                3,
+                0,
+                0,
+                0,
+                1
+            ]
+        },
+        "variables": {
+            "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 1
             }
         },
         "temps": {
             "t1": {
                 "dataType": 1,
-                "address": 18000,
+                "address": 18003,
                 "size": 1
             },
             "t2": {
@@ -524,67 +637,9 @@ Directorio de Funciones
                 "address": 18002,
                 "size": 1
             },
-            "t4": {
-                "dataType": 1,
-                "address": 18003,
-                "size": 1
-            },
-            "t5": {
-                "dataType": 1,
-                "address": 18004,
-                "size": 1
-            }
-        }
-    },
-    "main": {
-        "id": "main_inicio",
-        "type": 0,
-        "quad_init": null,
-        "resources": {
-            "vars": [
-                1,
-                1,
-                0,
-                0
-            ],
-            "temps": [
-                2,
-                0,
-                2,
-                0
-            ]
-        },
-        "variables": {
-            "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
-                "dataType": 2,
-                "address": 6000,
-                "size": 1
-            },
-            "abc": {
-                "dataType": 1,
-                "address": 5000,
-                "size": 1
-            }
-        },
-        "temps": {
-            "t1": {
-                "dataType": 1,
-                "address": 18000,
-                "size": 1
-            },
-            "t2": {
-                "dataType": 1,
-                "address": 18001,
-                "size": 1
-            },
-            "t3": {
-                "dataType": 3,
-                "address": 22000,
-                "size": 1
-            },
-            "t4": {
-                "dataType": 3,
-                "address": 22001,
+            "tpoint1": {
+                "dataType": 5,
+                "address": 24000,
                 "size": 1
             }
         }

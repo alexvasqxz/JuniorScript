@@ -6,6 +6,7 @@ class MapeoDatos():
             'decimal': 2,
             'logico': 3,
             'letra': 4,
+            'pointer' : 5,
             '=': 10,
             '<': 11,
             '>': 12,
