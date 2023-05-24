@@ -30,7 +30,7 @@ class MapeoDatos():
             'PARAMETRO' : 52,
             'RETURN': 53,
             'FINFUN': 60,
-            'FINPRO' : 80,
+            'FINPROG' : 80,
             'LIMINF' : 90,
             'LIMSUP' : 91,
         }

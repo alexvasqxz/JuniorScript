@@ -122,3 +122,5 @@ cuadruplos para poder acceder a la dirección virtual especifica de la casilla a
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/5.Code.png" width="500" />
 <i> Imagen 13: </i>Ejemplo de arreglo y matriz
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 6  }$</h2> 

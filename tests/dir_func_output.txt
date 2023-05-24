@@ -5,262 +5,111 @@ Directorio de Funciones
         "type": 0,
         "quad_init": 0,
         "resources": [
-            19,
+            11,
             4,
-            2,
+            0,
             1
         ],
+        "return_values": {
+            "Funcion1": 18002
+        },
         "variables": {
             "\ud83d\udcd6\ud83d\udcd6": {
-                "dataType": 1,
-                "address": 1000,
+                "dataType": 2,
+                "address": 2000,
                 "size": 25,
                 "dimensions": [
                     5,
                     5
                 ]
             },
-            "glob": {
-                "dataType": 1,
-                "address": 1025,
-                "size": 1
-            },
             "i": {
                 "dataType": 1,
-                "address": 1026,
+                "address": 1000,
                 "size": 1
             },
             "j": {
                 "dataType": 1,
-                "address": 1027,
+                "address": 1001,
                 "size": 1
             },
             "p": {
                 "dataType": 1,
-                "address": 1028,
+                "address": 1002,
                 "size": 1
             }
         },
         "constantes": {
-            "verdadero": {
-                "dataType": 3,
-                "value": "verdadero",
-                "address": 50000
-            },
-            "falso": {
-                "dataType": 3,
-                "value": "falso",
-                "address": 50001
-            },
-            "5.6": {
-                "dataType": 2,
-                "value": 5.6,
-                "address": 40000
-            },
-            "3": {
-                "dataType": 1,
-                "value": 3,
-                "address": 30000
-            },
             "5": {
                 "dataType": 1,
                 "value": 5,
-                "address": 30001
-            },
-            "9": {
-                "dataType": 1,
-                "value": 9,
-                "address": 30002
-            },
-            "10": {
-                "dataType": 1,
-                "value": 10,
-                "address": 30003
+                "address": 30000
             },
             "2": {
                 "dataType": 1,
                 "value": 2,
-                "address": 30004
-            },
-            "10.5": {
-                "dataType": 2,
-                "value": 10.5,
-                "address": 40001
-            },
-            "20.4": {
-                "dataType": 2,
-                "value": 20.4,
-                "address": 40002
-            },
-            "80": {
-                "dataType": 1,
-                "value": 80,
-                "address": 30005
-            },
-            "30": {
-                "dataType": 1,
-                "value": 30,
-                "address": 30006
+                "address": 30001
             },
             "20": {
                 "dataType": 1,
                 "value": 20,
-                "address": 30007
+                "address": 30002
             },
-            "\"Hola\"": {
+            "3": {
+                "dataType": 1,
+                "value": 3,
+                "address": 30003
+            },
+            "9": {
+                "dataType": 1,
+                "value": 9,
+                "address": 30004
+            },
+            "\"Hello\"": {
                 "dataType": 4,
-                "value": "\"Hola\"",
+                "value": "\"Hello\"",
                 "address": 60000
             },
-            "1": {
-                "dataType": 1,
-                "value": 1,
-                "address": 30008
+            "4.5": {
+                "dataType": 2,
+                "value": 4.5,
+                "address": 40000
             },
-            "0": {
-                "dataType": 1,
-                "value": 0,
-                "address": 30009
+            "6.42": {
+                "dataType": 2,
+                "value": 6.42,
+                "address": 40001
             },
-            "4": {
-                "dataType": 1,
-                "value": 4,
-                "address": 30010
-            },
-            "6": {
-                "dataType": 1,
-                "value": 6,
-                "address": 30011
+            "5.4": {
+                "dataType": 2,
+                "value": 5.4,
+                "address": 40002
             },
             "8": {
                 "dataType": 1,
                 "value": 8,
-                "address": 30012
+                "address": 30005
             },
-            "8.0": {
-                "dataType": 2,
-                "value": 8.0,
-                "address": 40003
-            },
-            "456": {
+            "0": {
                 "dataType": 1,
-                "value": 456,
-                "address": 30013
+                "value": 0,
+                "address": 30006
+            },
+            "4": {
+                "dataType": 1,
+                "value": 4,
+                "address": 30007
             }
         }
     },
     "Funcion1": {
-        "id": "\ud83e\udd21",
-        "type": 0,
-        "quad_init": null,
-        "resources": {
-            "vars": [
-                1,
-                2,
-                3,
-                0
-            ],
-            "temps": [
-                3,
-                2,
-                4,
-                0,
-                0
-            ]
-        },
-        "param_types": [
-            2,
-            2,
-            3
-        ],
-        "variables": {
-            "\ud83d\ude08": {
-                "dataType": 2,
-                "address": 6000,
-                "size": 1
-            },
-            "paramB": {
-                "dataType": 2,
-                "address": 6001,
-                "size": 1
-            },
-            "otro_param": {
-                "dataType": 3,
-                "address": 7000,
-                "size": 1
-            },
-            "abc": {
-                "dataType": 3,
-                "address": 7001,
-                "size": 1
-            },
-            "def": {
-                "dataType": 3,
-                "address": 7002,
-                "size": 1
-            },
-            "\ud83d\ude2e\ud83d\ude2e\ud83d\ude2e": {
-                "dataType": 1,
-                "address": 5000,
-                "size": 1
-            }
-        },
-        "temps": {
-            "t1": {
-                "dataType": 3,
-                "address": 22000,
-                "size": 1
-            },
-            "t2": {
-                "dataType": 3,
-                "address": 22001,
-                "size": 1
-            },
-            "t3": {
-                "dataType": 3,
-                "address": 22002,
-                "size": 1
-            },
-            "t4": {
-                "dataType": 1,
-                "address": 18000,
-                "size": 1
-            },
-            "t5": {
-                "dataType": 1,
-                "address": 18001,
-                "size": 1
-            },
-            "t6": {
-                "dataType": 1,
-                "address": 18002,
-                "size": 1
-            },
-            "t7": {
-                "dataType": 2,
-                "address": 20000,
-                "size": 1
-            },
-            "t8": {
-                "dataType": 2,
-                "address": 20001,
-                "size": 1
-            },
-            "t9": {
-                "dataType": 3,
-                "address": 22003,
-                "size": 1
-            }
-        }
-    },
-    "Funcion2": {
         "id": "otraFuncion",
         "type": 1,
-        "quad_init": null,
+        "quad_init": 1,
         "resources": {
             "vars": [
-                0,
-                1,
+                2,
+                3,
                 0,
                 1
             ],
@@ -272,8 +121,21 @@ Directorio de Funciones
                 0
             ]
         },
-        "param_types": [],
+        "param_types": [
+            2,
+            2
+        ],
         "variables": {
+            "primero": {
+                "dataType": 2,
+                "address": 6000,
+                "size": 1
+            },
+            "segundo": {
+                "dataType": 2,
+                "address": 6001,
+                "size": 1
+            },
             "otra_variable": {
                 "dataType": 4,
                 "address": 8000,
@@ -281,7 +143,17 @@ Directorio de Funciones
             },
             "\ud83d\ude35": {
                 "dataType": 2,
-                "address": 6000,
+                "address": 6002,
+                "size": 1
+            },
+            "yas": {
+                "dataType": 1,
+                "address": 5000,
+                "size": 1
+            },
+            "fonc": {
+                "dataType": 1,
+                "address": 5001,
                 "size": 1
             }
         },
@@ -297,300 +169,47 @@ Directorio de Funciones
                 "size": 1
             },
             "t3": {
-                "dataType": 1,
-                "address": 18001,
+                "dataType": 3,
+                "address": 22000,
                 "size": 1
             },
             "t4": {
                 "dataType": 1,
-                "address": 18002,
+                "address": 18001,
                 "size": 1
             },
             "t5": {
-                "dataType": 3,
-                "address": 22000,
+                "dataType": 1,
+                "address": 18002,
                 "size": 1
             }
         }
     },
-    "Funcion3": {
-        "id": "ciclo_for",
+    "Funcion2": {
+        "id": "una_vacia",
         "type": 0,
-        "quad_init": null,
+        "quad_init": 16,
         "resources": {
             "vars": [
-                11,
+                0,
                 0,
                 0,
                 0
             ],
             "temps": [
-                16,
                 0,
-                1,
+                0,
+                0,
                 0,
                 0
             ]
         },
         "param_types": [],
-        "variables": {
-            "a": {
-                "dataType": 1,
-                "address": 5000,
-                "size": 1
-            },
-            "b": {
-                "dataType": 1,
-                "address": 5001,
-                "size": 1
-            },
-            "c": {
-                "dataType": 1,
-                "address": 5002,
-                "size": 1
-            },
-            "d": {
-                "dataType": 1,
-                "address": 5003,
-                "size": 1
-            },
-            "e": {
-                "dataType": 1,
-                "address": 5004,
-                "size": 1
-            },
-            "f": {
-                "dataType": 1,
-                "address": 5005,
-                "size": 1
-            },
-            "g": {
-                "dataType": 1,
-                "address": 5006,
-                "size": 1
-            },
-            "h": {
-                "dataType": 1,
-                "address": 5007,
-                "size": 1
-            },
-            "i": {
-                "dataType": 1,
-                "address": 5008,
-                "size": 1
-            },
-            "k": {
-                "dataType": 1,
-                "address": 5009,
-                "size": 1
-            },
-            "j": {
-                "dataType": 1,
-                "address": 5010,
-                "size": 1
-            }
-        },
+        "variables": {},
         "temps": {
             "t1": {
-                "dataType": 1,
-                "address": 18000,
-                "size": 1
-            },
-            "t2": {
-                "dataType": 1,
-                "address": 18001,
-                "size": 1
-            },
-            "t3": {
-                "dataType": 1,
-                "address": 18002,
-                "size": 1
-            },
-            "t4": {
-                "dataType": 1,
-                "address": 18003,
-                "size": 1
-            },
-            "tVC": {
-                "dataType": 1,
-                "address": 18004,
-                "size": 1
-            },
-            "t6": {
-                "dataType": 1,
-                "address": 18005,
-                "size": 1
-            },
-            "t7": {
-                "dataType": 1,
-                "address": 18006,
-                "size": 1
-            },
-            "tVF": {
-                "dataType": 1,
-                "address": 18007,
-                "size": 1
-            },
-            "t9": {
-                "dataType": 1,
-                "address": 18008,
-                "size": 1
-            },
-            "t10": {
-                "dataType": 1,
-                "address": 18009,
-                "size": 1
-            },
-            "t11": {
-                "dataType": 1,
-                "address": 18010,
-                "size": 1
-            },
-            "t12": {
-                "dataType": 3,
-                "address": 22000,
-                "size": 1
-            },
-            "t13": {
-                "dataType": 1,
-                "address": 18011,
-                "size": 1
-            },
-            "t14": {
-                "dataType": 1,
-                "address": 18012,
-                "size": 1
-            },
-            "t15": {
-                "dataType": 1,
-                "address": 18013,
-                "size": 1
-            },
-            "t16": {
-                "dataType": 1,
-                "address": 18014,
-                "size": 1
-            },
-            "t17": {
-                "dataType": 1,
-                "address": 18015,
-                "size": 1
-            }
-        }
-    },
-    "Funcion4": {
-        "id": "\ud83d\udc7b\ud83d\udc7b\ud83d\udc7b",
-        "type": 0,
-        "quad_init": null,
-        "resources": {
-            "vars": [
-                5,
-                36,
-                0,
-                0
-            ],
-            "temps": [
-                5,
-                5,
-                0,
-                0,
-                5
-            ]
-        },
-        "param_types": [],
-        "variables": {
-            "arr": {
-                "dataType": 1,
-                "address": 5000,
-                "size": 5,
-                "dimensions": [
-                    5
-                ]
-            },
-            "mat": {
-                "dataType": 2,
-                "address": 6000,
-                "size": 36,
-                "dimensions": [
-                    6,
-                    6
-                ]
-            }
-        },
-        "temps": {
-            "tpoint1": {
-                "dataType": 5,
+                "dataType": 0,
                 "address": 24000,
-                "size": 1
-            },
-            "t2": {
-                "dataType": 1,
-                "address": 18000,
-                "size": 1
-            },
-            "t3": {
-                "dataType": 2,
-                "address": 20001,
-                "size": 1
-            },
-            "t4": {
-                "dataType": 1,
-                "address": 18001,
-                "size": 1
-            },
-            "tpoint2": {
-                "dataType": 5,
-                "address": 24001,
-                "size": 1
-            },
-            "t6": {
-                "dataType": 1,
-                "address": 18002,
-                "size": 1
-            },
-            "tpoint3": {
-                "dataType": 5,
-                "address": 24002,
-                "size": 1
-            },
-            "t9": {
-                "dataType": 1,
-                "address": 18003,
-                "size": 1
-            },
-            "t10": {
-                "dataType": 1,
-                "address": 18004,
-                "size": 1
-            },
-            "t11": {
-                "dataType": 2,
-                "address": 20002,
-                "size": 1
-            },
-            "tpoint4": {
-                "dataType": 5,
-                "address": 24003,
-                "size": 1
-            },
-            "t13": {
-                "dataType": 2,
-                "address": 20003,
-                "size": 1
-            },
-            "t14": {
-                "dataType": 2,
-                "address": 20004,
-                "size": 1
-            },
-            "t5": {
-                "dataType": 2,
-                "address": 20005,
-                "size": 1
-            },
-            "tpoint5": {
-                "dataType": 5,
-                "address": 24004,
                 "size": 1
             }
         }
@@ -598,48 +217,83 @@ Directorio de Funciones
     "main": {
         "id": "main_inicio",
         "type": 0,
-        "quad_init": null,
+        "quad_init": 22,
         "resources": {
             "vars": [
-                0,
                 1,
+                0,
                 0,
                 0
             ],
             "temps": [
-                3,
+                4,
+                4,
                 0,
                 0,
-                0,
-                1
+                2
             ]
         },
         "variables": {
             "\ud83d\udca9\ud83d\udca9\ud83d\udca9": {
-                "dataType": 2,
-                "address": 6000,
+                "dataType": 1,
+                "address": 5000,
                 "size": 1
             }
         },
         "temps": {
             "t1": {
-                "dataType": 1,
-                "address": 18003,
+                "dataType": 2,
+                "address": 20002,
                 "size": 1
             },
             "t2": {
-                "dataType": 1,
-                "address": 18001,
+                "dataType": 2,
+                "address": 20004,
                 "size": 1
             },
             "t3": {
-                "dataType": 1,
-                "address": 18002,
+                "dataType": 2,
+                "address": 20001,
                 "size": 1
             },
             "tpoint1": {
                 "dataType": 5,
                 "address": 24000,
+                "size": 1
+            },
+            "t6": {
+                "dataType": 1,
+                "address": 18001,
+                "size": 1
+            },
+            "t7": {
+                "dataType": 2,
+                "address": 20003,
+                "size": 1
+            },
+            "t8": {
+                "dataType": 1,
+                "address": 18002,
+                "size": 1
+            },
+            "tpoint2": {
+                "dataType": 5,
+                "address": 24001,
+                "size": 1
+            },
+            "t11": {
+                "dataType": 1,
+                "address": 18003,
+                "size": 1
+            },
+            "t12": {
+                "dataType": 1,
+                "address": 18004,
+                "size": 1
+            },
+            "t13": {
+                "dataType": 0,
+                "address": 24002,
                 "size": 1
             }
         }

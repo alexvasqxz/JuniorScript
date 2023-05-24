@@ -30,7 +30,8 @@ def JSParser():
     # ------------------------------------------------------------
     def p_programa(p):
         '''
-        programa : PROGRAMA puntos_semantica_1 punto_codigoI_0 ID puntos_semantica_2 programaB programaC inicio punto_semantico_16
+        programa : PROGRAMA puntos_semantica_1 punto_codigoI_0 punto_modulo_1 ID puntos_semantica_2 programaB \
+        programaC inicio punto_semantico_16
         programaB : dec_vars
                 | empty
         programaC : dec_func programaCC
@@ -67,7 +68,8 @@ def JSParser():
     def p_dec_func(p):
         '''
         dec_func : FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 \
-        dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY bloque RCURLY punto_semantico_14
+        dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque \
+        RCURLY punto_semantico_14 punto_modulo_12
         dec_funcB : dec_params
                 | empty
         '''
@@ -98,7 +100,7 @@ def JSParser():
                 | escribir
                 | leer
                 | dec_vars
-                | llam_func
+                | llam_func punto_modulo_13
                 | regresar
         bloqueBB : bloqueB bloqueBB
                 | empty
@@ -183,7 +185,8 @@ def JSParser():
 
     def p_llam_func(p):
         '''
-        llam_func : ID LPAREN llam_params RPAREN
+        llam_func : ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN \
+        punto_codigoI_9 punto_modulo_8 punto_modulo_11
         '''
         p[0] = None
 
@@ -196,8 +199,9 @@ def JSParser():
 
     def p_llam_params(p):
         '''
-        llam_params : expresion llam_paramsB
-        llam_paramsB : COMMA llam_params
+        llam_params : expresion punto_modulo_5 llam_paramsB
+                    | empty
+        llam_paramsB : COMMA punto_modulo_6 llam_params
                     | empty
         '''
         p[0] = None
@@ -247,13 +251,13 @@ def JSParser():
 
     def p_regresar(p):
         '''
-        regresar : RETURN LPAREN expresion RPAREN
+        regresar : punto_modulo_9 RETURN LPAREN expresion punto_modulo_10 RPAREN
         '''
         p[0] = None
 
     def p_inicio(p):
         '''
-        inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY bloque RCURLY punto_semantico_14
+        inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
         '''
         p[0] = None
         codigoI.debug()
@@ -428,6 +432,7 @@ def JSParser():
         semantica.assign_resources_vars(curr_scope)
         codigoI.reiniciar_temps()
         semantica.assign_resources_temps(curr_scope)
+        semantica.end_func(curr_scope, quadruplos, codigoI)
 
     """ Descripcion:
     Dentro del inicio, se obtiene el scope y agrega un espacio en el directorio
@@ -754,6 +759,91 @@ def JSParser():
     # ------------------------------------------------------------
     # CODIGO - MODULOS
     # ------------------------------------------------------------
+    def p_punto_modulo_1(p):
+        '''
+        punto_modulo_1 :
+        '''
+        quadruplos.agregar(40, None, None, None)
+
+    def p_punto_modulo_2(p):
+        '''
+        punto_modulo_2 :
+        '''
+        semantica.insert_first_quad(curr_scope, quadruplos)
+
+    def p_punto_modulo_3(p):
+        '''
+        punto_modulo_3 :
+        '''
+        global llam_func_id
+        llam_func_id = p[-1]
+        semantica.verificar_funcion(llam_func_id, codigoI)
+
+    def p_punto_modulo_4(p):
+        '''
+        punto_modulo_4 :
+        '''
+        global param_count, param_types
+        semantica.apartar_recursos(curr_scope, llam_func_id, quadruplos, codigoI)
+        param_count = 1
+        param_types = semantica.get_parameters(llam_func_id)
+
+    def p_punto_modulo_5(p):
+        '''
+        punto_modulo_5 :
+        '''
+        codigoI.assign_params(llam_func_id, quadruplos, param_types, param_count)
+
+    def p_punto_modulo_6(p):
+        '''
+        punto_modulo_6 :
+        '''
+        global param_count
+        param_count += 1
+
+    def p_punto_modulo_7(p):
+        '''
+        punto_modulo_7 :
+        '''
+        codigoI.verificar_count_params(len(param_types), param_count)
+
+    def p_punto_modulo_8(p):
+        '''
+        punto_modulo_8 :
+        '''
+        semantica.create_salto_modulo(llam_func_id, quadruplos)
+
+    def p_punto_modulo_9(p):
+        '''
+        punto_modulo_9 :
+        '''
+        codigoI.verificar_tipo_funcion(curr_scope, semantica)
+
+    def p_punto_modulo_10(p):
+        '''
+        punto_modulo_10 :
+        '''
+        codigoI.push_operador('RETURN')
+        codigoI.generar_return(curr_scope, quadruplos, semantica)
+
+    def p_punto_modulo_11(p):
+        '''
+        punto_modulo_11 :
+        '''
+        codigoI.parche_return(curr_scope, llam_func_id, quadruplos, semantica)
+
+    def p_punto_modulo_12(p):
+        '''
+        punto_modulo_12 :
+        '''
+        semantica.tiene_return(curr_scope)
+
+    def p_punto_modulo_13(p):
+        '''
+        punto_modulo_13 :
+        '''
+        if bool(codigoI.pilaOperandos):
+            raise Exception(f"ERROR: Funcion de tipo no vacio debe formar parte de alguna expresion o asignacion")
 
     return yacc.yacc()
 
