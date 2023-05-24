@@ -324,6 +324,62 @@ class CodigoExpresionesEstatutos:
         self.temp_count = 1
         self.pointer_count = 1
 
+    def recursos_recursivos(self, quadObj, vars, temps):
+        if bool(self.pilaSaltos):
+            era_modificar = self.pilaSaltos.pop()
+            quadObj.modificar_quad(era_modificar, [None, vars, temps, None])
+
+    def assign_params(self, id, quadObj, param_types, counter):
+        if counter > len(param_types):
+            raise Exception(f"ERROR: Se ingresaron demasiados parametros para la función")
+        expression_result = self.pilaOperandos.pop()
+        if expression_result[1] != param_types[counter-1]:
+            raise Exception(f"ERROR: Tipo incompatible de parametro")
+        else:
+            quadObj.agregar(52, expression_result[0], None, f"param{counter}")
+
+    def verificar_count_params(self, number_params, counter):
+        if counter < number_params:
+            raise Exception(f"ERROR: Se ingresaron menos parametros para la función")
+
+    def verificar_tipo_funcion(self, scope, semanticaObj):
+        tipo_funcion = semanticaObj.get_function_type(scope)
+        if tipo_funcion == 0:
+            raise Exception(f"ERROR: Una funcion de tipo vacio no puede tener un regresar")
+
+    def generar_return(self, scope, quadObj, semanticaObj):
+        return_result = self.pilaOperandos.pop()
+        # Validar tipo de funcion con resultado de expresion
+        tipo_funcion = semanticaObj.get_function_type(scope)
+        if return_result[1] != tipo_funcion:
+            raise Exception(f"ERROR: El tipo a regresar para esta función es {tipo_funcion}")
+        # Generar Quadruplo
+        operador_return = self.pilaOperadores.pop()
+        quadObj.agregar(operador_return, None, None, return_result[0])
+        # Agregar resultado a la variable global de la función
+        semanticaObj.directorio['Programa']['return_values'][scope] = return_result[0]
+        # Llenar cuadruplos para casos recursivos
+        quad_recursivo = self.pilaSaltos.pop()
+        quadObj.modificar_quad(quad_recursivo, [None, return_result[0], None, None])
+
+    def parche_return(self, scope, id, quadObj, semanticaObj):
+        key = semanticaObj.get_function_key_by_id(id)
+        self.push_operador('=')
+        operador = self.pilaOperadores.pop()
+        return_type = semanticaObj.get_function_type(key)
+        temp_address = semanticaObj.add_temp(scope, return_type, self.temp_count)
+        self.temp_count += 1
+        if key in semanticaObj.directorio['Programa']['return_values']:
+            # Generar Quadruplo (=, return_funcion, , Tx)
+            return_value = semanticaObj.directorio['Programa']['return_values'][key]
+            quadObj.agregar(operador, return_value, None, temp_address)
+            self.pilaOperandos.append((temp_address, return_type, 'temp'))
+        # Casos recursivos no vacios
+        elif return_type != 0:
+            quadObj.agregar(operador, None, None, temp_address)
+            self.push_salto(quadObj.quads_len() - 1)
+            self.pilaOperandos.append((temp_address, return_type, 'temp'))
+
     def debug(self):
         print("Pila Operadores")
         for item in self.pilaOperadores:

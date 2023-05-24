@@ -1,0 +1,59 @@
+mi_programa 🐍🐍
+variable 📖📖 : entero[5][5]
+variable glob : entero
+variable i, j, p : entero
+
+mi_funcion 🤡 (😈 : decimal, paramB : decimal, otro_param : logico): vacio {
+    variable abc, def : logico
+    variable 😮😮😮 : entero
+
+    abc = (verdadero YYY falso) OOO (falso YYY falso)
+    😈 = 5.6 * (3 + 5 * 9 * 10)/glob
+    imprimir(😈)
+
+    condicion (2 < 3) {
+        paramB = 10.5
+    } alternativa {
+        paramB = 20.4
+    }
+}
+
+mi_funcion otraFuncion (): entero {
+    variable otra_variable : letra
+    variable 😵:decimal
+    😵 = 5/2
+    imprimir(3+80, 5*30)
+    leer(📖📖)
+
+    mientras(20 > 3 * 9){
+        imprimir("Hola")
+    }
+}
+
+mi_funcion ciclo_for (): vacio {
+    variable a, b, c, d, e, f, g, h, i, k : entero
+    a = b + c * (d - e)
+        b = e - f
+        desde (variable j : entero = 1 hasta a+b*c) {
+            h = j * k +b
+            condicion(b < h){
+                b = h + j
+                imprimir(a+b*c, j)
+            }
+        }
+        f = a + b
+}
+
+mi_funcion 👻👻👻 (): vacio{
+    variable arr : entero[5]
+    variable mat : decimal[6][6]
+    arr[3] = 5
+    mat[i+j][arr[i*j]*p] = i * j / (p * 2) + arr[8]
+    mat[5][8] = 8.0
+}
+
+iniciar() {
+    variable 💩💩💩 : decimal
+    📖📖[2+2][3-1] =
+    leer(💩💩💩)
+}

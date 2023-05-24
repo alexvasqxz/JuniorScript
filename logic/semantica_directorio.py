@@ -12,6 +12,7 @@ class DirectorioFunciones:
                 'type': 0,
                 'quad_init': 0,
                 'resources': [],
+                'return_values' : {},
                 'variables': {},
                 'constantes': {},
             }
@@ -104,7 +105,7 @@ class DirectorioFunciones:
         self.directorio['main'] = {
             'id': 'main_inicio',
             'type': 0,
-            'quad_init': None,
+            'quad_init': 0,
             'resources': {
                 'vars': [],
                 'temps': []
@@ -215,3 +216,69 @@ class DirectorioFunciones:
                     return global_vars_dict[var_global]['dimensions']
                 else:
                     raise Exception(f"ERROR: Este id no es de tipo arreglo '{var_global}'")
+
+    def insert_first_quad(self, scope, quadObj):
+        self.directorio[scope]["quad_init"] = len(quadObj.obtener_quadruplos())
+        if scope == "main":
+            quadObj.modificar_quad(0, [None, None, None, quadObj.quads_len()])
+
+    def get_first_quad(self, scope):
+        if "quad_init" in self.directorio[scope]:
+            return self.directorio[scope]['quad_init']
+        else:
+            raise Exception(f"ERROR: La funcion {scope} no tiene quadruplo de inicio")
+
+    def end_func(self, scope, quadObj, codigoObj):
+        if scope == "main":
+            quadObj.agregar(80, None, None, None)
+        else:
+            quadObj.agregar(60, None, None, None)
+            # Si tenemos una llamada recursiva, debemos llenar
+            # el quadruplo de Recursos al terminar esta funcion
+            variables = self.get_resources(scope, 'vars')
+            temps = self.get_resources(scope, 'temps')
+            codigoObj.recursos_recursivos(quadObj, variables, temps)
+
+    def verificar_funcion(self, id, codigoObj):
+        key = self.get_function_key_by_id(id)
+        function_type = self.get_function_type(key)
+        if bool(codigoObj.pilaOperandos) and (function_type == 0):
+            raise Exception(f"ERROR: Una funcion void no puede ser parte de una expresion o asignacion")
+        if id not in self.function_names:
+            raise Exception(f"ERROR: No existe la funcion con nombre '{id}'")
+
+    def get_function_key_by_id(self, id):
+        for key, values in self.directorio.items():
+            if values['id'] == id:
+                return key
+        raise Exception(f"ERROR: Algo ha salido mal en la llamada a la funcion {id}")
+
+    def get_resources(self, scope, type):
+        return self.directorio[scope]['resources'][type]
+
+    def apartar_recursos(self, scope, id, quadObj, codigoObj):
+        key = self.get_function_key_by_id(id)
+        if scope != key:
+            recursos_vars = self.get_resources(key, 'vars')
+            recursos_temps = self.get_resources(key, 'temps')
+            quadObj.agregar(51, recursos_vars, recursos_temps, key)
+        else:
+            quadObj.agregar(51, [], [], key)
+            codigoObj.push_salto(quadObj.quads_len() - 1)
+
+    def get_parameters(self, id):
+        key = self.get_function_key_by_id(id)
+        return self.directorio[key]['param_types']
+
+    def create_salto_modulo(self, id, quadObj):
+        key = self.get_function_key_by_id(id)
+        quad_init = self.get_first_quad(key)
+        quadObj.agregar(50, key, None, quad_init)
+
+    def get_function_type(self, scope):
+        return self.directorio[scope]['type']
+
+    def tiene_return(self, scope):
+        if self.directorio[scope]['type'] != 0:
+            if not scope in self.directorio['Programa']['return_values']:
+                raise Exception(f"ERROR: La funcion debe de regresar algun valor")
