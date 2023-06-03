@@ -1,28 +1,25 @@
-mi_programa 🐍🐍
-variable 📖📖 : decimal[5][5]
-variable i, j, p : entero
+mi_programa patito
 
-mi_funcion otraFuncion (primero : decimal, segundo : decimal): entero {
-    variable otra_variable : letra
-    variable 😵:decimal
-    variable yas : entero
-    variable fonc : entero
-    😵 = 5/2
+variable a: entero
+variable arreglo : entero[10]
+variable matriz : entero[5][5]
 
-    mientras(20 > 3 * 9){
-        imprimir("Hello")
-    }
-    regresar(9 + otraFuncion(4.5, 6.42))
-}
-
-mi_funcion una_vacia() : vacio{
-    imprimir(i, j, p)
-    una_vacia()
+mi_funcion algo_simple() : vacio {
+ variable b, c : entero
+ variable logi1, logi2, logi3 : logico
+ variable div : decimal
+ a = 5 * 10 * 2
+ b = a - 4
+ c = 5 + 5
+ logi1 = b <= a
+ logi2 = b > a
+ logi3 = logi1 OOO logi2
+ div = a / b
+ imprimir(a, b, c, "falso", logi3, div)
 }
 
 iniciar() {
-    variable 💩💩💩 : entero
-    💩💩💩 = otraFuncion(5.4, 8/3) * otraFuncion(📖📖[2][2], 📖📖[3+4][5-5])
-    una_vacia()
-    imprimir(💩💩💩)
+    variable prueba : logico
+    prueba = falso
+    algo_simple()
 }

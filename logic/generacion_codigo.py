@@ -13,6 +13,8 @@ class CodigoExpresionesEstatutos:
         self.pilaSaltos = Stack()
         # Pila de dimensiones para arreglos
         self.pilaDim = Stack()
+        # Pila de saltos en modulos
+        self.pilaModulos = Stack()
 
         self.direccionesVirtuales = DireccionesVirtuales()
         self.mapeoDatos = MapeoDatos()
@@ -33,6 +35,9 @@ class CodigoExpresionesEstatutos:
 
     def push_salto(self, count):
         self.pilaSaltos.append(count)
+
+    def push_salto_modulo(self, count):
+        self.pilaModulos.append(count)
 
     # ------------------------------------------------------------
     # CODIGO - QUADRUPLOS EXPRESIONES Y ESTATUTOS
@@ -242,7 +247,6 @@ class CodigoExpresionesEstatutos:
         expression_result = self.pilaOperandos[-1]
         expression_type = expression_result[1]
         if expression_type != 1:
-            print(quadObj.obtener_quadruplos())
             raise Exception(f"ERROR: El indice de arreglo debe dar como resultado un entero")
         op_inf = self.pilaOperadores.pop()
         quadObj.agregar(op_inf, expression_result[0], zero_address, None)
@@ -325,8 +329,8 @@ class CodigoExpresionesEstatutos:
         self.pointer_count = 1
 
     def recursos_recursivos(self, quadObj, vars, temps):
-        if bool(self.pilaSaltos):
-            era_modificar = self.pilaSaltos.pop()
+        if bool(self.pilaModulos):
+            era_modificar = self.pilaModulos.pop()
             quadObj.modificar_quad(era_modificar, [None, vars, temps, None])
 
     def assign_params(self, id, quadObj, param_types, counter):
@@ -359,37 +363,45 @@ class CodigoExpresionesEstatutos:
         # Agregar resultado a la variable global de la función
         semanticaObj.directorio['Programa']['return_values'][scope] = return_result[0]
         # Llenar cuadruplos para casos recursivos
-        quad_recursivo = self.pilaSaltos.pop()
-        quadObj.modificar_quad(quad_recursivo, [None, return_result[0], None, None])
+        # Validar que el quadruplo a modificar sea RETURN
+        if bool(self.pilaModulos):
+            quad_recursivo = self.pilaModulos.pop()
+            quadruplos = quadObj.obtener_quadruplos()
+            if quadruplos[quad_recursivo][0] == 53:
+                quadObj.modificar_quad(quad_recursivo, [None, return_result[0], None, None])
+            else:
+                self.push_salto_modulo(quad_recursivo)
 
     def parche_return(self, scope, id, quadObj, semanticaObj):
         key = semanticaObj.get_function_key_by_id(id)
         self.push_operador('=')
         operador = self.pilaOperadores.pop()
         return_type = semanticaObj.get_function_type(key)
-        temp_address = semanticaObj.add_temp(scope, return_type, self.temp_count)
-        self.temp_count += 1
-        if key in semanticaObj.directorio['Programa']['return_values']:
-            # Generar Quadruplo (=, return_funcion, , Tx)
-            return_value = semanticaObj.directorio['Programa']['return_values'][key]
-            quadObj.agregar(operador, return_value, None, temp_address)
-            self.pilaOperandos.append((temp_address, return_type, 'temp'))
-        # Casos recursivos no vacios
-        elif return_type != 0:
-            quadObj.agregar(operador, None, None, temp_address)
-            self.push_salto(quadObj.quads_len() - 1)
-            self.pilaOperandos.append((temp_address, return_type, 'temp'))
+        if return_type != 0:
+            temp_address = semanticaObj.add_temp(scope, return_type, self.temp_count)
+            self.temp_count += 1
+            if key in semanticaObj.directorio['Programa']['return_values']:
+                # Generar Quadruplo (=, return_funcion, , Tx)
+                return_value = semanticaObj.directorio['Programa']['return_values'][key]
+                quadObj.agregar(operador, return_value, None, temp_address)
+                self.pilaOperandos.append((temp_address, return_type, 'temp'))
+            # Casos recursivos no vacios
+            else:
+                quadObj.agregar(operador, None, None, temp_address)
+                self.push_salto_modulo(quadObj.quads_len() - 1)
+                self.pilaOperandos.append((temp_address, return_type, 'temp'))
 
     def debug(self):
-        print("Pila Operadores")
-        for item in self.pilaOperadores:
-            print(item)
-        print("Pila Operandos")
-        for item in self.pilaOperandos:
-            print(item)
-        print("Pila Saltos")
-        for item in self.pilaSaltos:
-            print(item)
-        print("Pila Dim")
-        for item in self.pilaDim:
-            print(item)
+        print("Not right now")
+        # print("Pila Operadores")
+        # for item in self.pilaOperadores:
+        #     print(item)
+        # print("Pila Operandos")
+        # for item in self.pilaOperandos:
+        #     print(item)
+        # print("Pila Saltos")
+        # for item in self.pilaSaltos:
+        #     print(item)
+        # print("Pila Dim")
+        # for item in self.pilaDim:
+        #     print(item)

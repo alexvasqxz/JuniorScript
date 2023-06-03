@@ -109,7 +109,8 @@ class DirectorioFunciones:
             'resources': {
                 'vars': [],
                 'temps': []
-            }
+            },
+            'variables': {},
         }
 
     def assign_resources_vars(self, scope):
@@ -165,10 +166,8 @@ class DirectorioFunciones:
             if id in self.directorio[scope]['variables']:
                 return self.directorio[scope]['variables'][id]['address']
             # Buscar en variables globales
-            elif id in self.global_variables:
-                return self.directorio['Programa']['variables'][id]['address']
-            else:
-                raise Exception(f"ERROR: '{id}' no existe")
+        if id in self.global_variables:
+            return self.directorio['Programa']['variables'][id]['address']
         else:
             raise Exception(f"ERROR: '{id}' no existe")
 
@@ -264,7 +263,7 @@ class DirectorioFunciones:
             quadObj.agregar(51, recursos_vars, recursos_temps, key)
         else:
             quadObj.agregar(51, [], [], key)
-            codigoObj.push_salto(quadObj.quads_len() - 1)
+            codigoObj.push_salto_modulo(quadObj.quads_len() - 1)
 
     def get_parameters(self, id):
         key = self.get_function_key_by_id(id)

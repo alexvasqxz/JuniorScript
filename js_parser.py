@@ -13,11 +13,12 @@ from js_lexer import tokens
 
 # Semantica
 from logic.semantica_directorio import DirectorioFunciones
-
 # Codigo Expresiones y Estatutos
 from logic.generacion_codigo import CodigoExpresionesEstatutos
 # Quadruplos
 from logic.quadruple import Quadruple
+# Memoria Virtual
+from logic.maquina_virtual import MaquinaVirtual
 
 def JSParser():
     # ------------------------------------------------------------
@@ -257,7 +258,8 @@ def JSParser():
 
     def p_inicio(p):
         '''
-        inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+        inicio : MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque \
+        RCURLY punto_semantico_14 punto_crear_vm
         '''
         p[0] = None
         codigoI.debug()
@@ -844,6 +846,17 @@ def JSParser():
         '''
         if bool(codigoI.pilaOperandos):
             raise Exception(f"ERROR: Funcion de tipo no vacio debe formar parte de alguna expresion o asignacion")
+
+    # ------------------------------------------------------------
+    # MAQUINA Y MEMORIA VIRTUAL
+    # ------------------------------------------------------------
+
+    def p_punto_crear_vm(p):
+        '''
+        punto_crear_vm :
+        '''
+        maquina_virtual = MaquinaVirtual(quadruplos.obtener_quadruplos(), dir_func)
+        maquina_virtual.ejecutar()
 
     return yacc.yacc()
 

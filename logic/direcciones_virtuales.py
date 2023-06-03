@@ -100,3 +100,11 @@ class DireccionesVirtuales():
                     return 4
         else:
             raise Exception("ERROR: Tipo no existe para direccion '{address}'")
+
+    def get_scope_with_address(self, address):
+        if ((address in range(1000, 5000)) or (address in range(10000, 18000)) or (address in range(30000, 70000))):
+            return 'global'
+        elif ((address in range(5000, 9000)) or (address in range(18000, 26000))):
+            return 'local'
+        else:
+            raise Exception("ERROR: Scope no existe para direccion '{address}'")
