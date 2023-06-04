@@ -224,8 +224,14 @@ class MaquinaVirtual:
     def ejecutar(self):
         print(self.quadruples)
         self.leer_instrucciones()
-        print('------DS--------')
-        print(self.data_segment.segmento_entero)
-        print('------MS--------')
-        print(self.local_stack.segmento_entero)
+        print('------DATA SEGMENT--------')
+        print("Enteros: ", self.data_segment.segmento_entero)
+        print("Decimales: ", self.data_segment.segmento_decimal)
+        print("Logicos: ", self.data_segment.segmento_logico)
+        print("Letreros: ", self.data_segment.segmento_letra)
+        print('------MEMORY STACK--------')
+        print("Enteros: ", self.local_stack.segmento_entero)
+        print("Decimales: ", self.local_stack.segmento_decimal)
+        print("Logicos: ", self.local_stack.segmento_logico)
+        print("Letreros: ", self.local_stack.segmento_letra)
 
