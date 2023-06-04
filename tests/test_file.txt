@@ -1,28 +1,16 @@
-mi_programa 🐍🐍
-variable 📖📖 : decimal[5][5]
-variable i, j, p : entero
+mi_programa patito
 
-mi_funcion otraFuncion (primero : decimal, segundo : decimal): entero {
-    variable otra_variable : letra
-    variable 😵:decimal
-    variable yas : entero
-    variable fonc : entero
-    😵 = 5/2
-
-    mientras(20 > 3 * 9){
-        imprimir("Hello")
+mi_funcion recursiva(oops : entero) : entero{
+    condicion (oops <= 10){
+        imprimir(oops)
+        regresar(oops)
+    } alternativa {
+        regresar(5 + recursiva(oops - 15))
     }
-    regresar(9 + otraFuncion(4.5, 6.42))
-}
-
-mi_funcion una_vacia() : vacio{
-    imprimir(i, j, p)
-    una_vacia()
 }
 
 iniciar() {
-    variable 💩💩💩 : entero
-    💩💩💩 = otraFuncion(5.4, 8/3) * otraFuncion(📖📖[2][2], 📖📖[3+4][5-5])
-    una_vacia()
-    imprimir(💩💩💩)
+    variable purt : entero
+    purt = 50
+    imprimir(recursiva(purt))
 }

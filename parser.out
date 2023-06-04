@@ -81,9 +81,9 @@ Rule 75    factor -> CTEFRASE punto_semantico_17 punto_codigoI_2
 Rule 76    llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
 Rule 77    cte_bool -> TRUE
 Rule 78    cte_bool -> FALSE
-Rule 79    llam_params -> expresion punto_modulo_5 llam_paramsB
+Rule 79    llam_params -> expresion punto_modulo_5 punto_modulo_6 llam_paramsB
 Rule 80    llam_params -> empty
-Rule 81    llam_paramsB -> COMMA punto_modulo_6 llam_params
+Rule 81    llam_paramsB -> COMMA llam_params
 Rule 82    llam_paramsB -> empty
 Rule 83    ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10
 Rule 84    ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
@@ -102,7 +102,7 @@ Rule 96    leerB -> ID punto_codigoI_1 punto_codigoI_11 leerBB
 Rule 97    leerBB -> COMMA leerB
 Rule 98    leerBB -> empty
 Rule 99    regresar -> punto_modulo_9 RETURN LPAREN expresion punto_modulo_10 RPAREN
-Rule 100   inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+Rule 100   inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
 Rule 101   empty -> <empty>
 Rule 102   puntos_semantica_1 -> <empty>
 Rule 103   puntos_semantica_2 -> <empty>
@@ -163,6 +163,7 @@ Rule 157   punto_modulo_10 -> <empty>
 Rule 158   punto_modulo_11 -> <empty>
 Rule 159   punto_modulo_12 -> <empty>
 Rule 160   punto_modulo_13 -> <empty>
+Rule 161   punto_crear_vm -> <empty>
 
 Terminals, with rules where they appear
 
@@ -290,6 +291,7 @@ punto_codigoI_6      : 60
 punto_codigoI_7      : 64
 punto_codigoI_8      : 43 45 68 76
 punto_codigoI_9      : 43 45 68 76
+punto_crear_vm       : 100
 punto_modulo_1       : 1
 punto_modulo_10      : 99
 punto_modulo_11      : 76
@@ -299,7 +301,7 @@ punto_modulo_2       : 21 100
 punto_modulo_3       : 76
 punto_modulo_4       : 76
 punto_modulo_5       : 79
-punto_modulo_6       : 81
+punto_modulo_6       : 79
 punto_modulo_7       : 76
 punto_modulo_8       : 76
 punto_modulo_9       : 99
@@ -439,7 +441,7 @@ state 11
 state 12
 
     (1) programa -> PROGRAMA puntos_semantica_1 punto_codigoI_0 punto_modulo_1 ID puntos_semantica_2 programaB programaC . inicio punto_semantico_16
-    (100) inicio -> . MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> . MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
 
     MAIN            shift and go to state 17
 
@@ -491,7 +493,7 @@ state 16
 
 state 17
 
-    (100) inicio -> MAIN . punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN . punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
     (116) punto_semantico_15 -> .
 
     LPAREN          reduce using rule 116 (punto_semantico_15 -> .)
@@ -552,7 +554,7 @@ state 24
 
 state 25
 
-    (100) inicio -> MAIN punto_semantico_15 . LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 . LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
 
     LPAREN          shift and go to state 29
 
@@ -596,7 +598,7 @@ state 28
 
 state 29
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN . RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN . RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
 
     RPAREN          shift and go to state 39
 
@@ -734,7 +736,7 @@ state 38
 
 state 39
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN . LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN . LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
 
     LCURLY          shift and go to state 43
 
@@ -783,7 +785,7 @@ state 42
 
 state 43
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY . punto_modulo_2 bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY . punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm
     (149) punto_modulo_2 -> .
 
     FOR             reduce using rule 149 (punto_modulo_2 -> .)
@@ -868,7 +870,7 @@ state 48
 
 state 49
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 . bloque RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 . bloque RCURLY punto_semantico_14 punto_crear_vm
     (29) bloque -> . bloqueB bloqueBB
     (30) bloqueB -> . asignacion
     (31) bloqueB -> . ciclo_para_cada
@@ -988,7 +990,7 @@ state 56
 
 state 57
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque . RCURLY punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque . RCURLY punto_semantico_14 punto_crear_vm
 
     RCURLY          shift and go to state 82
 
@@ -1318,7 +1320,7 @@ state 81
 
 state 82
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY . punto_semantico_14
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY . punto_semantico_14 punto_crear_vm
     (115) punto_semantico_14 -> .
 
     $end            reduce using rule 115 (punto_semantico_14 -> .)
@@ -1665,10 +1667,12 @@ state 98
 
 state 99
 
-    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 .
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 . punto_crear_vm
+    (161) punto_crear_vm -> .
 
-    $end            reduce using rule 100 (inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 .)
+    $end            reduce using rule 161 (punto_crear_vm -> .)
 
+    punto_crear_vm                 shift and go to state 140
 
 state 100
 
@@ -1723,7 +1727,7 @@ state 102
     RETURN          reduce using rule 131 (punto_codigoI_12 -> .)
     RCURLY          reduce using rule 131 (punto_codigoI_12 -> .)
 
-    punto_codigoI_12               shift and go to state 140
+    punto_codigoI_12               shift and go to state 141
 
 state 103
 
@@ -1765,7 +1769,7 @@ state 104
     RBRACE          reduce using rule 123 (punto_codigoI_4 -> .)
     TO              reduce using rule 123 (punto_codigoI_4 -> .)
 
-    punto_codigoI_4                shift and go to state 141
+    punto_codigoI_4                shift and go to state 142
 
 state 105
 
@@ -1794,7 +1798,7 @@ state 105
     RBRACE          reduce using rule 124 (punto_codigoI_5 -> .)
     TO              reduce using rule 124 (punto_codigoI_5 -> .)
 
-    punto_codigoI_5                shift and go to state 142
+    punto_codigoI_5                shift and go to state 143
 
 state 106
 
@@ -1825,7 +1829,7 @@ state 106
     RBRACE          reduce using rule 125 (punto_codigoI_6 -> .)
     TO              reduce using rule 125 (punto_codigoI_6 -> .)
 
-    punto_codigoI_6                shift and go to state 143
+    punto_codigoI_6                shift and go to state 144
 
 state 107
 
@@ -1858,7 +1862,7 @@ state 107
     RBRACE          reduce using rule 126 (punto_codigoI_7 -> .)
     TO              reduce using rule 126 (punto_codigoI_7 -> .)
 
-    punto_codigoI_7                shift and go to state 144
+    punto_codigoI_7                shift and go to state 145
 
 state 108
 
@@ -1874,7 +1878,7 @@ state 108
     TRUE            reduce using rule 127 (punto_codigoI_8 -> .)
     FALSE           reduce using rule 127 (punto_codigoI_8 -> .)
 
-    punto_codigoI_8                shift and go to state 145
+    punto_codigoI_8                shift and go to state 146
 
 state 109
 
@@ -1938,7 +1942,7 @@ state 110
     RBRACE          reduce using rule 118 (punto_semantico_17 -> .)
     TO              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 146
+    punto_semantico_17             shift and go to state 147
 
 state 111
 
@@ -1971,7 +1975,7 @@ state 111
     RBRACE          reduce using rule 118 (punto_semantico_17 -> .)
     TO              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 147
+    punto_semantico_17             shift and go to state 148
 
 state 112
 
@@ -2004,7 +2008,7 @@ state 112
     RBRACE          reduce using rule 118 (punto_semantico_17 -> .)
     TO              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 148
+    punto_semantico_17             shift and go to state 149
 
 state 113
 
@@ -2037,7 +2041,7 @@ state 113
     RBRACE          reduce using rule 118 (punto_semantico_17 -> .)
     TO              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 149
+    punto_semantico_17             shift and go to state 150
 
 state 114
 
@@ -2070,7 +2074,7 @@ state 114
     RBRACE          reduce using rule 118 (punto_semantico_17 -> .)
     TO              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 150
+    punto_semantico_17             shift and go to state 151
 
 state 115
 
@@ -2176,7 +2180,7 @@ state 118
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB . TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10
 
-    TO              shift and go to state 151
+    TO              shift and go to state 152
 
 
 state 119
@@ -2186,7 +2190,7 @@ state 119
 
     ID              reduce using rule 104 (punto_semantico_3 -> .)
 
-    punto_semantico_3              shift and go to state 152
+    punto_semantico_3              shift and go to state 153
 
 state 120
 
@@ -2218,7 +2222,7 @@ state 120
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 153
+    expresion                      shift and go to state 154
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -2235,13 +2239,13 @@ state 121
 
     RPAREN          reduce using rule 132 (punto_codigoII_1 -> .)
 
-    punto_codigoII_1               shift and go to state 154
+    punto_codigoII_1               shift and go to state 155
 
 state 122
 
     (89) escribir -> ESCRITURA LPAREN escribirB . RPAREN
 
-    RPAREN          shift and go to state 155
+    RPAREN          shift and go to state 156
 
 
 state 123
@@ -2252,7 +2256,7 @@ state 123
     COMMA           reduce using rule 129 (punto_codigoI_10 -> .)
     RPAREN          reduce using rule 129 (punto_codigoI_10 -> .)
 
-    punto_codigoI_10               shift and go to state 156
+    punto_codigoI_10               shift and go to state 157
 
 state 124
 
@@ -2275,7 +2279,7 @@ state 124
     AND             reduce using rule 118 (punto_semantico_17 -> .)
     OR              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 157
+    punto_semantico_17             shift and go to state 158
 
 state 125
 
@@ -2298,13 +2302,13 @@ state 125
     AND             reduce using rule 118 (punto_semantico_17 -> .)
     OR              reduce using rule 118 (punto_semantico_17 -> .)
 
-    punto_semantico_17             shift and go to state 158
+    punto_semantico_17             shift and go to state 159
 
 state 126
 
     (95) leer -> LECTURA LPAREN leerB . RPAREN
 
-    RPAREN          shift and go to state 159
+    RPAREN          shift and go to state 160
 
 
 state 127
@@ -2315,7 +2319,7 @@ state 127
     COMMA           reduce using rule 120 (punto_codigoI_1 -> .)
     RPAREN          reduce using rule 120 (punto_codigoI_1 -> .)
 
-    punto_codigoI_1                shift and go to state 160
+    punto_codigoI_1                shift and go to state 161
 
 state 128
 
@@ -2332,7 +2336,7 @@ state 128
     FALSE           reduce using rule 127 (punto_codigoI_8 -> .)
     RPAREN          reduce using rule 127 (punto_codigoI_8 -> .)
 
-    punto_codigoI_8                shift and go to state 161
+    punto_codigoI_8                shift and go to state 162
 
 state 129
 
@@ -2366,7 +2370,7 @@ state 129
     RBRACE          reduce using rule 147 (punto_arreglos_6 -> .)
     TO              reduce using rule 147 (punto_arreglos_6 -> .)
 
-    punto_arreglos_6               shift and go to state 162
+    punto_arreglos_6               shift and go to state 163
 
 state 130
 
@@ -2382,7 +2386,7 @@ state 130
     TRUE            reduce using rule 142 (punto_arreglos_1 -> .)
     FALSE           reduce using rule 142 (punto_arreglos_1 -> .)
 
-    punto_arreglos_1               shift and go to state 163
+    punto_arreglos_1               shift and go to state 164
 
 state 131
 
@@ -2446,7 +2450,7 @@ state 132
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 164
+    expresion                      shift and go to state 165
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -2464,7 +2468,7 @@ state 133
     COMMA           reduce using rule 106 (punto_semantico_5 -> .)
     RPAREN          reduce using rule 106 (punto_semantico_5 -> .)
 
-    punto_semantico_5              shift and go to state 165
+    punto_semantico_5              shift and go to state 166
 
 state 134
 
@@ -2473,7 +2477,7 @@ state 134
 
     LCURLY          reduce using rule 114 (punto_semantico_13 -> .)
 
-    punto_semantico_13             shift and go to state 166
+    punto_semantico_13             shift and go to state 167
 
 state 135
 
@@ -2493,7 +2497,7 @@ state 137
 
     (13) dec_varsB2 -> LBRACE . CTEENT punto_semantico_7 RBRACE
 
-    CTEENT          shift and go to state 167
+    CTEENT          shift and go to state 168
 
 
 state 138
@@ -2530,6 +2534,13 @@ state 139
 
 state 140
 
+    (100) inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm .
+
+    $end            reduce using rule 100 (inicio -> MAIN punto_semantico_15 LPAREN RPAREN LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_crear_vm .)
+
+
+state 141
+
     (41) asignacion -> llam_vars ASSIGN expresion punto_codigoI_12 .
 
     FOR             reduce using rule 41 (asignacion -> llam_vars ASSIGN expresion punto_codigoI_12 .)
@@ -2543,7 +2554,7 @@ state 140
     RCURLY          reduce using rule 41 (asignacion -> llam_vars ASSIGN expresion punto_codigoI_12 .)
 
 
-state 141
+state 142
 
     (48) peta_exp -> tera_exp punto_codigoI_4 . peta_expB
     (49) peta_expB -> . AND punto_codigoI_3 peta_exp
@@ -2551,8 +2562,8 @@ state 141
     (51) peta_expB -> . empty
     (101) empty -> .
 
-    AND             shift and go to state 169
-    OR              shift and go to state 170
+    AND             shift and go to state 170
+    OR              shift and go to state 171
     FOR             reduce using rule 101 (empty -> .)
     WHILE           reduce using rule 101 (empty -> .)
     IF              reduce using rule 101 (empty -> .)
@@ -2567,10 +2578,10 @@ state 141
     RBRACE          reduce using rule 101 (empty -> .)
     TO              reduce using rule 101 (empty -> .)
 
-    peta_expB                      shift and go to state 168
-    empty                          shift and go to state 171
+    peta_expB                      shift and go to state 169
+    empty                          shift and go to state 172
 
-state 142
+state 143
 
     (52) tera_exp -> mega_exp punto_codigoI_5 . tera_expB
     (53) tera_expB -> . LT punto_codigoI_3 tera_exp
@@ -2582,12 +2593,12 @@ state 142
     (59) tera_expB -> . empty
     (101) empty -> .
 
-    LT              shift and go to state 173
-    GT              shift and go to state 174
-    LTE             shift and go to state 175
-    GTE             shift and go to state 176
-    EQUAL           shift and go to state 177
-    NEQUAL          shift and go to state 178
+    LT              shift and go to state 174
+    GT              shift and go to state 175
+    LTE             shift and go to state 176
+    GTE             shift and go to state 177
+    EQUAL           shift and go to state 178
+    NEQUAL          shift and go to state 179
     AND             reduce using rule 101 (empty -> .)
     OR              reduce using rule 101 (empty -> .)
     FOR             reduce using rule 101 (empty -> .)
@@ -2604,10 +2615,10 @@ state 142
     RBRACE          reduce using rule 101 (empty -> .)
     TO              reduce using rule 101 (empty -> .)
 
-    tera_expB                      shift and go to state 172
-    empty                          shift and go to state 179
+    tera_expB                      shift and go to state 173
+    empty                          shift and go to state 180
 
-state 143
+state 144
 
     (60) mega_exp -> kilo_exp punto_codigoI_6 . mega_expB
     (61) mega_expB -> . PLUS punto_codigoI_3 mega_exp
@@ -2615,8 +2626,8 @@ state 143
     (63) mega_expB -> . empty
     (101) empty -> .
 
-    PLUS            shift and go to state 181
-    MINUS           shift and go to state 182
+    PLUS            shift and go to state 182
+    MINUS           shift and go to state 183
     LT              reduce using rule 101 (empty -> .)
     GT              reduce using rule 101 (empty -> .)
     LTE             reduce using rule 101 (empty -> .)
@@ -2639,10 +2650,10 @@ state 143
     RBRACE          reduce using rule 101 (empty -> .)
     TO              reduce using rule 101 (empty -> .)
 
-    mega_expB                      shift and go to state 180
-    empty                          shift and go to state 183
+    mega_expB                      shift and go to state 181
+    empty                          shift and go to state 184
 
-state 144
+state 145
 
     (64) kilo_exp -> factor punto_codigoI_7 . kilo_expB
     (65) kilo_expB -> . TIMES punto_codigoI_3 kilo_exp
@@ -2650,8 +2661,8 @@ state 144
     (67) kilo_expB -> . empty
     (101) empty -> .
 
-    TIMES           shift and go to state 185
-    DIVIDE          shift and go to state 186
+    TIMES           shift and go to state 186
+    DIVIDE          shift and go to state 187
     PLUS            reduce using rule 101 (empty -> .)
     MINUS           reduce using rule 101 (empty -> .)
     LT              reduce using rule 101 (empty -> .)
@@ -2676,10 +2687,10 @@ state 144
     RBRACE          reduce using rule 101 (empty -> .)
     TO              reduce using rule 101 (empty -> .)
 
-    kilo_expB                      shift and go to state 184
-    empty                          shift and go to state 187
+    kilo_expB                      shift and go to state 185
+    empty                          shift and go to state 188
 
-state 145
+state 146
 
     (68) factor -> LPAREN punto_codigoI_8 . expresion RPAREN punto_codigoI_9
     (47) expresion -> . peta_exp
@@ -2709,7 +2720,7 @@ state 145
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 188
+    expresion                      shift and go to state 189
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -2719,42 +2730,9 @@ state 145
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 146
-
-    (71) factor -> CTEENT punto_semantico_17 . punto_codigoI_2
-    (121) punto_codigoI_2 -> .
-
-    TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
-    DIVIDE          reduce using rule 121 (punto_codigoI_2 -> .)
-    PLUS            reduce using rule 121 (punto_codigoI_2 -> .)
-    MINUS           reduce using rule 121 (punto_codigoI_2 -> .)
-    LT              reduce using rule 121 (punto_codigoI_2 -> .)
-    GT              reduce using rule 121 (punto_codigoI_2 -> .)
-    LTE             reduce using rule 121 (punto_codigoI_2 -> .)
-    GTE             reduce using rule 121 (punto_codigoI_2 -> .)
-    EQUAL           reduce using rule 121 (punto_codigoI_2 -> .)
-    NEQUAL          reduce using rule 121 (punto_codigoI_2 -> .)
-    AND             reduce using rule 121 (punto_codigoI_2 -> .)
-    OR              reduce using rule 121 (punto_codigoI_2 -> .)
-    FOR             reduce using rule 121 (punto_codigoI_2 -> .)
-    WHILE           reduce using rule 121 (punto_codigoI_2 -> .)
-    IF              reduce using rule 121 (punto_codigoI_2 -> .)
-    ESCRITURA       reduce using rule 121 (punto_codigoI_2 -> .)
-    LECTURA         reduce using rule 121 (punto_codigoI_2 -> .)
-    VAR             reduce using rule 121 (punto_codigoI_2 -> .)
-    ID              reduce using rule 121 (punto_codigoI_2 -> .)
-    RETURN          reduce using rule 121 (punto_codigoI_2 -> .)
-    RCURLY          reduce using rule 121 (punto_codigoI_2 -> .)
-    RPAREN          reduce using rule 121 (punto_codigoI_2 -> .)
-    COMMA           reduce using rule 121 (punto_codigoI_2 -> .)
-    RBRACE          reduce using rule 121 (punto_codigoI_2 -> .)
-    TO              reduce using rule 121 (punto_codigoI_2 -> .)
-
-    punto_codigoI_2                shift and go to state 189
-
 state 147
 
-    (72) factor -> CTEDECI punto_semantico_17 . punto_codigoI_2
+    (71) factor -> CTEENT punto_semantico_17 . punto_codigoI_2
     (121) punto_codigoI_2 -> .
 
     TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
@@ -2787,7 +2765,7 @@ state 147
 
 state 148
 
-    (73) factor -> cte_bool punto_semantico_17 . punto_codigoI_2
+    (72) factor -> CTEDECI punto_semantico_17 . punto_codigoI_2
     (121) punto_codigoI_2 -> .
 
     TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
@@ -2820,7 +2798,7 @@ state 148
 
 state 149
 
-    (74) factor -> CTELETRA punto_semantico_17 . punto_codigoI_2
+    (73) factor -> cte_bool punto_semantico_17 . punto_codigoI_2
     (121) punto_codigoI_2 -> .
 
     TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
@@ -2853,7 +2831,7 @@ state 149
 
 state 150
 
-    (75) factor -> CTEFRASE punto_semantico_17 . punto_codigoI_2
+    (74) factor -> CTELETRA punto_semantico_17 . punto_codigoI_2
     (121) punto_codigoI_2 -> .
 
     TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
@@ -2886,6 +2864,39 @@ state 150
 
 state 151
 
+    (75) factor -> CTEFRASE punto_semantico_17 . punto_codigoI_2
+    (121) punto_codigoI_2 -> .
+
+    TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
+    DIVIDE          reduce using rule 121 (punto_codigoI_2 -> .)
+    PLUS            reduce using rule 121 (punto_codigoI_2 -> .)
+    MINUS           reduce using rule 121 (punto_codigoI_2 -> .)
+    LT              reduce using rule 121 (punto_codigoI_2 -> .)
+    GT              reduce using rule 121 (punto_codigoI_2 -> .)
+    LTE             reduce using rule 121 (punto_codigoI_2 -> .)
+    GTE             reduce using rule 121 (punto_codigoI_2 -> .)
+    EQUAL           reduce using rule 121 (punto_codigoI_2 -> .)
+    NEQUAL          reduce using rule 121 (punto_codigoI_2 -> .)
+    AND             reduce using rule 121 (punto_codigoI_2 -> .)
+    OR              reduce using rule 121 (punto_codigoI_2 -> .)
+    FOR             reduce using rule 121 (punto_codigoI_2 -> .)
+    WHILE           reduce using rule 121 (punto_codigoI_2 -> .)
+    IF              reduce using rule 121 (punto_codigoI_2 -> .)
+    ESCRITURA       reduce using rule 121 (punto_codigoI_2 -> .)
+    LECTURA         reduce using rule 121 (punto_codigoI_2 -> .)
+    VAR             reduce using rule 121 (punto_codigoI_2 -> .)
+    ID              reduce using rule 121 (punto_codigoI_2 -> .)
+    RETURN          reduce using rule 121 (punto_codigoI_2 -> .)
+    RCURLY          reduce using rule 121 (punto_codigoI_2 -> .)
+    RPAREN          reduce using rule 121 (punto_codigoI_2 -> .)
+    COMMA           reduce using rule 121 (punto_codigoI_2 -> .)
+    RBRACE          reduce using rule 121 (punto_codigoI_2 -> .)
+    TO              reduce using rule 121 (punto_codigoI_2 -> .)
+
+    punto_codigoI_2                shift and go to state 194
+
+state 152
+
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO . expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10
     (47) expresion -> . peta_exp
     (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
@@ -2914,7 +2925,7 @@ state 151
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 194
+    expresion                      shift and go to state 195
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -2924,30 +2935,30 @@ state 151
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 152
+state 153
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 . ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
 
-    ID              shift and go to state 195
+    ID              shift and go to state 196
 
 
-state 153
+state 154
 
     (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion . punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6
     (136) punto_codigoII_5 -> .
 
     RPAREN          reduce using rule 136 (punto_codigoII_5 -> .)
 
-    punto_codigoII_5               shift and go to state 196
+    punto_codigoII_5               shift and go to state 197
 
-state 154
+state 155
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 . RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3
 
-    RPAREN          shift and go to state 197
+    RPAREN          shift and go to state 198
 
 
-state 155
+state 156
 
     (89) escribir -> ESCRITURA LPAREN escribirB RPAREN .
 
@@ -2962,46 +2973,23 @@ state 155
     RCURLY          reduce using rule 89 (escribir -> ESCRITURA LPAREN escribirB RPAREN .)
 
 
-state 156
+state 157
 
     (90) escribirB -> expresion punto_codigoI_10 . escribirBB
     (93) escribirBB -> . COMMA escribirB
     (94) escribirBB -> . empty
     (101) empty -> .
 
-    COMMA           shift and go to state 199
+    COMMA           shift and go to state 200
     RPAREN          reduce using rule 101 (empty -> .)
 
-    escribirBB                     shift and go to state 198
-    empty                          shift and go to state 200
-
-state 157
-
-    (91) escribirB -> CTEFRASE punto_semantico_17 . punto_codigoI_2 punto_codigoI_10 escribirBB
-    (75) factor -> CTEFRASE punto_semantico_17 . punto_codigoI_2
-    (121) punto_codigoI_2 -> .
-
-    COMMA           reduce using rule 121 (punto_codigoI_2 -> .)
-    RPAREN          reduce using rule 121 (punto_codigoI_2 -> .)
-    TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
-    DIVIDE          reduce using rule 121 (punto_codigoI_2 -> .)
-    PLUS            reduce using rule 121 (punto_codigoI_2 -> .)
-    MINUS           reduce using rule 121 (punto_codigoI_2 -> .)
-    LT              reduce using rule 121 (punto_codigoI_2 -> .)
-    GT              reduce using rule 121 (punto_codigoI_2 -> .)
-    LTE             reduce using rule 121 (punto_codigoI_2 -> .)
-    GTE             reduce using rule 121 (punto_codigoI_2 -> .)
-    EQUAL           reduce using rule 121 (punto_codigoI_2 -> .)
-    NEQUAL          reduce using rule 121 (punto_codigoI_2 -> .)
-    AND             reduce using rule 121 (punto_codigoI_2 -> .)
-    OR              reduce using rule 121 (punto_codigoI_2 -> .)
-
-    punto_codigoI_2                shift and go to state 201
+    escribirBB                     shift and go to state 199
+    empty                          shift and go to state 201
 
 state 158
 
-    (92) escribirB -> CTELETRA punto_semantico_17 . punto_codigoI_2 punto_codigoI_10 escribirBB
-    (74) factor -> CTELETRA punto_semantico_17 . punto_codigoI_2
+    (91) escribirB -> CTEFRASE punto_semantico_17 . punto_codigoI_2 punto_codigoI_10 escribirBB
+    (75) factor -> CTEFRASE punto_semantico_17 . punto_codigoI_2
     (121) punto_codigoI_2 -> .
 
     COMMA           reduce using rule 121 (punto_codigoI_2 -> .)
@@ -3023,6 +3011,29 @@ state 158
 
 state 159
 
+    (92) escribirB -> CTELETRA punto_semantico_17 . punto_codigoI_2 punto_codigoI_10 escribirBB
+    (74) factor -> CTELETRA punto_semantico_17 . punto_codigoI_2
+    (121) punto_codigoI_2 -> .
+
+    COMMA           reduce using rule 121 (punto_codigoI_2 -> .)
+    RPAREN          reduce using rule 121 (punto_codigoI_2 -> .)
+    TIMES           reduce using rule 121 (punto_codigoI_2 -> .)
+    DIVIDE          reduce using rule 121 (punto_codigoI_2 -> .)
+    PLUS            reduce using rule 121 (punto_codigoI_2 -> .)
+    MINUS           reduce using rule 121 (punto_codigoI_2 -> .)
+    LT              reduce using rule 121 (punto_codigoI_2 -> .)
+    GT              reduce using rule 121 (punto_codigoI_2 -> .)
+    LTE             reduce using rule 121 (punto_codigoI_2 -> .)
+    GTE             reduce using rule 121 (punto_codigoI_2 -> .)
+    EQUAL           reduce using rule 121 (punto_codigoI_2 -> .)
+    NEQUAL          reduce using rule 121 (punto_codigoI_2 -> .)
+    AND             reduce using rule 121 (punto_codigoI_2 -> .)
+    OR              reduce using rule 121 (punto_codigoI_2 -> .)
+
+    punto_codigoI_2                shift and go to state 203
+
+state 160
+
     (95) leer -> LECTURA LPAREN leerB RPAREN .
 
     FOR             reduce using rule 95 (leer -> LECTURA LPAREN leerB RPAREN .)
@@ -3036,7 +3047,7 @@ state 159
     RCURLY          reduce using rule 95 (leer -> LECTURA LPAREN leerB RPAREN .)
 
 
-state 160
+state 161
 
     (96) leerB -> ID punto_codigoI_1 . punto_codigoI_11 leerBB
     (130) punto_codigoI_11 -> .
@@ -3044,9 +3055,9 @@ state 160
     COMMA           reduce using rule 130 (punto_codigoI_11 -> .)
     RPAREN          reduce using rule 130 (punto_codigoI_11 -> .)
 
-    punto_codigoI_11               shift and go to state 203
+    punto_codigoI_11               shift and go to state 204
 
-state 161
+state 162
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 . punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
     (151) punto_modulo_4 -> .
@@ -3061,9 +3072,9 @@ state 161
     FALSE           reduce using rule 151 (punto_modulo_4 -> .)
     RPAREN          reduce using rule 151 (punto_modulo_4 -> .)
 
-    punto_modulo_4                 shift and go to state 204
+    punto_modulo_4                 shift and go to state 205
 
-state 162
+state 163
 
     (42) llam_vars -> ID punto_codigoI_1 llam_varsB punto_arreglos_6 .
 
@@ -3095,7 +3106,7 @@ state 162
     TO              reduce using rule 42 (llam_vars -> ID punto_codigoI_1 llam_varsB punto_arreglos_6 .)
 
 
-state 163
+state 164
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 . punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (127) punto_codigoI_8 -> .
@@ -3109,18 +3120,18 @@ state 163
     TRUE            reduce using rule 127 (punto_codigoI_8 -> .)
     FALSE           reduce using rule 127 (punto_codigoI_8 -> .)
 
-    punto_codigoI_8                shift and go to state 205
+    punto_codigoI_8                shift and go to state 206
 
-state 164
+state 165
 
     (99) regresar -> punto_modulo_9 RETURN LPAREN expresion . punto_modulo_10 RPAREN
     (157) punto_modulo_10 -> .
 
     RPAREN          reduce using rule 157 (punto_modulo_10 -> .)
 
-    punto_modulo_10                shift and go to state 206
+    punto_modulo_10                shift and go to state 207
 
-state 165
+state 166
 
     (24) dec_params -> ID punto_semantico_11 COLON tipo punto_semantico_5 . punto_semantico_12 dec_paramsB
     (113) punto_semantico_12 -> .
@@ -3128,25 +3139,25 @@ state 165
     COMMA           reduce using rule 113 (punto_semantico_12 -> .)
     RPAREN          reduce using rule 113 (punto_semantico_12 -> .)
 
-    punto_semantico_12             shift and go to state 207
+    punto_semantico_12             shift and go to state 208
 
-state 166
+state 167
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 . LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_modulo_12
 
-    LCURLY          shift and go to state 208
+    LCURLY          shift and go to state 209
 
 
-state 167
+state 168
 
     (13) dec_varsB2 -> LBRACE CTEENT . punto_semantico_7 RBRACE
     (108) punto_semantico_7 -> .
 
     RBRACE          reduce using rule 108 (punto_semantico_7 -> .)
 
-    punto_semantico_7              shift and go to state 209
+    punto_semantico_7              shift and go to state 210
 
-state 168
+state 169
 
     (48) peta_exp -> tera_exp punto_codigoI_4 peta_expB .
 
@@ -3165,25 +3176,9 @@ state 168
     TO              reduce using rule 48 (peta_exp -> tera_exp punto_codigoI_4 peta_expB .)
 
 
-state 169
-
-    (49) peta_expB -> AND . punto_codigoI_3 peta_exp
-    (122) punto_codigoI_3 -> .
-
-    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
-    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
-    ID              reduce using rule 122 (punto_codigoI_3 -> .)
-    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
-    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
-
-    punto_codigoI_3                shift and go to state 210
-
 state 170
 
-    (50) peta_expB -> OR . punto_codigoI_3 peta_exp
+    (49) peta_expB -> AND . punto_codigoI_3 peta_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3198,6 +3193,22 @@ state 170
     punto_codigoI_3                shift and go to state 211
 
 state 171
+
+    (50) peta_expB -> OR . punto_codigoI_3 peta_exp
+    (122) punto_codigoI_3 -> .
+
+    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
+    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
+    ID              reduce using rule 122 (punto_codigoI_3 -> .)
+    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
+    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
+
+    punto_codigoI_3                shift and go to state 212
+
+state 172
 
     (51) peta_expB -> empty .
 
@@ -3216,7 +3227,7 @@ state 171
     TO              reduce using rule 51 (peta_expB -> empty .)
 
 
-state 172
+state 173
 
     (52) tera_exp -> mega_exp punto_codigoI_5 tera_expB .
 
@@ -3237,25 +3248,9 @@ state 172
     TO              reduce using rule 52 (tera_exp -> mega_exp punto_codigoI_5 tera_expB .)
 
 
-state 173
-
-    (53) tera_expB -> LT . punto_codigoI_3 tera_exp
-    (122) punto_codigoI_3 -> .
-
-    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
-    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
-    ID              reduce using rule 122 (punto_codigoI_3 -> .)
-    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
-    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
-
-    punto_codigoI_3                shift and go to state 212
-
 state 174
 
-    (54) tera_expB -> GT . punto_codigoI_3 tera_exp
+    (53) tera_expB -> LT . punto_codigoI_3 tera_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3271,7 +3266,7 @@ state 174
 
 state 175
 
-    (55) tera_expB -> LTE . punto_codigoI_3 tera_exp
+    (54) tera_expB -> GT . punto_codigoI_3 tera_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3287,7 +3282,7 @@ state 175
 
 state 176
 
-    (56) tera_expB -> GTE . punto_codigoI_3 tera_exp
+    (55) tera_expB -> LTE . punto_codigoI_3 tera_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3303,7 +3298,7 @@ state 176
 
 state 177
 
-    (57) tera_expB -> EQUAL . punto_codigoI_3 tera_exp
+    (56) tera_expB -> GTE . punto_codigoI_3 tera_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3319,7 +3314,7 @@ state 177
 
 state 178
 
-    (58) tera_expB -> NEQUAL . punto_codigoI_3 tera_exp
+    (57) tera_expB -> EQUAL . punto_codigoI_3 tera_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3334,6 +3329,22 @@ state 178
     punto_codigoI_3                shift and go to state 217
 
 state 179
+
+    (58) tera_expB -> NEQUAL . punto_codigoI_3 tera_exp
+    (122) punto_codigoI_3 -> .
+
+    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
+    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
+    ID              reduce using rule 122 (punto_codigoI_3 -> .)
+    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
+    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
+
+    punto_codigoI_3                shift and go to state 218
+
+state 180
 
     (59) tera_expB -> empty .
 
@@ -3354,7 +3365,7 @@ state 179
     TO              reduce using rule 59 (tera_expB -> empty .)
 
 
-state 180
+state 181
 
     (60) mega_exp -> kilo_exp punto_codigoI_6 mega_expB .
 
@@ -3381,25 +3392,9 @@ state 180
     TO              reduce using rule 60 (mega_exp -> kilo_exp punto_codigoI_6 mega_expB .)
 
 
-state 181
-
-    (61) mega_expB -> PLUS . punto_codigoI_3 mega_exp
-    (122) punto_codigoI_3 -> .
-
-    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
-    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
-    ID              reduce using rule 122 (punto_codigoI_3 -> .)
-    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
-    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
-
-    punto_codigoI_3                shift and go to state 218
-
 state 182
 
-    (62) mega_expB -> MINUS . punto_codigoI_3 mega_exp
+    (61) mega_expB -> PLUS . punto_codigoI_3 mega_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3414,6 +3409,22 @@ state 182
     punto_codigoI_3                shift and go to state 219
 
 state 183
+
+    (62) mega_expB -> MINUS . punto_codigoI_3 mega_exp
+    (122) punto_codigoI_3 -> .
+
+    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
+    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
+    ID              reduce using rule 122 (punto_codigoI_3 -> .)
+    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
+    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
+
+    punto_codigoI_3                shift and go to state 220
+
+state 184
 
     (63) mega_expB -> empty .
 
@@ -3440,7 +3451,7 @@ state 183
     TO              reduce using rule 63 (mega_expB -> empty .)
 
 
-state 184
+state 185
 
     (64) kilo_exp -> factor punto_codigoI_7 kilo_expB .
 
@@ -3469,25 +3480,9 @@ state 184
     TO              reduce using rule 64 (kilo_exp -> factor punto_codigoI_7 kilo_expB .)
 
 
-state 185
-
-    (65) kilo_expB -> TIMES . punto_codigoI_3 kilo_exp
-    (122) punto_codigoI_3 -> .
-
-    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
-    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
-    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
-    ID              reduce using rule 122 (punto_codigoI_3 -> .)
-    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
-    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
-
-    punto_codigoI_3                shift and go to state 220
-
 state 186
 
-    (66) kilo_expB -> DIVIDE . punto_codigoI_3 kilo_exp
+    (65) kilo_expB -> TIMES . punto_codigoI_3 kilo_exp
     (122) punto_codigoI_3 -> .
 
     LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
@@ -3502,6 +3497,22 @@ state 186
     punto_codigoI_3                shift and go to state 221
 
 state 187
+
+    (66) kilo_expB -> DIVIDE . punto_codigoI_3 kilo_exp
+    (122) punto_codigoI_3 -> .
+
+    LPAREN          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEENT          reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEDECI         reduce using rule 122 (punto_codigoI_3 -> .)
+    CTELETRA        reduce using rule 122 (punto_codigoI_3 -> .)
+    CTEFRASE        reduce using rule 122 (punto_codigoI_3 -> .)
+    ID              reduce using rule 122 (punto_codigoI_3 -> .)
+    TRUE            reduce using rule 122 (punto_codigoI_3 -> .)
+    FALSE           reduce using rule 122 (punto_codigoI_3 -> .)
+
+    punto_codigoI_3                shift and go to state 222
+
+state 188
 
     (67) kilo_expB -> empty .
 
@@ -3530,14 +3541,14 @@ state 187
     TO              reduce using rule 67 (kilo_expB -> empty .)
 
 
-state 188
+state 189
 
     (68) factor -> LPAREN punto_codigoI_8 expresion . RPAREN punto_codigoI_9
 
-    RPAREN          shift and go to state 222
+    RPAREN          shift and go to state 223
 
 
-state 189
+state 190
 
     (71) factor -> CTEENT punto_semantico_17 punto_codigoI_2 .
 
@@ -3568,7 +3579,7 @@ state 189
     TO              reduce using rule 71 (factor -> CTEENT punto_semantico_17 punto_codigoI_2 .)
 
 
-state 190
+state 191
 
     (72) factor -> CTEDECI punto_semantico_17 punto_codigoI_2 .
 
@@ -3599,7 +3610,7 @@ state 190
     TO              reduce using rule 72 (factor -> CTEDECI punto_semantico_17 punto_codigoI_2 .)
 
 
-state 191
+state 192
 
     (73) factor -> cte_bool punto_semantico_17 punto_codigoI_2 .
 
@@ -3630,7 +3641,7 @@ state 191
     TO              reduce using rule 73 (factor -> cte_bool punto_semantico_17 punto_codigoI_2 .)
 
 
-state 192
+state 193
 
     (74) factor -> CTELETRA punto_semantico_17 punto_codigoI_2 .
 
@@ -3661,7 +3672,7 @@ state 192
     TO              reduce using rule 74 (factor -> CTELETRA punto_semantico_17 punto_codigoI_2 .)
 
 
-state 193
+state 194
 
     (75) factor -> CTEFRASE punto_semantico_17 punto_codigoI_2 .
 
@@ -3692,46 +3703,46 @@ state 193
     TO              reduce using rule 75 (factor -> CTEFRASE punto_semantico_17 punto_codigoI_2 .)
 
 
-state 194
+state 195
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion . punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10
     (140) punto_codigoII_9 -> .
 
     RPAREN          reduce using rule 140 (punto_codigoII_9 -> .)
 
-    punto_codigoII_9               shift and go to state 223
+    punto_codigoII_9               shift and go to state 224
 
-state 195
+state 196
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID . punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
     (105) punto_semantico_4 -> .
 
     COLON           reduce using rule 105 (punto_semantico_4 -> .)
 
-    punto_semantico_4              shift and go to state 224
-
-state 196
-
-    (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 . RPAREN LCURLY bloque RCURLY punto_codigoII_6
-
-    RPAREN          shift and go to state 225
-
+    punto_semantico_4              shift and go to state 225
 
 state 197
 
-    (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN . LCURLY bloque RCURLY condicionB punto_codigoII_3
+    (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 . RPAREN LCURLY bloque RCURLY punto_codigoII_6
 
-    LCURLY          shift and go to state 226
+    RPAREN          shift and go to state 226
 
 
 state 198
+
+    (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN . LCURLY bloque RCURLY condicionB punto_codigoII_3
+
+    LCURLY          shift and go to state 227
+
+
+state 199
 
     (90) escribirB -> expresion punto_codigoI_10 escribirBB .
 
     RPAREN          reduce using rule 90 (escribirB -> expresion punto_codigoI_10 escribirBB .)
 
 
-state 199
+state 200
 
     (93) escribirBB -> COMMA . escribirB
     (90) escribirB -> . expresion punto_codigoI_10 escribirBB
@@ -3764,7 +3775,7 @@ state 199
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    escribirB                      shift and go to state 227
+    escribirB                      shift and go to state 228
     expresion                      shift and go to state 123
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
@@ -3775,14 +3786,14 @@ state 199
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 200
+state 201
 
     (94) escribirBB -> empty .
 
     RPAREN          reduce using rule 94 (escribirBB -> empty .)
 
 
-state 201
+state 202
 
     (91) escribirB -> CTEFRASE punto_semantico_17 punto_codigoI_2 . punto_codigoI_10 escribirBB
     (75) factor -> CTEFRASE punto_semantico_17 punto_codigoI_2 .
@@ -3808,9 +3819,9 @@ state 201
   ! COMMA           [ reduce using rule 129 (punto_codigoI_10 -> .) ]
   ! RPAREN          [ reduce using rule 129 (punto_codigoI_10 -> .) ]
 
-    punto_codigoI_10               shift and go to state 228
+    punto_codigoI_10               shift and go to state 229
 
-state 202
+state 203
 
     (92) escribirB -> CTELETRA punto_semantico_17 punto_codigoI_2 . punto_codigoI_10 escribirBB
     (74) factor -> CTELETRA punto_semantico_17 punto_codigoI_2 .
@@ -3836,25 +3847,25 @@ state 202
   ! COMMA           [ reduce using rule 129 (punto_codigoI_10 -> .) ]
   ! RPAREN          [ reduce using rule 129 (punto_codigoI_10 -> .) ]
 
-    punto_codigoI_10               shift and go to state 229
+    punto_codigoI_10               shift and go to state 230
 
-state 203
+state 204
 
     (96) leerB -> ID punto_codigoI_1 punto_codigoI_11 . leerBB
     (97) leerBB -> . COMMA leerB
     (98) leerBB -> . empty
     (101) empty -> .
 
-    COMMA           shift and go to state 231
+    COMMA           shift and go to state 232
     RPAREN          reduce using rule 101 (empty -> .)
 
-    leerBB                         shift and go to state 230
-    empty                          shift and go to state 232
+    leerBB                         shift and go to state 231
+    empty                          shift and go to state 233
 
-state 204
+state 205
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 . llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
-    (79) llam_params -> . expresion punto_modulo_5 llam_paramsB
+    (79) llam_params -> . expresion punto_modulo_5 punto_modulo_6 llam_paramsB
     (80) llam_params -> . empty
     (47) expresion -> . peta_exp
     (101) empty -> .
@@ -3885,9 +3896,9 @@ state 204
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    llam_params                    shift and go to state 233
-    expresion                      shift and go to state 234
-    empty                          shift and go to state 235
+    llam_params                    shift and go to state 234
+    expresion                      shift and go to state 235
+    empty                          shift and go to state 236
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -3897,7 +3908,7 @@ state 204
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 205
+state 206
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 . expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (47) expresion -> . peta_exp
@@ -3927,7 +3938,7 @@ state 205
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 236
+    expresion                      shift and go to state 237
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -3937,27 +3948,27 @@ state 205
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 206
+state 207
 
     (99) regresar -> punto_modulo_9 RETURN LPAREN expresion punto_modulo_10 . RPAREN
 
-    RPAREN          shift and go to state 237
+    RPAREN          shift and go to state 238
 
 
-state 207
+state 208
 
     (24) dec_params -> ID punto_semantico_11 COLON tipo punto_semantico_5 punto_semantico_12 . dec_paramsB
     (25) dec_paramsB -> . COMMA dec_params
     (26) dec_paramsB -> . empty
     (101) empty -> .
 
-    COMMA           shift and go to state 239
+    COMMA           shift and go to state 240
     RPAREN          reduce using rule 101 (empty -> .)
 
-    dec_paramsB                    shift and go to state 238
-    empty                          shift and go to state 240
+    dec_paramsB                    shift and go to state 239
+    empty                          shift and go to state 241
 
-state 208
+state 209
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY . punto_modulo_2 bloque RCURLY punto_semantico_14 punto_modulo_12
     (149) punto_modulo_2 -> .
@@ -3971,56 +3982,18 @@ state 208
     ID              reduce using rule 149 (punto_modulo_2 -> .)
     RETURN          reduce using rule 149 (punto_modulo_2 -> .)
 
-    punto_modulo_2                 shift and go to state 241
-
-state 209
-
-    (13) dec_varsB2 -> LBRACE CTEENT punto_semantico_7 . RBRACE
-
-    RBRACE          shift and go to state 242
-
+    punto_modulo_2                 shift and go to state 242
 
 state 210
 
-    (49) peta_expB -> AND punto_codigoI_3 . peta_exp
-    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
-    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
-    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
-    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
-    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
-    (69) factor -> . llam_vars
-    (70) factor -> . llam_func
-    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
-    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
-    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
-    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
-    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
-    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
-    (76) llam_func -> . ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
-    (77) cte_bool -> . TRUE
-    (78) cte_bool -> . FALSE
+    (13) dec_varsB2 -> LBRACE CTEENT punto_semantico_7 . RBRACE
 
-    LPAREN          shift and go to state 108
-    CTEENT          shift and go to state 110
-    CTEDECI         shift and go to state 111
-    CTELETRA        shift and go to state 113
-    CTEFRASE        shift and go to state 114
-    ID              shift and go to state 115
-    TRUE            shift and go to state 116
-    FALSE           shift and go to state 117
+    RBRACE          shift and go to state 243
 
-    peta_exp                       shift and go to state 243
-    tera_exp                       shift and go to state 104
-    mega_exp                       shift and go to state 105
-    kilo_exp                       shift and go to state 106
-    factor                         shift and go to state 107
-    llam_vars                      shift and go to state 101
-    llam_func                      shift and go to state 109
-    cte_bool                       shift and go to state 112
 
 state 211
 
-    (50) peta_expB -> OR punto_codigoI_3 . peta_exp
+    (49) peta_expB -> AND punto_codigoI_3 . peta_exp
     (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
@@ -4058,7 +4031,8 @@ state 211
 
 state 212
 
-    (53) tera_expB -> LT punto_codigoI_3 . tera_exp
+    (50) peta_expB -> OR punto_codigoI_3 . peta_exp
+    (48) peta_exp -> . tera_exp punto_codigoI_4 peta_expB
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4084,7 +4058,8 @@ state 212
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    tera_exp                       shift and go to state 245
+    peta_exp                       shift and go to state 245
+    tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
     kilo_exp                       shift and go to state 106
     factor                         shift and go to state 107
@@ -4094,7 +4069,7 @@ state 212
 
 state 213
 
-    (54) tera_expB -> GT punto_codigoI_3 . tera_exp
+    (53) tera_expB -> LT punto_codigoI_3 . tera_exp
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4130,7 +4105,7 @@ state 213
 
 state 214
 
-    (55) tera_expB -> LTE punto_codigoI_3 . tera_exp
+    (54) tera_expB -> GT punto_codigoI_3 . tera_exp
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4166,7 +4141,7 @@ state 214
 
 state 215
 
-    (56) tera_expB -> GTE punto_codigoI_3 . tera_exp
+    (55) tera_expB -> LTE punto_codigoI_3 . tera_exp
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4202,7 +4177,7 @@ state 215
 
 state 216
 
-    (57) tera_expB -> EQUAL punto_codigoI_3 . tera_exp
+    (56) tera_expB -> GTE punto_codigoI_3 . tera_exp
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4238,7 +4213,7 @@ state 216
 
 state 217
 
-    (58) tera_expB -> NEQUAL punto_codigoI_3 . tera_exp
+    (57) tera_expB -> EQUAL punto_codigoI_3 . tera_exp
     (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
@@ -4274,7 +4249,8 @@ state 217
 
 state 218
 
-    (61) mega_expB -> PLUS punto_codigoI_3 . mega_exp
+    (58) tera_expB -> NEQUAL punto_codigoI_3 . tera_exp
+    (52) tera_exp -> . mega_exp punto_codigoI_5 tera_expB
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
     (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
@@ -4299,7 +4275,8 @@ state 218
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    mega_exp                       shift and go to state 251
+    tera_exp                       shift and go to state 251
+    mega_exp                       shift and go to state 105
     kilo_exp                       shift and go to state 106
     factor                         shift and go to state 107
     llam_vars                      shift and go to state 101
@@ -4308,7 +4285,7 @@ state 218
 
 state 219
 
-    (62) mega_expB -> MINUS punto_codigoI_3 . mega_exp
+    (61) mega_expB -> PLUS punto_codigoI_3 . mega_exp
     (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
     (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
@@ -4342,7 +4319,8 @@ state 219
 
 state 220
 
-    (65) kilo_expB -> TIMES punto_codigoI_3 . kilo_exp
+    (62) mega_expB -> MINUS punto_codigoI_3 . mega_exp
+    (60) mega_exp -> . kilo_exp punto_codigoI_6 mega_expB
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
     (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
     (69) factor -> . llam_vars
@@ -4366,7 +4344,8 @@ state 220
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    kilo_exp                       shift and go to state 253
+    mega_exp                       shift and go to state 253
+    kilo_exp                       shift and go to state 106
     factor                         shift and go to state 107
     llam_vars                      shift and go to state 101
     llam_func                      shift and go to state 109
@@ -4374,7 +4353,7 @@ state 220
 
 state 221
 
-    (66) kilo_expB -> DIVIDE punto_codigoI_3 . kilo_exp
+    (65) kilo_expB -> TIMES punto_codigoI_3 . kilo_exp
     (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
     (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
     (69) factor -> . llam_vars
@@ -4406,6 +4385,38 @@ state 221
 
 state 222
 
+    (66) kilo_expB -> DIVIDE punto_codigoI_3 . kilo_exp
+    (64) kilo_exp -> . factor punto_codigoI_7 kilo_expB
+    (68) factor -> . LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9
+    (69) factor -> . llam_vars
+    (70) factor -> . llam_func
+    (71) factor -> . CTEENT punto_semantico_17 punto_codigoI_2
+    (72) factor -> . CTEDECI punto_semantico_17 punto_codigoI_2
+    (73) factor -> . cte_bool punto_semantico_17 punto_codigoI_2
+    (74) factor -> . CTELETRA punto_semantico_17 punto_codigoI_2
+    (75) factor -> . CTEFRASE punto_semantico_17 punto_codigoI_2
+    (42) llam_vars -> . ID punto_codigoI_1 llam_varsB punto_arreglos_6
+    (76) llam_func -> . ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
+    (77) cte_bool -> . TRUE
+    (78) cte_bool -> . FALSE
+
+    LPAREN          shift and go to state 108
+    CTEENT          shift and go to state 110
+    CTEDECI         shift and go to state 111
+    CTELETRA        shift and go to state 113
+    CTEFRASE        shift and go to state 114
+    ID              shift and go to state 115
+    TRUE            shift and go to state 116
+    FALSE           shift and go to state 117
+
+    kilo_exp                       shift and go to state 255
+    factor                         shift and go to state 107
+    llam_vars                      shift and go to state 101
+    llam_func                      shift and go to state 109
+    cte_bool                       shift and go to state 112
+
+state 223
+
     (68) factor -> LPAREN punto_codigoI_8 expresion RPAREN . punto_codigoI_9
     (128) punto_codigoI_9 -> .
 
@@ -4435,30 +4446,30 @@ state 222
     RBRACE          reduce using rule 128 (punto_codigoI_9 -> .)
     TO              reduce using rule 128 (punto_codigoI_9 -> .)
 
-    punto_codigoI_9                shift and go to state 255
-
-state 223
-
-    (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 . RPAREN LCURLY bloque RCURLY punto_codigoII_10
-
-    RPAREN          shift and go to state 256
-
+    punto_codigoI_9                shift and go to state 256
 
 state 224
 
-    (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 . COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
+    (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 . RPAREN LCURLY bloque RCURLY punto_codigoII_10
 
-    COLON           shift and go to state 257
+    RPAREN          shift and go to state 257
 
 
 state 225
 
-    (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN . LCURLY bloque RCURLY punto_codigoII_6
+    (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 . COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
 
-    LCURLY          shift and go to state 258
+    COLON           shift and go to state 258
 
 
 state 226
+
+    (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN . LCURLY bloque RCURLY punto_codigoII_6
+
+    LCURLY          shift and go to state 259
+
+
+state 227
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY . bloque RCURLY condicionB punto_codigoII_3
     (29) bloque -> . bloqueB bloqueBB
@@ -4492,7 +4503,7 @@ state 226
     ID              shift and go to state 74
     RETURN          reduce using rule 156 (punto_modulo_9 -> .)
 
-    bloque                         shift and go to state 259
+    bloque                         shift and go to state 260
     bloqueB                        shift and go to state 58
     asignacion                     shift and go to state 59
     ciclo_para_cada                shift and go to state 60
@@ -4506,98 +4517,98 @@ state 226
     llam_vars                      shift and go to state 68
     punto_modulo_9                 shift and go to state 75
 
-state 227
+state 228
 
     (93) escribirBB -> COMMA escribirB .
 
     RPAREN          reduce using rule 93 (escribirBB -> COMMA escribirB .)
 
 
-state 228
+state 229
 
     (91) escribirB -> CTEFRASE punto_semantico_17 punto_codigoI_2 punto_codigoI_10 . escribirBB
     (93) escribirBB -> . COMMA escribirB
     (94) escribirBB -> . empty
     (101) empty -> .
 
-    COMMA           shift and go to state 199
+    COMMA           shift and go to state 200
     RPAREN          reduce using rule 101 (empty -> .)
 
-    escribirBB                     shift and go to state 260
-    empty                          shift and go to state 200
+    escribirBB                     shift and go to state 261
+    empty                          shift and go to state 201
 
-state 229
+state 230
 
     (92) escribirB -> CTELETRA punto_semantico_17 punto_codigoI_2 punto_codigoI_10 . escribirBB
     (93) escribirBB -> . COMMA escribirB
     (94) escribirBB -> . empty
     (101) empty -> .
 
-    COMMA           shift and go to state 199
+    COMMA           shift and go to state 200
     RPAREN          reduce using rule 101 (empty -> .)
 
-    escribirBB                     shift and go to state 261
-    empty                          shift and go to state 200
+    escribirBB                     shift and go to state 262
+    empty                          shift and go to state 201
 
-state 230
+state 231
 
     (96) leerB -> ID punto_codigoI_1 punto_codigoI_11 leerBB .
 
     RPAREN          reduce using rule 96 (leerB -> ID punto_codigoI_1 punto_codigoI_11 leerBB .)
 
 
-state 231
+state 232
 
     (97) leerBB -> COMMA . leerB
     (96) leerB -> . ID punto_codigoI_1 punto_codigoI_11 leerBB
 
     ID              shift and go to state 127
 
-    leerB                          shift and go to state 262
+    leerB                          shift and go to state 263
 
-state 232
+state 233
 
     (98) leerBB -> empty .
 
     RPAREN          reduce using rule 98 (leerBB -> empty .)
 
 
-state 233
+state 234
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params . punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
     (154) punto_modulo_7 -> .
 
     RPAREN          reduce using rule 154 (punto_modulo_7 -> .)
 
-    punto_modulo_7                 shift and go to state 263
+    punto_modulo_7                 shift and go to state 264
 
-state 234
+state 235
 
-    (79) llam_params -> expresion . punto_modulo_5 llam_paramsB
+    (79) llam_params -> expresion . punto_modulo_5 punto_modulo_6 llam_paramsB
     (152) punto_modulo_5 -> .
 
     COMMA           reduce using rule 152 (punto_modulo_5 -> .)
     RPAREN          reduce using rule 152 (punto_modulo_5 -> .)
 
-    punto_modulo_5                 shift and go to state 264
+    punto_modulo_5                 shift and go to state 265
 
-state 235
+state 236
 
     (80) llam_params -> empty .
 
     RPAREN          reduce using rule 80 (llam_params -> empty .)
 
 
-state 236
+state 237
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion . punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (143) punto_arreglos_2 -> .
 
     RBRACE          reduce using rule 143 (punto_arreglos_2 -> .)
 
-    punto_arreglos_2               shift and go to state 265
+    punto_arreglos_2               shift and go to state 266
 
-state 237
+state 238
 
     (99) regresar -> punto_modulo_9 RETURN LPAREN expresion punto_modulo_10 RPAREN .
 
@@ -4612,30 +4623,30 @@ state 237
     RCURLY          reduce using rule 99 (regresar -> punto_modulo_9 RETURN LPAREN expresion punto_modulo_10 RPAREN .)
 
 
-state 238
+state 239
 
     (24) dec_params -> ID punto_semantico_11 COLON tipo punto_semantico_5 punto_semantico_12 dec_paramsB .
 
     RPAREN          reduce using rule 24 (dec_params -> ID punto_semantico_11 COLON tipo punto_semantico_5 punto_semantico_12 dec_paramsB .)
 
 
-state 239
+state 240
 
     (25) dec_paramsB -> COMMA . dec_params
     (24) dec_params -> . ID punto_semantico_11 COLON tipo punto_semantico_5 punto_semantico_12 dec_paramsB
 
     ID              shift and go to state 50
 
-    dec_params                     shift and go to state 266
+    dec_params                     shift and go to state 267
 
-state 240
+state 241
 
     (26) dec_paramsB -> empty .
 
     RPAREN          reduce using rule 26 (dec_paramsB -> empty .)
 
 
-state 241
+state 242
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 . bloque RCURLY punto_semantico_14 punto_modulo_12
     (29) bloque -> . bloqueB bloqueBB
@@ -4669,7 +4680,7 @@ state 241
     ID              shift and go to state 74
     RETURN          reduce using rule 156 (punto_modulo_9 -> .)
 
-    bloque                         shift and go to state 267
+    bloque                         shift and go to state 268
     bloqueB                        shift and go to state 58
     asignacion                     shift and go to state 59
     ciclo_para_cada                shift and go to state 60
@@ -4683,7 +4694,7 @@ state 241
     llam_vars                      shift and go to state 68
     punto_modulo_9                 shift and go to state 75
 
-state 242
+state 243
 
     (13) dec_varsB2 -> LBRACE CTEENT punto_semantico_7 RBRACE .
 
@@ -4699,7 +4710,7 @@ state 242
     RCURLY          reduce using rule 13 (dec_varsB2 -> LBRACE CTEENT punto_semantico_7 RBRACE .)
 
 
-state 243
+state 244
 
     (49) peta_expB -> AND punto_codigoI_3 peta_exp .
 
@@ -4718,7 +4729,7 @@ state 243
     TO              reduce using rule 49 (peta_expB -> AND punto_codigoI_3 peta_exp .)
 
 
-state 244
+state 245
 
     (50) peta_expB -> OR punto_codigoI_3 peta_exp .
 
@@ -4737,7 +4748,7 @@ state 244
     TO              reduce using rule 50 (peta_expB -> OR punto_codigoI_3 peta_exp .)
 
 
-state 245
+state 246
 
     (53) tera_expB -> LT punto_codigoI_3 tera_exp .
 
@@ -4758,7 +4769,7 @@ state 245
     TO              reduce using rule 53 (tera_expB -> LT punto_codigoI_3 tera_exp .)
 
 
-state 246
+state 247
 
     (54) tera_expB -> GT punto_codigoI_3 tera_exp .
 
@@ -4779,7 +4790,7 @@ state 246
     TO              reduce using rule 54 (tera_expB -> GT punto_codigoI_3 tera_exp .)
 
 
-state 247
+state 248
 
     (55) tera_expB -> LTE punto_codigoI_3 tera_exp .
 
@@ -4800,7 +4811,7 @@ state 247
     TO              reduce using rule 55 (tera_expB -> LTE punto_codigoI_3 tera_exp .)
 
 
-state 248
+state 249
 
     (56) tera_expB -> GTE punto_codigoI_3 tera_exp .
 
@@ -4821,7 +4832,7 @@ state 248
     TO              reduce using rule 56 (tera_expB -> GTE punto_codigoI_3 tera_exp .)
 
 
-state 249
+state 250
 
     (57) tera_expB -> EQUAL punto_codigoI_3 tera_exp .
 
@@ -4842,7 +4853,7 @@ state 249
     TO              reduce using rule 57 (tera_expB -> EQUAL punto_codigoI_3 tera_exp .)
 
 
-state 250
+state 251
 
     (58) tera_expB -> NEQUAL punto_codigoI_3 tera_exp .
 
@@ -4863,7 +4874,7 @@ state 250
     TO              reduce using rule 58 (tera_expB -> NEQUAL punto_codigoI_3 tera_exp .)
 
 
-state 251
+state 252
 
     (61) mega_expB -> PLUS punto_codigoI_3 mega_exp .
 
@@ -4890,7 +4901,7 @@ state 251
     TO              reduce using rule 61 (mega_expB -> PLUS punto_codigoI_3 mega_exp .)
 
 
-state 252
+state 253
 
     (62) mega_expB -> MINUS punto_codigoI_3 mega_exp .
 
@@ -4917,7 +4928,7 @@ state 252
     TO              reduce using rule 62 (mega_expB -> MINUS punto_codigoI_3 mega_exp .)
 
 
-state 253
+state 254
 
     (65) kilo_expB -> TIMES punto_codigoI_3 kilo_exp .
 
@@ -4946,7 +4957,7 @@ state 253
     TO              reduce using rule 65 (kilo_expB -> TIMES punto_codigoI_3 kilo_exp .)
 
 
-state 254
+state 255
 
     (66) kilo_expB -> DIVIDE punto_codigoI_3 kilo_exp .
 
@@ -4975,7 +4986,7 @@ state 254
     TO              reduce using rule 66 (kilo_expB -> DIVIDE punto_codigoI_3 kilo_exp .)
 
 
-state 255
+state 256
 
     (68) factor -> LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9 .
 
@@ -5006,14 +5017,14 @@ state 255
     TO              reduce using rule 68 (factor -> LPAREN punto_codigoI_8 expresion RPAREN punto_codigoI_9 .)
 
 
-state 256
+state 257
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN . LCURLY bloque RCURLY punto_codigoII_10
 
-    LCURLY          shift and go to state 268
+    LCURLY          shift and go to state 269
 
 
-state 257
+state 258
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON . tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
     (17) tipo -> . TIPOENT
@@ -5026,9 +5037,9 @@ state 257
     TIPOLETRA       shift and go to state 34
     TIPOLOGI        shift and go to state 35
 
-    tipo                           shift and go to state 269
+    tipo                           shift and go to state 270
 
-state 258
+state 259
 
     (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY . bloque RCURLY punto_codigoII_6
     (29) bloque -> . bloqueB bloqueBB
@@ -5062,7 +5073,7 @@ state 258
     ID              shift and go to state 74
     RETURN          reduce using rule 156 (punto_modulo_9 -> .)
 
-    bloque                         shift and go to state 270
+    bloque                         shift and go to state 271
     bloqueB                        shift and go to state 58
     asignacion                     shift and go to state 59
     ciclo_para_cada                shift and go to state 60
@@ -5076,78 +5087,75 @@ state 258
     llam_vars                      shift and go to state 68
     punto_modulo_9                 shift and go to state 75
 
-state 259
+state 260
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque . RCURLY condicionB punto_codigoII_3
 
-    RCURLY          shift and go to state 271
+    RCURLY          shift and go to state 272
 
 
-state 260
+state 261
 
     (91) escribirB -> CTEFRASE punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB .
 
     RPAREN          reduce using rule 91 (escribirB -> CTEFRASE punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB .)
 
 
-state 261
+state 262
 
     (92) escribirB -> CTELETRA punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB .
 
     RPAREN          reduce using rule 92 (escribirB -> CTELETRA punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB .)
 
 
-state 262
+state 263
 
     (97) leerBB -> COMMA leerB .
 
     RPAREN          reduce using rule 97 (leerBB -> COMMA leerB .)
 
 
-state 263
+state 264
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 . RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11
 
-    RPAREN          shift and go to state 272
+    RPAREN          shift and go to state 273
 
-
-state 264
-
-    (79) llam_params -> expresion punto_modulo_5 . llam_paramsB
-    (81) llam_paramsB -> . COMMA punto_modulo_6 llam_params
-    (82) llam_paramsB -> . empty
-    (101) empty -> .
-
-    COMMA           shift and go to state 274
-    RPAREN          reduce using rule 101 (empty -> .)
-
-    llam_paramsB                   shift and go to state 273
-    empty                          shift and go to state 275
 
 state 265
+
+    (79) llam_params -> expresion punto_modulo_5 . punto_modulo_6 llam_paramsB
+    (153) punto_modulo_6 -> .
+
+    COMMA           reduce using rule 153 (punto_modulo_6 -> .)
+    RPAREN          reduce using rule 153 (punto_modulo_6 -> .)
+
+    punto_modulo_6                 shift and go to state 274
+
+state 266
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 . punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2
     (145) punto_arreglos_4 -> .
 
     RBRACE          reduce using rule 145 (punto_arreglos_4 -> .)
 
-    punto_arreglos_4               shift and go to state 276
+    punto_arreglos_4               shift and go to state 275
 
-state 266
+state 267
 
     (25) dec_paramsB -> COMMA dec_params .
 
     RPAREN          reduce using rule 25 (dec_paramsB -> COMMA dec_params .)
 
 
-state 267
+state 268
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque . RCURLY punto_semantico_14 punto_modulo_12
 
-    RCURLY          shift and go to state 277
+    RCURLY          shift and go to state 276
 
 
-state 268
+state 269
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY . bloque RCURLY punto_codigoII_10
     (29) bloque -> . bloqueB bloqueBB
@@ -5181,7 +5189,7 @@ state 268
     ID              shift and go to state 74
     RETURN          reduce using rule 156 (punto_modulo_9 -> .)
 
-    bloque                         shift and go to state 278
+    bloque                         shift and go to state 277
     bloqueB                        shift and go to state 58
     asignacion                     shift and go to state 59
     ciclo_para_cada                shift and go to state 60
@@ -5195,30 +5203,30 @@ state 268
     llam_vars                      shift and go to state 68
     punto_modulo_9                 shift and go to state 75
 
-state 269
+state 270
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo . punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
     (106) punto_semantico_5 -> .
 
     ASSIGN          reduce using rule 106 (punto_semantico_5 -> .)
 
-    punto_semantico_5              shift and go to state 279
+    punto_semantico_5              shift and go to state 278
 
-state 270
+state 271
 
     (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque . RCURLY punto_codigoII_6
 
-    RCURLY          shift and go to state 280
+    RCURLY          shift and go to state 279
 
 
-state 271
+state 272
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY . condicionB punto_codigoII_3
     (87) condicionB -> . ELSE punto_codigoII_2 LCURLY bloque RCURLY
     (88) condicionB -> . empty
     (101) empty -> .
 
-    ELSE            shift and go to state 282
+    ELSE            shift and go to state 281
     FOR             reduce using rule 101 (empty -> .)
     WHILE           reduce using rule 101 (empty -> .)
     IF              reduce using rule 101 (empty -> .)
@@ -5229,10 +5237,10 @@ state 271
     RETURN          reduce using rule 101 (empty -> .)
     RCURLY          reduce using rule 101 (empty -> .)
 
-    condicionB                     shift and go to state 281
-    empty                          shift and go to state 283
+    condicionB                     shift and go to state 280
+    empty                          shift and go to state 282
 
-state 272
+state 273
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN . punto_codigoI_9 punto_modulo_8 punto_modulo_11
     (128) punto_codigoI_9 -> .
@@ -5263,47 +5271,29 @@ state 272
     RBRACE          reduce using rule 128 (punto_codigoI_9 -> .)
     TO              reduce using rule 128 (punto_codigoI_9 -> .)
 
-    punto_codigoI_9                shift and go to state 284
-
-state 273
-
-    (79) llam_params -> expresion punto_modulo_5 llam_paramsB .
-
-    RPAREN          reduce using rule 79 (llam_params -> expresion punto_modulo_5 llam_paramsB .)
-
+    punto_codigoI_9                shift and go to state 283
 
 state 274
 
-    (81) llam_paramsB -> COMMA . punto_modulo_6 llam_params
-    (153) punto_modulo_6 -> .
+    (79) llam_params -> expresion punto_modulo_5 punto_modulo_6 . llam_paramsB
+    (81) llam_paramsB -> . COMMA llam_params
+    (82) llam_paramsB -> . empty
+    (101) empty -> .
 
-    LPAREN          reduce using rule 153 (punto_modulo_6 -> .)
-    CTEENT          reduce using rule 153 (punto_modulo_6 -> .)
-    CTEDECI         reduce using rule 153 (punto_modulo_6 -> .)
-    CTELETRA        reduce using rule 153 (punto_modulo_6 -> .)
-    CTEFRASE        reduce using rule 153 (punto_modulo_6 -> .)
-    ID              reduce using rule 153 (punto_modulo_6 -> .)
-    TRUE            reduce using rule 153 (punto_modulo_6 -> .)
-    FALSE           reduce using rule 153 (punto_modulo_6 -> .)
-    RPAREN          reduce using rule 153 (punto_modulo_6 -> .)
+    COMMA           shift and go to state 285
+    RPAREN          reduce using rule 101 (empty -> .)
 
-    punto_modulo_6                 shift and go to state 285
+    llam_paramsB                   shift and go to state 284
+    empty                          shift and go to state 286
 
 state 275
 
-    (82) llam_paramsB -> empty .
+    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 . RBRACE punto_codigoI_9 llam_varsB2
 
-    RPAREN          reduce using rule 82 (llam_paramsB -> empty .)
+    RBRACE          shift and go to state 287
 
 
 state 276
-
-    (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 . RBRACE punto_codigoI_9 llam_varsB2
-
-    RBRACE          shift and go to state 286
-
-
-state 277
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque RCURLY . punto_semantico_14 punto_modulo_12
     (115) punto_semantico_14 -> .
@@ -5311,25 +5301,25 @@ state 277
     FUNCION         reduce using rule 115 (punto_semantico_14 -> .)
     MAIN            reduce using rule 115 (punto_semantico_14 -> .)
 
-    punto_semantico_14             shift and go to state 287
+    punto_semantico_14             shift and go to state 288
 
-state 278
+state 277
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque . RCURLY punto_codigoII_10
 
-    RCURLY          shift and go to state 288
+    RCURLY          shift and go to state 289
 
 
-state 279
+state 278
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 . punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8
     (109) punto_semantico_8 -> .
 
     ASSIGN          reduce using rule 109 (punto_semantico_8 -> .)
 
-    punto_semantico_8              shift and go to state 289
+    punto_semantico_8              shift and go to state 290
 
-state 280
+state 279
 
     (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY . punto_codigoII_6
     (137) punto_codigoII_6 -> .
@@ -5344,9 +5334,9 @@ state 280
     RETURN          reduce using rule 137 (punto_codigoII_6 -> .)
     RCURLY          reduce using rule 137 (punto_codigoII_6 -> .)
 
-    punto_codigoII_6               shift and go to state 290
+    punto_codigoII_6               shift and go to state 291
 
-state 281
+state 280
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB . punto_codigoII_3
     (134) punto_codigoII_3 -> .
@@ -5361,18 +5351,18 @@ state 281
     RETURN          reduce using rule 134 (punto_codigoII_3 -> .)
     RCURLY          reduce using rule 134 (punto_codigoII_3 -> .)
 
-    punto_codigoII_3               shift and go to state 291
+    punto_codigoII_3               shift and go to state 292
 
-state 282
+state 281
 
     (87) condicionB -> ELSE . punto_codigoII_2 LCURLY bloque RCURLY
     (133) punto_codigoII_2 -> .
 
     LCURLY          reduce using rule 133 (punto_codigoII_2 -> .)
 
-    punto_codigoII_2               shift and go to state 292
+    punto_codigoII_2               shift and go to state 293
 
-state 283
+state 282
 
     (88) condicionB -> empty .
 
@@ -5387,7 +5377,7 @@ state 283
     RCURLY          reduce using rule 88 (condicionB -> empty .)
 
 
-state 284
+state 283
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 . punto_modulo_8 punto_modulo_11
     (155) punto_modulo_8 -> .
@@ -5418,12 +5408,19 @@ state 284
     RBRACE          reduce using rule 155 (punto_modulo_8 -> .)
     TO              reduce using rule 155 (punto_modulo_8 -> .)
 
-    punto_modulo_8                 shift and go to state 293
+    punto_modulo_8                 shift and go to state 294
+
+state 284
+
+    (79) llam_params -> expresion punto_modulo_5 punto_modulo_6 llam_paramsB .
+
+    RPAREN          reduce using rule 79 (llam_params -> expresion punto_modulo_5 punto_modulo_6 llam_paramsB .)
+
 
 state 285
 
-    (81) llam_paramsB -> COMMA punto_modulo_6 . llam_params
-    (79) llam_params -> . expresion punto_modulo_5 llam_paramsB
+    (81) llam_paramsB -> COMMA . llam_params
+    (79) llam_params -> . expresion punto_modulo_5 punto_modulo_6 llam_paramsB
     (80) llam_params -> . empty
     (47) expresion -> . peta_exp
     (101) empty -> .
@@ -5454,9 +5451,9 @@ state 285
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    llam_params                    shift and go to state 294
-    expresion                      shift and go to state 234
-    empty                          shift and go to state 235
+    llam_params                    shift and go to state 295
+    expresion                      shift and go to state 235
+    empty                          shift and go to state 236
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -5467,6 +5464,13 @@ state 285
     cte_bool                       shift and go to state 112
 
 state 286
+
+    (82) llam_paramsB -> empty .
+
+    RPAREN          reduce using rule 82 (llam_paramsB -> empty .)
+
+
+state 287
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE . punto_codigoI_9 llam_varsB2
     (128) punto_codigoI_9 -> .
@@ -5499,9 +5503,9 @@ state 286
     RBRACE          reduce using rule 128 (punto_codigoI_9 -> .)
     TO              reduce using rule 128 (punto_codigoI_9 -> .)
 
-    punto_codigoI_9                shift and go to state 295
+    punto_codigoI_9                shift and go to state 296
 
-state 287
+state 288
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 . punto_modulo_12
     (159) punto_modulo_12 -> .
@@ -5509,9 +5513,9 @@ state 287
     FUNCION         reduce using rule 159 (punto_modulo_12 -> .)
     MAIN            reduce using rule 159 (punto_modulo_12 -> .)
 
-    punto_modulo_12                shift and go to state 296
+    punto_modulo_12                shift and go to state 297
 
-state 288
+state 289
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY . punto_codigoII_10
     (141) punto_codigoII_10 -> .
@@ -5526,18 +5530,18 @@ state 288
     RETURN          reduce using rule 141 (punto_codigoII_10 -> .)
     RCURLY          reduce using rule 141 (punto_codigoII_10 -> .)
 
-    punto_codigoII_10              shift and go to state 297
+    punto_codigoII_10              shift and go to state 298
 
-state 289
+state 290
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 . punto_codigoII_7 ASSIGN expresion punto_codigoII_8
     (138) punto_codigoII_7 -> .
 
     ASSIGN          reduce using rule 138 (punto_codigoII_7 -> .)
 
-    punto_codigoII_7               shift and go to state 298
+    punto_codigoII_7               shift and go to state 299
 
-state 290
+state 291
 
     (85) ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .
 
@@ -5552,7 +5556,7 @@ state 290
     RCURLY          reduce using rule 85 (ciclo_mientras -> WHILE punto_codigoII_4 LPAREN expresion punto_codigoII_5 RPAREN LCURLY bloque RCURLY punto_codigoII_6 .)
 
 
-state 291
+state 292
 
     (86) condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .
 
@@ -5567,14 +5571,14 @@ state 291
     RCURLY          reduce using rule 86 (condicion -> IF LPAREN expresion punto_codigoII_1 RPAREN LCURLY bloque RCURLY condicionB punto_codigoII_3 .)
 
 
-state 292
+state 293
 
     (87) condicionB -> ELSE punto_codigoII_2 . LCURLY bloque RCURLY
 
-    LCURLY          shift and go to state 299
+    LCURLY          shift and go to state 300
 
 
-state 293
+state 294
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 . punto_modulo_11
     (158) punto_modulo_11 -> .
@@ -5605,23 +5609,23 @@ state 293
     RBRACE          reduce using rule 158 (punto_modulo_11 -> .)
     TO              reduce using rule 158 (punto_modulo_11 -> .)
 
-    punto_modulo_11                shift and go to state 300
-
-state 294
-
-    (81) llam_paramsB -> COMMA punto_modulo_6 llam_params .
-
-    RPAREN          reduce using rule 81 (llam_paramsB -> COMMA punto_modulo_6 llam_params .)
-
+    punto_modulo_11                shift and go to state 301
 
 state 295
+
+    (81) llam_paramsB -> COMMA llam_params .
+
+    RPAREN          reduce using rule 81 (llam_paramsB -> COMMA llam_params .)
+
+
+state 296
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 . llam_varsB2
     (45) llam_varsB2 -> . LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
     (46) llam_varsB2 -> . empty
     (101) empty -> .
 
-    LBRACE          shift and go to state 301
+    LBRACE          shift and go to state 302
     ASSIGN          reduce using rule 101 (empty -> .)
     TIMES           reduce using rule 101 (empty -> .)
     DIVIDE          reduce using rule 101 (empty -> .)
@@ -5649,10 +5653,10 @@ state 295
     RBRACE          reduce using rule 101 (empty -> .)
     TO              reduce using rule 101 (empty -> .)
 
-    llam_varsB2                    shift and go to state 302
-    empty                          shift and go to state 303
+    llam_varsB2                    shift and go to state 303
+    empty                          shift and go to state 304
 
-state 296
+state 297
 
     (21) dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_modulo_12 .
 
@@ -5660,7 +5664,7 @@ state 296
     MAIN            reduce using rule 21 (dec_func -> FUNCION punto_semantico_9 ID punto_semantico_10 LPAREN punto_semantico_3 dec_funcB RPAREN COLON tipo_func punto_semantico_13 LCURLY punto_modulo_2 bloque RCURLY punto_semantico_14 punto_modulo_12 .)
 
 
-state 297
+state 298
 
     (83) ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10 .
 
@@ -5675,14 +5679,14 @@ state 297
     RCURLY          reduce using rule 83 (ciclo_para_cada -> FOR LPAREN ciclo_para_cadaB TO expresion punto_codigoII_9 RPAREN LCURLY bloque RCURLY punto_codigoII_10 .)
 
 
-state 298
+state 299
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 . ASSIGN expresion punto_codigoII_8
 
-    ASSIGN          shift and go to state 304
+    ASSIGN          shift and go to state 305
 
 
-state 299
+state 300
 
     (87) condicionB -> ELSE punto_codigoII_2 LCURLY . bloque RCURLY
     (29) bloque -> . bloqueB bloqueBB
@@ -5716,7 +5720,7 @@ state 299
     ID              shift and go to state 74
     RETURN          reduce using rule 156 (punto_modulo_9 -> .)
 
-    bloque                         shift and go to state 305
+    bloque                         shift and go to state 306
     bloqueB                        shift and go to state 58
     asignacion                     shift and go to state 59
     ciclo_para_cada                shift and go to state 60
@@ -5730,7 +5734,7 @@ state 299
     llam_vars                      shift and go to state 68
     punto_modulo_9                 shift and go to state 75
 
-state 300
+state 301
 
     (76) llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11 .
 
@@ -5761,7 +5765,7 @@ state 300
     TO              reduce using rule 76 (llam_func -> ID punto_modulo_3 LPAREN punto_codigoI_8 punto_modulo_4 llam_params punto_modulo_7 RPAREN punto_codigoI_9 punto_modulo_8 punto_modulo_11 .)
 
 
-state 301
+state 302
 
     (45) llam_varsB2 -> LBRACE . punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
     (127) punto_codigoI_8 -> .
@@ -5775,9 +5779,9 @@ state 301
     TRUE            reduce using rule 127 (punto_codigoI_8 -> .)
     FALSE           reduce using rule 127 (punto_codigoI_8 -> .)
 
-    punto_codigoI_8                shift and go to state 306
+    punto_codigoI_8                shift and go to state 307
 
-state 302
+state 303
 
     (43) llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .
 
@@ -5809,7 +5813,7 @@ state 302
     TO              reduce using rule 43 (llam_varsB -> LBRACE punto_arreglos_1 punto_codigoI_8 expresion punto_arreglos_2 punto_arreglos_4 RBRACE punto_codigoI_9 llam_varsB2 .)
 
 
-state 303
+state 304
 
     (46) llam_varsB2 -> empty .
 
@@ -5841,7 +5845,7 @@ state 303
     TO              reduce using rule 46 (llam_varsB2 -> empty .)
 
 
-state 304
+state 305
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN . expresion punto_codigoII_8
     (47) expresion -> . peta_exp
@@ -5871,7 +5875,7 @@ state 304
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 307
+    expresion                      shift and go to state 308
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -5881,14 +5885,14 @@ state 304
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 305
+state 306
 
     (87) condicionB -> ELSE punto_codigoII_2 LCURLY bloque . RCURLY
 
-    RCURLY          shift and go to state 308
+    RCURLY          shift and go to state 309
 
 
-state 306
+state 307
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 . expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
     (47) expresion -> . peta_exp
@@ -5918,7 +5922,7 @@ state 306
     TRUE            shift and go to state 116
     FALSE           shift and go to state 117
 
-    expresion                      shift and go to state 309
+    expresion                      shift and go to state 310
     peta_exp                       shift and go to state 103
     tera_exp                       shift and go to state 104
     mega_exp                       shift and go to state 105
@@ -5928,16 +5932,16 @@ state 306
     llam_func                      shift and go to state 109
     cte_bool                       shift and go to state 112
 
-state 307
+state 308
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion . punto_codigoII_8
     (139) punto_codigoII_8 -> .
 
     TO              reduce using rule 139 (punto_codigoII_8 -> .)
 
-    punto_codigoII_8               shift and go to state 310
+    punto_codigoII_8               shift and go to state 311
 
-state 308
+state 309
 
     (87) condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .
 
@@ -5952,39 +5956,39 @@ state 308
     RCURLY          reduce using rule 87 (condicionB -> ELSE punto_codigoII_2 LCURLY bloque RCURLY .)
 
 
-state 309
+state 310
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion . punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9
     (144) punto_arreglos_3 -> .
 
     RBRACE          reduce using rule 144 (punto_arreglos_3 -> .)
 
-    punto_arreglos_3               shift and go to state 311
+    punto_arreglos_3               shift and go to state 312
 
-state 310
+state 311
 
     (84) ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8 .
 
     TO              reduce using rule 84 (ciclo_para_cadaB -> VAR punto_semantico_3 ID punto_semantico_4 COLON tipo punto_semantico_5 punto_semantico_8 punto_codigoII_7 ASSIGN expresion punto_codigoII_8 .)
 
 
-state 311
+state 312
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 . punto_arreglos_5 RBRACE punto_codigoI_9
     (146) punto_arreglos_5 -> .
 
     RBRACE          reduce using rule 146 (punto_arreglos_5 -> .)
 
-    punto_arreglos_5               shift and go to state 312
+    punto_arreglos_5               shift and go to state 313
 
-state 312
+state 313
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 . RBRACE punto_codigoI_9
 
-    RBRACE          shift and go to state 313
+    RBRACE          shift and go to state 314
 
 
-state 313
+state 314
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE . punto_codigoI_9
     (128) punto_codigoI_9 -> .
@@ -6016,9 +6020,9 @@ state 313
     RBRACE          reduce using rule 128 (punto_codigoI_9 -> .)
     TO              reduce using rule 128 (punto_codigoI_9 -> .)
 
-    punto_codigoI_9                shift and go to state 314
+    punto_codigoI_9                shift and go to state 315
 
-state 314
+state 315
 
     (45) llam_varsB2 -> LBRACE punto_codigoI_8 expresion punto_arreglos_3 punto_arreglos_5 RBRACE punto_codigoI_9 .
 
@@ -6053,7 +6057,7 @@ WARNING:
 WARNING: Conflicts:
 WARNING: 
 WARNING: shift/reduce conflict for VAR in state 54 resolved as shift
-WARNING: reduce/reduce conflict in state 201 resolved using rule (factor -> CTEFRASE punto_semantico_17 punto_codigoI_2)
-WARNING: rejected rule (punto_codigoI_10 -> <empty>) in state 201
-WARNING: reduce/reduce conflict in state 202 resolved using rule (factor -> CTELETRA punto_semantico_17 punto_codigoI_2)
+WARNING: reduce/reduce conflict in state 202 resolved using rule (factor -> CTEFRASE punto_semantico_17 punto_codigoI_2)
 WARNING: rejected rule (punto_codigoI_10 -> <empty>) in state 202
+WARNING: reduce/reduce conflict in state 203 resolved using rule (factor -> CTELETRA punto_semantico_17 punto_codigoI_2)
+WARNING: rejected rule (punto_codigoI_10 -> <empty>) in state 203

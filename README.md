@@ -4,7 +4,10 @@ Desarrollado por Gustavo Vasquez
 
 <h2> Objetivo </h2> 
 
-Proveer un lenguaje de programación en español, amigable y divertido para facilitar el aprendizaje de programación y tecnologías en estudiantes del nivel básico (Primaria y Secundaria), quienes no han tenido algun acercamiento con la programación o bien, se les dificulta debido a barreras del idioma inglés o faltas de herramientas lo suficientemente amigables en cuanto a interfaz y usabilidad.
+Proveer un lenguaje de programación en español, amigable y divertido para facilitar el aprendizaje de programación y
+tecnologías en estudiantes del nivel básico (Primaria y Secundaria), quienes no han tenido algun acercamiento con la
+programación o bien, se les dificulta debido a barreras del idioma inglés o faltas de herramientas lo suficientemente
+amigables en cuanto a interfaz y usabilidad.
 
 <h2> Documentos </h2>
 
@@ -14,7 +17,10 @@ Proveer un lenguaje de programación en español, amigable y divertido para faci
 
 <h2>  ${\color{orange} Avance  }$  ${\color{orange} 1  }$</h2>  
 
-En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de programación para mi proyecto final, llamado JuniorScript. Además de presentar los diagramas, se presentara su gramática normal, y de ser el caso, su factorización y/o eliminación de recursividad izquierda con propósito de mejorar el entendimiento de los diagramas y tener un código mas limpio a la hora de trasladarlo a Python Lex and Yacc.
+En este avance 1, este documento se enfoca en presentar los diagramas de sintaxis del lenguaje de programación para mi
+proyecto final, llamado JuniorScript. Además de presentar los diagramas, se presentara su gramática normal, y de ser el
+caso, su factorización y/o eliminación de recursividad izquierda con propósito de mejorar el entendimiento de los
+diagramas y tener un código mas limpio a la hora de trasladarlo a Python Lex and Yacc.
 
 <img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/1.Example.png" width="600" />
 <i> Imagen 1: </i>Ejemplo del proceso utilizado para definir la gramatica para cada diagrama, verificando que esten 
@@ -124,3 +130,30 @@ cuadruplos para poder acceder a la dirección virtual especifica de la casilla a
 <i> Imagen 13: </i>Ejemplo de arreglo y matriz
 
 <h2>  ${\color{orange} Avance  }$  ${\color{orange} 6  }$</h2> 
+
+<p> En este avance 6, se ha agregado la lógica para módulos, esto incluye estatutos para saltar a 
+modulos, la definición y verificación de parametros (en número de parametros y su tipo), la alocación
+de recursos (separación de tipos y entre variables y temporales), llamadas para terminar la
+función y el prógrama.</p>
+<p> De igual forma se ha probado la lógica extensivamente para cubrir casos como funciones recursivas (tanto
+de tipo vacio como otro), el valor de retorno en funciones no vacias, se pueden retornar constantes,
+expresiones, indices de arreglos o incluso el valor de retorno de otras funciones o de la misma.</p>
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/6.Puntos.png" width="500" />
+<i> Imagen 14: </i>Puntos neuronales para modulos.
+
+<h2>  ${\color{orange} Avance  }$  ${\color{orange} 7  }$</h2> 
+
+<p>La ejecución del programa se ha diseñado para trabajar con dos tipos de memoria: una memoria global denominada 
+"data segment" y una memoria local conocida como "stack". El tamaño de la memoria "stack" varía dinámicamente en 
+función de las llamadas realizadas a otros módulos o funciones dentro del programa.</p>
+<p>Un aspecto clave que se ha abordado durante esta etapa es la ejecución de los cuádruplos correspondientes a diferentes
+operadores y conceptos previamente desarrollados. Estos cuádruplos se encargan de gestionar operaciones como expresiones
+aritméticas, estatutos condicionales, ciclos, arreglos, módulos y otros elementos fundamentales cubiertos en los avances
+anteriores.</p>
+<p> Es importante destacar que, al finalizar la ejecución del programa, se lleva a cabo la adecuada terminación de la
+gestión de la memoria y la máquina virtual, asegurando así la liberación de los recursos utilizados durante todo el
+proceso. </p>
+
+<img src="https://github.com/gussvas/JuniorScript/blob/main/Docs/images/7.Code.png" width="500" />
+<i> Imagen 15: </i>Ejecución de la maáquina virtual para un ejemplo.

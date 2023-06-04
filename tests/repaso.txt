@@ -4,15 +4,6 @@ variable i, j, k : entero
 variable arreglo : entero[12]
 variable matriz : entero[12][9]
 
-mi_funcion algo_simple() : vacio {
- variable a, b, c : entero
- a = 2 * 10
- b = 5 - 4
- c = 5 + 5
- a = b * c
- imprimir(a)
-}
-
 mi_funcion fact(j : entero) : entero {
     variable i : entero
     i = j + (k - j*2 + j)
@@ -39,10 +30,5 @@ iniciar() {
     mientras(i < 11){
         arreglo[i] = arreglo[i] * fact(arreglo[i]-k)
         matriz[i][arreglo[i+k]*k] = arreglo[i]
-    }
-    mientras (i > 1){
-        imprimir("Resultado", arreglo[i], fact(i+2))
-        imprimir(matriz[i][k*2-i])
-        i = i - 1
     }
 }
