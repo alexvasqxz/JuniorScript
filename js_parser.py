@@ -200,9 +200,9 @@ def JSParser():
 
     def p_llam_params(p):
         '''
-        llam_params : expresion punto_modulo_5 llam_paramsB
+        llam_params : expresion punto_modulo_5 punto_modulo_6 llam_paramsB
                     | empty
-        llam_paramsB : COMMA punto_modulo_6 llam_params
+        llam_paramsB : COMMA llam_params
                     | empty
         '''
         p[0] = None
@@ -348,6 +348,8 @@ def JSParser():
         punto_semantico_6 :
         '''
         global curr_size, isArray, dim
+        if p[-1] == 0:
+            raise Exception(f"ERROR: Una variable dimensionada no puede tener un valor de 0 en renglones")
         curr_size *= p[-1]
         isArray = True
         dim.append(p[-1])
@@ -360,6 +362,8 @@ def JSParser():
         punto_semantico_7 :
         '''
         global curr_size, dim
+        if p[-1] == 0:
+            raise Exception(f"ERROR: Una variable dimensionada no puede tener un valor de 0 en columnas")
         curr_size *= p[-1]
         dim.append(p[-1])
 
@@ -575,7 +579,7 @@ def JSParser():
         punto_codigoI_10 :
         '''
         codigoI.push_operador('imprimir')
-        codigoI.create_estatuto_quad(quadruplos)
+        codigoI.create_estatuto_quad(quadruplos, curr_scope, semantica)
 
     """ Descripcion:
      """
@@ -584,7 +588,7 @@ def JSParser():
         punto_codigoI_11 :
         '''
         codigoI.push_operador('leer')
-        codigoI.create_estatuto_quad(quadruplos)
+        codigoI.create_estatuto_quad(quadruplos, curr_scope, semantica)
 
     """ Descripcion:
      """
@@ -593,7 +597,7 @@ def JSParser():
         punto_codigoI_12 :
         '''
         codigoI.push_operador('=')
-        codigoI.create_estatuto_quad(quadruplos)
+        codigoI.create_estatuto_quad(quadruplos, curr_scope, semantica)
 
     # ------------------------------------------------------------
     # CODIGO - ESTATUTOS CONDICIONALES
@@ -787,7 +791,7 @@ def JSParser():
         '''
         global param_count, param_types
         semantica.apartar_recursos(curr_scope, llam_func_id, quadruplos, codigoI)
-        param_count = 1
+        param_count = 0
         param_types = semantica.get_parameters(llam_func_id)
 
     def p_punto_modulo_5(p):

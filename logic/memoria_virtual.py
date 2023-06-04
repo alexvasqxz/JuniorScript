@@ -118,6 +118,8 @@ class MemoryStack:
                     self.segmento_logico[address] = -1
                 elif info['dataType'] == 4:
                     self.segmento_letra[address] = -1
+                elif info['dataType'] == 5:
+                    self.segmento_entero[address] = -1
 
     def get_value(self, address):
         data_type = self.direcciones_virtuales.get_type_with_address(address)
@@ -129,6 +131,9 @@ class MemoryStack:
             return self.segmento_logico.get(address, -1)
         elif data_type == 4:
             return self.segmento_letra.get(address, -1)
+        elif data_type == 5:
+            return self.segmento_entero.get(address, -1)
+
 
     def set_value(self, address, value):
         data_type = self.direcciones_virtuales.get_type_with_address(address)
@@ -140,3 +145,5 @@ class MemoryStack:
             self.segmento_logico[address] = value
         elif data_type == 4:
             self.segmento_letra[address] = value
+        elif data_type == 5:
+            self.segmento_entero[address] = value

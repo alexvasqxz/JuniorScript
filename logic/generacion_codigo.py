@@ -15,6 +15,8 @@ class CodigoExpresionesEstatutos:
         self.pilaDim = Stack()
         # Pila de saltos en modulos
         self.pilaModulos = Stack()
+        # Pila de ciclos anidados
+        self.pilaCiclos = Stack()
 
         self.direccionesVirtuales = DireccionesVirtuales()
         self.mapeoDatos = MapeoDatos()
@@ -38,6 +40,9 @@ class CodigoExpresionesEstatutos:
 
     def push_salto_modulo(self, count):
         self.pilaModulos.append(count)
+
+    def push_control_ciclo(self, control):
+        self.pilaCiclos.append(control)
 
     # ------------------------------------------------------------
     # CODIGO - QUADRUPLOS EXPRESIONES Y ESTATUTOS
@@ -71,7 +76,7 @@ class CodigoExpresionesEstatutos:
                 self.pilaOperandos.append((temp_address, result_type, 'temp'))
             else:
                 raise Exception(f"ERROR: Tipos Incompatibles '{left_type, right_type}'")
-    def create_estatuto_quad(self, quadObj):
+    def create_estatuto_quad(self, quadObj, scope, semanticaObj):
         if (not bool(self.pilaOperandos)):
             return
 
@@ -154,12 +159,14 @@ class CodigoExpresionesEstatutos:
             raise Exception(f"ERROR: El resultado de la expresion debe ser de tipo numerico")
         else:
             # Generar temporal VC
-            vc_address = semanticaObj.add_temp(scope, 1, 'VC')
+            vc_address = semanticaObj.add_temp(scope, 1, f"VC{self.temp_count}")
             self.temp_count += 1
             id_for = self.pilaOperandos.pop()
             if self.cuboSemantico.get_cube_type(id_for[1], expression_result[1], operador) != -1:
                 quadObj.agregar(operador, expression_result[0], None, id_for[0])
                 quadObj.agregar(operador, id_for[0], None, vc_address)
+                # En caso de anidacion ingresar control a la pila
+                self.pilaCiclos.append(vc_address)
                 # Reingresar el id original para usar en el ultimo paso
                 self.pilaOperandos.append(id_for)
             else:                                                                                   
@@ -174,17 +181,17 @@ class CodigoExpresionesEstatutos:
             raise Exception(f"ERROR: El resultado de la expresion debe ser de tipo numerico")
         else:
             # Generar temporal VF
-            vf_address = semanticaObj.add_temp(scope, 1, 'VF')
+            vf_address = semanticaObj.add_temp(scope, 1, f"VF{self.temp_count}")
             self.temp_count += 1
             as_op = self.pilaOperadores.pop()
             lt_op = self.pilaOperadores.pop()
             # Generar (=, Exp, , VF)
             quadObj.agregar(as_op, expression_result[0], None, vf_address)
             # Generar (<, VC, VF, Tx)
-            temp_address = semanticaObj.add_temp(scope, 1, self.temp_count)
+            temp_address = semanticaObj.add_temp(scope, 3, self.temp_count)
             self.temp_count += 1
             # Obtener VC desde el directorio
-            vc_address = semanticaObj.get_temp_address(scope, 'VC')
+            vc_address = self.pilaCiclos[-1]
             quadObj.agregar(lt_op, vc_address, vf_address, temp_address)
             self.pilaOperandos.append((temp_address, 1, 'temp'))
             self.push_salto(quadObj.quads_len() - 1)
@@ -198,7 +205,7 @@ class CodigoExpresionesEstatutos:
         # Generar (+, VControl, 1, Ty)
         sum_op = self.pilaOperadores.pop()
         # VControl
-        vc_address = semanticaObj.get_temp_address(scope, 'VC')
+        vc_address = self.pilaCiclos[-1]
         # + 1
         semanticaObj.add_constant(1)
         one_address = semanticaObj.get_vars_address(scope, 1)
@@ -224,6 +231,8 @@ class CodigoExpresionesEstatutos:
         quadObj.agregar(operador, None, None, linea_retorno)
         # Rellenar Quadruplo [quad_to_modify]
         quadObj.modificar_quad(quad_to_modify, [None, None, None, quadObj.quads_len()])
+        # Quitar variable de control del ciclo que termina
+        self.pilaCiclos.pop()
 
     # ------------------------------------------------------------
     # CODIGO - ARREGLOS
@@ -279,8 +288,11 @@ class CodigoExpresionesEstatutos:
             temp_address = semanticaObj.add_temp(scope, 5, f"point{self.pointer_count}")
             self.temp_count += 1
             self.pointer_count += 1
-            quadObj.agregar(sum_op, res_expression[0], dir_virtual, f"p*{temp_address}")
-            self.pilaOperandos.append((f"p*{temp_address}", tipo_arreglo, 'temp'))
+            # Generar la constante que representa la direccion base del arreglo
+            semanticaObj.add_constant(dir_virtual)
+            direccion_base = semanticaObj.get_vars_address(scope, dir_virtual)
+            quadObj.agregar(sum_op, res_expression[0], direccion_base, temp_address)
+            self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
         # Para Matrices se multiplicara el resultado de la expresion
         # por el numero de columnas y guardara en un temporal Tx
         elif len(dimensiones) == 2:
@@ -313,8 +325,11 @@ class CodigoExpresionesEstatutos:
         temp_address = semanticaObj.add_temp(scope, 5, f"point{self.pointer_count}")
         self.temp_count += 1
         self.pointer_count += 1
-        quadObj.agregar(operator, res_anterior, dir_virtual, f"p*{temp_address}")
-        self.pilaOperandos.append((f"p*{temp_address}", tipo_arreglo, 'temp'))
+        # Obtener constante direccion base
+        semanticaObj.add_constant(dir_virtual)
+        direccion_base = semanticaObj.get_vars_address(scope, dir_virtual)
+        quadObj.agregar(operator, res_anterior, direccion_base, temp_address)
+        self.pilaOperandos.append((temp_address, tipo_arreglo, 'temp'))
 
     def arr_end(self):
         # Si el stack de dimensiones no esta vacio es que algo salio mal
@@ -334,13 +349,13 @@ class CodigoExpresionesEstatutos:
             quadObj.modificar_quad(era_modificar, [None, vars, temps, None])
 
     def assign_params(self, id, quadObj, param_types, counter):
-        if counter > len(param_types):
+        if counter >= len(param_types):
             raise Exception(f"ERROR: Se ingresaron demasiados parametros para la función")
         expression_result = self.pilaOperandos.pop()
-        if expression_result[1] != param_types[counter-1]:
+        if expression_result[1] != param_types[counter]:
             raise Exception(f"ERROR: Tipo incompatible de parametro")
         else:
-            quadObj.agregar(52, expression_result[0], None, f"param{counter}")
+            quadObj.agregar(52, expression_result[0], None, f"param{counter+1}")
 
     def verificar_count_params(self, number_params, counter):
         if counter < number_params:
@@ -357,11 +372,11 @@ class CodigoExpresionesEstatutos:
         tipo_funcion = semanticaObj.get_function_type(scope)
         if return_result[1] != tipo_funcion:
             raise Exception(f"ERROR: El tipo a regresar para esta función es {tipo_funcion}")
-        # Generar Quadruplo
         operador_return = self.pilaOperadores.pop()
-        quadObj.agregar(operador_return, None, None, return_result[0])
-        # Agregar resultado a la variable global de la función
-        semanticaObj.directorio['Programa']['return_values'][scope] = return_result[0]
+        # Crear variable global para guardar return value
+        return_address = semanticaObj.agregar_variable_parche(scope, tipo_funcion)
+        # Generar Quadruplo
+        quadObj.agregar(operador_return, return_result[0], None, return_address)
         # Llenar cuadruplos para casos recursivos
         # Validar que el quadruplo a modificar sea RETURN
         if bool(self.pilaModulos):
@@ -380,10 +395,10 @@ class CodigoExpresionesEstatutos:
         if return_type != 0:
             temp_address = semanticaObj.add_temp(scope, return_type, self.temp_count)
             self.temp_count += 1
-            if key in semanticaObj.directorio['Programa']['return_values']:
+            if key in semanticaObj.directorio['Programa']['variables']:
                 # Generar Quadruplo (=, return_funcion, , Tx)
-                return_value = semanticaObj.directorio['Programa']['return_values'][key]
-                quadObj.agregar(operador, return_value, None, temp_address)
+                return_value = semanticaObj.directorio['Programa']['variables'][key]
+                quadObj.agregar(operador, return_value['address'], None, temp_address)
                 self.pilaOperandos.append((temp_address, return_type, 'temp'))
             # Casos recursivos no vacios
             else:
@@ -404,4 +419,7 @@ class CodigoExpresionesEstatutos:
         #     print(item)
         # print("Pila Dim")
         # for item in self.pilaDim:
+        #     print(item)
+        # print("Pila Ciclos")
+        # for item in self.pilaCiclos:
         #     print(item)

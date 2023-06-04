@@ -206,7 +206,7 @@ class DirectorioFunciones:
                 if 'dimensions' in vars_dict[key]:
                     return vars_dict[key]['dimensions']
                 else:
-                    raise Exception(f"ERROR: Este id no es de tipo arreglo '{key}'")
+                    raise Exception(f"ERROR: Este comando / id no es de tipo arreglo '{key}'")
         # Global
         global_vars_dict = self.directorio['Programa']['variables']
         for var_global in self.global_variables:
@@ -214,7 +214,7 @@ class DirectorioFunciones:
                 if 'dimensions' in  global_vars_dict[var_global]:
                     return global_vars_dict[var_global]['dimensions']
                 else:
-                    raise Exception(f"ERROR: Este id no es de tipo arreglo '{var_global}'")
+                    raise Exception(f"ERROR: Este comando/ id no es de tipo arreglo '{var_global}'")
 
     def insert_first_quad(self, scope, quadObj):
         self.directorio[scope]["quad_init"] = len(quadObj.obtener_quadruplos())
@@ -279,5 +279,13 @@ class DirectorioFunciones:
 
     def tiene_return(self, scope):
         if self.directorio[scope]['type'] != 0:
-            if not scope in self.directorio['Programa']['return_values']:
+            if not scope in self.directorio['Programa']['variables']:
                 raise Exception(f"ERROR: La funcion debe de regresar algun valor")
+
+    def agregar_variable_parche(self, id, type):
+        vars_table = self.get_vars_dict('Programa')
+        if not id in vars_table:
+            virtual_address = self.assign_virtual_address('Programa', 'vars', type, 1)
+            vars_table[id] = {'dataType': type, 'address': virtual_address, 'size': 1}
+            return virtual_address
+        return vars_table[id]['address']

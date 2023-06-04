@@ -25,7 +25,8 @@ class DireccionesVirtuales():
             [18000, 19999],
             [20000, 21999],
             [22000, 23999],
-            [24000, 25999]
+            [24000, 25999],
+            [26000, 27999] # Pointers
         ]
 
     def create_virtual_dir(self, scope, type, dataType, size):
@@ -60,6 +61,7 @@ class DireccionesVirtuales():
             ('local', 'temp', 2): 17,
             ('local', 'temp', 3): 18,
             ('local', 'temp', 4): 19,
+            ('local', 'temp', 5): 20,
         }
 
         result = switch.get((scope, type, dataType), -1)
@@ -73,7 +75,7 @@ class DireccionesVirtuales():
     def delete_function_space(self):
         vars_bottom = 5000
         temp_bottom = 18000
-        for num in range(12, 20):
+        for num in range(12, 21):
             if num in range(12, 16):
                 self.tabla_direcciones[num][0] = vars_bottom
                 vars_bottom += 1000
@@ -98,13 +100,15 @@ class DireccionesVirtuales():
                 or (address in range(16000, 18000)) or (address in range(24000, 26000))
                 or (address in range(60000, 70000))):
                     return 4
+        elif (address in range(26000, 28000)):
+            return 5
         else:
             raise Exception("ERROR: Tipo no existe para direccion '{address}'")
 
     def get_scope_with_address(self, address):
         if ((address in range(1000, 5000)) or (address in range(10000, 18000)) or (address in range(30000, 70000))):
             return 'global'
-        elif ((address in range(5000, 9000)) or (address in range(18000, 26000))):
+        elif ((address in range(5000, 9000)) or (address in range(18000, 28000))):
             return 'local'
         else:
             raise Exception("ERROR: Scope no existe para direccion '{address}'")

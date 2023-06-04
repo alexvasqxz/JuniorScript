@@ -1,25 +1,16 @@
 mi_programa patito
 
-variable a: entero
-variable arreglo : entero[10]
-variable matriz : entero[5][5]
-
-mi_funcion algo_simple() : vacio {
- variable b, c : entero
- variable logi1, logi2, logi3 : logico
- variable div : decimal
- a = 5 * 10 * 2
- b = a - 4
- c = 5 + 5
- logi1 = b <= a
- logi2 = b > a
- logi3 = logi1 OOO logi2
- div = a / b
- imprimir(a, b, c, "falso", logi3, div)
+mi_funcion recursiva(oops : entero) : entero{
+    condicion (oops <= 10){
+        imprimir(oops)
+        regresar(oops)
+    } alternativa {
+        regresar(5 + recursiva(oops - 15))
+    }
 }
 
 iniciar() {
-    variable prueba : logico
-    prueba = falso
-    algo_simple()
+    variable purt : entero
+    purt = 50
+    imprimir(recursiva(purt))
 }
