@@ -1,0 +1,66 @@
+mi_programa arreglos_y_matrices
+
+### Los arreglos son como cajas que forman una línea, y cada cada puede
+### guardar un valor unico, cuando definimos un arreglo debemos escoger su
+### tamaño dentro de los corchetes [ ]
+variable arreglo : entero [10]
+
+### Las matrices son como tablas, o cajas que además de formar líneas estan
+### apiladas una arriba de la otra, para las matrices igual tenemos que escoger
+### un tamaño de la forma [ filas ] [ columnas]
+variable matriz : entero [4][5]
+
+mi_funcion poblar_arreglo(): vacio {
+
+    ### Cuando recorremos arreglos es importante no pasarnos de su tamaño, ya que esto
+    ### generará un error, una forma fácil de hacer esto es con un ciclo desde
+    ### el número 0 hasta el tamaño del arreglo
+    desde (variable i : entero = 0 hasta 10){
+        arreglo[i] = i + 1
+    }
+
+    ### Una vez llenemos los contenidos de las cajas de nuestro arreglo, podemos
+    ### imprimirlos
+    desde (variable j : entero = 0 hasta 10){
+        imprimir(arreglo[j])
+    }
+}
+
+mi_funcion poblar_matriz(): vacio {
+
+    ### Para llenar nuestras cajas de la matriz es parecido a como lo hicimos en
+    ### al arreglo, solo que necesitamos utilizar dos ciclos desde hasta, el primero
+    ### debe llegar hasta el primer tamaño de la matriz y el segundo ciclo debe ir desde
+    ### 0 hasta el segundo tamaño de la matriz
+    desde (variable i : entero = 0 hasta 4) {
+        desde (variable j : entero = 0 hasta 5) {
+            matriz[i][j] = (j + 1) * (i + 1)
+        }
+    }
+
+    desde (variable k : entero = 0 hasta 4) {
+        desde (variable l : entero = 0 hasta 5) {
+            imprimir("Hola")
+        }
+    }
+}
+
+mi_funcion parametro_indice(parametro : entero) : vacio {
+    imprimir(parametro)
+}
+
+iniciar() {
+    poblar_arreglo()
+    poblar_matriz()
+
+    ### No necesariamente se tienen que usar ciclos desde para asignar
+    ### un valor a algún arreglo, si tienes alguna caja específica que quieras
+    ### darle un valor puedes hacerlo
+    arreglo[5] = matriz[3][3]
+    imprimir(arreglo[5], matriz[3][3])
+
+    matriz[arreglo[2]][3] = 20
+    imprimir(arreglo[2], matriz[arreglo[2]][3], matriz[3][3])
+
+    parametro_indice(arreglo[8])
+}

@@ -16,7 +16,6 @@ class MaquinaVirtual:
         self.direcciones_virtuales = DireccionesVirtuales()
         # Output para Aplicación
         self.app_output = []
-        self.app_output.append(["🐍💻📕🎒🤖 Impresiones JuniorScript 🐍💻📕🎒🤖"])
 
     def leer_instrucciones(self):
         instruction_pointer = 0
@@ -78,11 +77,23 @@ class MaquinaVirtual:
 
     def asignar(self, left, quad_result):
         left_value = self.get_value_helper(left)
-        if self.direcciones_virtuales.get_type_with_address(quad_result) != 5:
+        if (self.direcciones_virtuales.get_type_with_address(quad_result) != 5 and
+            self.direcciones_virtuales.get_type_with_address(left) != 5):
             self.set_value_helper(quad_result, left_value)
-        # Pointer
+        # Estamos asignando un pointer arreglo como valor
+        elif (self.direcciones_virtuales.get_type_with_address(left) == 5 and
+              self.direcciones_virtuales.get_type_with_address(quad_result) != 5):
+            left_value = self.get_value_helper(left_value)
+            self.set_value_helper(quad_result, left_value)
+        # Estamos asignandole un valor a un pointer arreglo
+        elif (self.direcciones_virtuales.get_type_with_address(left) != 5 and
+              self.direcciones_virtuales.get_type_with_address(quad_result) == 5):
+            quad_result = self.get_value_helper(quad_result)
+            self.set_value_helper(quad_result, left_value)
+        # Estamos asignandole un valor pointer a un valor pointer
         else:
             quad_result = self.get_value_helper(quad_result)
+            left_value = self.get_value_helper(left_value)
             self.set_value_helper(quad_result, left_value)
 
     def imprimir(self, ip):
@@ -172,11 +183,17 @@ class MaquinaVirtual:
         value_evaluar = self.get_value_helper(left)
         value_limite = self.get_value_helper(right)
         if limite == 90:
-            if value_evaluar < value_limite:
-                raise Exception(f"ERROR: Indice fuera de rango")
+            if self.direcciones_virtuales.get_type_with_address(left) == 5:
+                if self.get_value_helper(value_evaluar) < value_limite:
+                    raise Exception(f"ERROR: Indice fuera de rango {value_evaluar, value_limite}")
+            elif value_evaluar < value_limite:
+                raise Exception(f"ERROR: Indice fuera de rango {value_evaluar, value_limite}")
         elif limite == 91:
-            if value_evaluar > value_limite:
-                raise Exception(f"ERROR: Indice fuera de rango")
+            if self.direcciones_virtuales.get_type_with_address(left) == 5:
+                if self.get_value_helper(value_evaluar) > value_limite:
+                    raise Exception(f"ERROR: Indice fuera de rango {value_evaluar, value_limite}")
+            elif value_evaluar > value_limite:
+                raise Exception(f"ERROR: Indice fuera de rango {value_evaluar, value_limite}")
 
     def alocar_recursos(self, funcion):
         # Guardar stack anterior en su estado
@@ -189,19 +206,22 @@ class MaquinaVirtual:
         self.local_stack = MemoryStack(self.directorio_funciones[funcion])
 
     def parametrizar(self, parametro):
-        type = self.direcciones_virtuales.get_type_with_address(parametro)
+        address_type = self.direcciones_virtuales.get_type_with_address(parametro)
         valor_parametro = self.get_value_helper(parametro)
         inicio_parametros = self.local_stack.inicio_parametros
-        if type == 1:
+        if address_type == 5:
+            valor_parametro = self.get_value_helper(valor_parametro)
+            address_type = type(valor_parametro)
+        if address_type == 1 or address_type == int:
             self.set_value_helper(inicio_parametros[0], valor_parametro)
             inicio_parametros[0] += 1
-        elif type == 2:
+        elif address_type == 2 or address_type == float:
             self.set_value_helper(inicio_parametros[1], valor_parametro)
             inicio_parametros[1] += 1
-        elif type == 3:
+        elif address_type == 3 or address_type == bool:
             self.set_value_helper(inicio_parametros[2], valor_parametro)
             inicio_parametros[2] += 1
-        elif type == 4:
+        elif address_type == 4 or address_type == str:
             self.set_value_helper(inicio_parametros[3], valor_parametro)
             inicio_parametros[3] += 1
 

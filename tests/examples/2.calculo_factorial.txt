@@ -1,0 +1,49 @@
+mi_programa 🤡🤡🤡🤡
+
+### Forma Iterativa
+mi_funcion factorial_iterativo(n : entero) : entero {
+
+    variable factorial : entero
+    factorial = 1
+
+    ### Si el numero es 0
+    condicion (n == 0){
+        regresar(0)
+    }
+
+    desde (variable i : entero = 1 hasta n + 1){
+        factorial = factorial * i
+    }
+
+    regresar(factorial)
+}
+
+### En caso de llamar a una función dentro de otra, es
+### importante que la función siendo llamada sea declarada
+### antes que la función que la esta llamando
+mi_funcion factorial_recursivo_dos(n : entero) : entero {
+    condicion(n == 1){
+        regresar(n)
+    } alternativa {
+        regresar (n * factorial_recursivo_dos(n - 1))
+    }
+}
+
+### Forma Recursiva
+mi_funcion factorial_recursivo(n : entero) : entero {
+    condicion (n == 0){
+        regresar(0)
+    }
+    regresar(factorial_recursivo_dos(n))
+}
+
+iniciar() {
+
+    variable n, factorial_iterativo, factorial_recursivo : entero
+    n = 10
+    factorial_iterativo = factorial_iterativo(n)
+    imprimir("El factorial iterativo de ", n, " es: ", factorial_iterativo)
+
+    factorial_recursivo = factorial_recursivo(n)
+    imprimir("El factorial recursivo de ", n, " es: ", factorial_recursivo)
+}

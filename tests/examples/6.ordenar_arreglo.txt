@@ -1,0 +1,44 @@
+mi_programa ordenar
+
+variable arreglo : entero [10]
+
+mi_funcion llenar_arreglo() : vacio {
+    variable 🤪 : entero
+    🤪 = 10
+
+    desde (variable i : entero = 0 hasta 10){
+        arreglo[i] = 🤪
+        🤪 = 🤪 - 1
+    }
+}
+
+mi_funcion 🫧🫧🫧() : vacio {
+
+    variable temporal : entero
+
+    desde (variable i : entero = 0 hasta 10 - 1){
+        desde (variable j : entero = 0 hasta 10 - 1 - i){
+            condicion (arreglo[j] > arreglo[j + 1]){
+                temporal = arreglo[j]
+                arreglo[j] = arreglo[j + 1]
+                arreglo[j + 1] = temporal
+            }
+        }
+    }
+}
+
+iniciar () {
+    imprimir("Arreglo desordenado")
+    llenar_arreglo()
+
+    desde (variable i : entero = 0 hasta 10){
+        imprimir(arreglo[i])
+    }
+
+    imprimir("Arreglo ordenado")
+    🫧🫧🫧()
+
+    desde (variable j : entero = 0 hasta 10){
+        imprimir(arreglo[j])
+    }
+}

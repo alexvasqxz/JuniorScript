@@ -1,0 +1,43 @@
+### Primero debes darle un nombre a tu programa
+### Puedes usar palabras para nombrar cosas o emojis
+mi_programa 😄😄😄
+
+### Puedes definir variables fuera de las funciones
+### o del inicio, estas variables son conocidas como Globales
+variable i, j, p : entero
+
+### Puedes crear funciones antes del inicio, para esto debes
+### seguir el formato mi_funcion <nombre-de-tu-funcion) ( parametros ) :
+### tipo de retorno de la función y { }
+mi_funcion 😍😍😍(🥺: decimal) : decimal {
+
+    variable 😵:decimal
+    ### Se asigna 2.50 a la variable
+    😵 = 5/2
+    ### A esta variable le asignaremos 25.0
+    🥺 = 😵 * 10
+
+    ### Debería de regresar 20.0
+    regresar(🥺 - 5.0)
+
+}
+
+mi_funcion llamar_otra_funcion() : vacio {
+
+    variable funcion_pasada : decimal
+    funcion_pasada = 😍😍😍(4.4)
+    imprimir(funcion_pasada)
+
+}
+
+iniciar() {
+
+    ### Dentro de inicio podemos definir aun más variables, hacer expresiones
+    ### aritméticas o llamar a las otras funciones
+    variable 💊💊 : entero
+    💊💊 = 5 * (6 + 5)
+    imprimir(💊💊)
+    llamar_otra_funcion()
+    imprimir("¡Hola Mundo!")
+
+}
