@@ -1,0 +1,32 @@
+mi_programa 😄😄😄😄😄
+
+### Puedes insertar variables globales aquí
+variable arreglo : entero [11]
+
+mi_funcion 😈😈😈(parametro_uno : entero) : entero {
+
+
+
+    ### Inserta código aquí
+
+
+    regresar(parametro_uno)
+}
+
+mi_funcion 💻💻💻(parametro_uno : decimal) : decimal {
+
+
+
+    ### Inserta código aquí
+
+
+    regresar(parametro_uno)
+}
+
+iniciar() {
+
+    ### Declara tus variables
+    variable a, b, c : entero
+
+    imprimir("¡HOLA MUNDO!")
+}

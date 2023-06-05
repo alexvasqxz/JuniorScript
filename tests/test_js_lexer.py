@@ -80,7 +80,7 @@ class MyTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    data_input = open("./tests/test_file.txt", "r")
+    data_input = open("./tests/examples/1.funciones_variables.txt", "r")
     input = data_input.read()
     data_input.close()
 
