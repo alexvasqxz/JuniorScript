@@ -277,7 +277,7 @@ def JSParser():
             token = "end of file"
         else:
             token = f"{p.type}({p.value})"
-        print(f"Error de sintaxis: Unexpected {token}")
+        raise Exception(f"Error de sintaxis: {token} inesperado")
 
     # ------------------------------------------------------------
     # SEMANTICA - PUNTOS NEURONALES
@@ -879,7 +879,7 @@ def JSParser():
 
 def get_file_text(file_name):
     try:
-        file = open(f"./tests/{file_name}", "r")
+        file = open(f"./tests/examples/{file_name}", "r")
         archivo = file.read()
         file.close()
         return archivo
@@ -891,12 +891,12 @@ def run_parser(code_text):
     print(f"🐍💻📕🎒🤖 JuniorScript 🐍💻📕🎒🤖")
     try:
         junior_script.parse(code_text)
-        aplicacion_resultado = '\n'.join(f'{i}. {" ".join(str(item) for item in sublist)}' for i, sublist in enumerate(app_output))
+        aplicacion_resultado = '\n'.join(f'{i + 1}. {" ".join(str(item) for item in sublist)}' for i, sublist in enumerate(app_output))
         return aplicacion_resultado
     except EOFError:
         print('ERROR')
 
 
 if __name__ == '__main__':
-    texto_prueba = get_file_text("test_file.txt")
+    texto_prueba = get_file_text("7.multiplicar_matrices.txt")
     run_parser(texto_prueba)

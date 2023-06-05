@@ -39,7 +39,8 @@ body {
   justify-content: center;
 }
 
-.play-button, .small-button {
+.play-button,
+.small-button {
   display: inline-block;
   padding: 12px 24px;
   margin: 10px;
@@ -47,18 +48,26 @@ body {
   font-weight: bold;
   text-align: center;
   color: #fff;
-  background-color: #00BFA5; /* Pastel Teal */
+  text-decoration: none;
   border: none;
   border-radius: 5px;
-  text-decoration: none;
 }
 
-.play-button:hover, .small-button:hover {
-  background-color: #64FFDA; /* Light Pastel Teal */
+.play-button {
+  background-color: #FF5252; /* Pastel Red */
 }
 
 .small-button {
+  background-color: #448AFF; /* Pastel Blue */
   font-size: 20px;
+}
+
+.play-button:hover {
+  background-color: #FF8A80; /* Light Pastel Red */
+}
+
+.small-button:hover {
+  background-color: #64B5F6; /* Light Pastel Blue */
 }
 
 .small-button:first-child {
@@ -67,14 +76,6 @@ body {
 
 .small-button:last-child {
   margin-left: 10px;
-}
-
-.small-button:first-child, .small-button:last-child {
-  background-color: #FF80AB; /* Pastel Pink */
-}
-
-.small-button:first-child:hover, .small-button:last-child:hover {
-  background-color: #FF4081; /* Light Pastel Pink */
 }
 
 /* Copyright text */

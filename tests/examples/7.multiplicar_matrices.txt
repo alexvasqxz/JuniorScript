@@ -1,0 +1,83 @@
+mi_programa multiplicarMatrices
+
+variable matriz_1 : decimal [5][4]
+variable matriz_2 : decimal [4][5]
+variable matriz_3 : decimal [5][5]
+
+mi_funcion 📖📖📖() : vacio {
+    ### Recuerda que para realizar una multiplicación de matrices,
+    ### el numero de columnas de la primera debe ser igual al número
+    ### de filas de la segunda
+
+    ### Llenamos nuestra matriz de ceros
+    desde (variable i : entero = 0 hasta 5) {
+        desde (variable j : entero = 0 hasta 5) {
+            matriz_3[i][j] = 0.0
+        }
+    }
+
+    ### Realizar multiplicación de matrices
+    ### Hasta filas de la primera matriz
+    desde (variable v1 : entero = 0 hasta 5) {
+        ### Hasta columnas de la segunda matriz
+        desde (variable v2 : entero = 0 hasta 5) {
+            ### Hasta columnas de la primera matriz
+            desde (variable v3 : entero = 0 hasta 4) {
+                matriz_3[v1][v2] = matriz_3[v1][v2] + (matriz_1[v1][v3] * matriz_2[v3][v2])
+            }
+        }
+    }
+
+    ### Imprimir resultados
+    desde (variable f : entero = 0 hasta 5) {
+        desde (variable c : entero = 0 hasta 5) {
+            imprimir(matriz_3[f][c])
+        }
+    }
+}
+
+mi_funcion 🎒🎒🎒(valor : decimal) : vacio {
+
+    desde (variable i : entero = 0 hasta 5) {
+        desde (variable j : entero = 0 hasta 4) {
+            matriz_1[i][j] = valor
+            valor = valor * 2
+        }
+    }
+
+    desde (variable f : entero = 0 hasta 5) {
+        desde (variable c : entero = 0 hasta 4) {
+            imprimir(matriz_1[f][c])
+        }
+    }
+}
+
+mi_funcion 🤖🤖🤖(valor : decimal) : vacio {
+
+    desde (variable i : entero = 0 hasta 4) {
+        desde (variable j : entero = 0 hasta 5) {
+            matriz_2[i][j] = valor
+            valor = valor * 1.3
+        }
+    }
+
+    desde (variable f : entero = 0 hasta 4) {
+        desde (variable c : entero = 0 hasta 5) {
+            imprimir(matriz_2[f][c])
+        }
+    }
+}
+
+iniciar() {
+    variable random : decimal
+    random = 1.3
+
+    imprimir("Valores Matriz 1")
+    🎒🎒🎒(random)
+
+    imprimir("Valores Matriz 2")
+    🤖🤖🤖(random)
+
+    imprimir("Valores Multiplicación Matriz 1 X Matriz 2")
+    📖📖📖()
+}

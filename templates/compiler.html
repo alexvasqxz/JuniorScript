@@ -11,26 +11,36 @@
             <a href="{{ url_for('inicio') }}">Regresar</a>
         </div>
         <div id="nav-buttons">
-            <button type="submit" form="code-form">Ejecutar</button>
+            <button type="submit" form="code-form"><b>Ejecutar</b></button>
             <div class="dropdown">
-                <button class="dropdown-btn">Examples</button>
+                <button class="dropdown-btn">Ejemplos</button>
                 <div class="dropdown-content">
-                    <a href="{{ url_for('recursos') }}">Funciones y Variables</a>
-                    <a href="{{ url_for('recursos') }}">Cálculo de Factorial</a>
-                    <a href="{{ url_for('credits') }}">Serie de Fibonacci</a>
-                    <a href="{{ url_for('compiler') }}">Arreglos y Matrices</a>
-                    <a href="{{ url_for('compiler') }}">Encontrar algún valor</a>
-                    <a href="{{ url_for('compiler') }}">Ordenar un arreglo</a>
-                    <a href="{{ url_for('compiler') }}">Multiplicar Matrices</a>
+                    <a href="#" onclick="populateEditor('1.funciones_variables')">Funciones y Variables</a>
+                    <a href="#" onclick="populateEditor('2.calculo_factorial')">Cálculo de Factorial</a>
+                    <a href="#" onclick="populateEditor('3.calculo_fibonacci')">Serie de Fibonacci</a>
+                    <a href="#" onclick="populateEditor('4.arreglos_matrices')">Arreglos y Matrices</a>
+                    <a href="#" onclick="populateEditor('5.encontrar_valor')">Encontrar algún valor</a>
+                    <a href="#" onclick="populateEditor('6.ordenar_arreglo')">Ordenar un arreglo</a>
+                    <a href="#" onclick="populateEditor('7.multiplicar_matrices')">Multiplicar Matrices</a>
                 </div>
             </div>
         </div>
     </div>
     <form id="code-form" action="/compiler" method="POST">
-        <textarea id="editor" name="editor" wrap="on">{{ code|safe }}</textarea>
+        <textarea id="editor" name="editor" wrap="on" placeholder="¡A codificar!">{{ code|safe }}</textarea>
     </form>
     <div id="output">
         <pre>{{ result|safe }}</pre>
     </div>
 </div>
+
+<script>
+function populateEditor(filename) {
+    fetch('/load-file/' + filename)
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('editor').value = data;
+        });
+}
+</script>
 {% endblock %}

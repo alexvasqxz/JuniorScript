@@ -1,0 +1,37 @@
+mi_programa encontrar
+
+variable arreglo : decimal [20]
+
+mi_funcion encontrar_valor(valor : decimal) : logico {
+
+    desde (variable i : entero = 0 hasta 20) {
+        condicion (arreglo[i] == valor){
+            regresar(verdadero)
+        }
+    }
+
+    regresar(falso)
+}
+
+
+mi_funcion poblar_encontrar() : vacio {
+    variable a : decimal
+    variable fue_encontrado : logico
+    a = 0.5
+
+    desde (variable i : entero = 0 hasta 20){
+        arreglo[i] = a
+        a = a + 0.5
+    }
+    ### Tratar de encontrar un valor existente
+    fue_encontrado = encontrar_valor(8.5)
+    condicion(fue_encontrado == verdadero){
+        imprimir("El valor si se encuentra en el arreglo 😘")
+    } alternativa {
+        imprimir("El valor no se encuentra en el arreglo 😭")
+    }
+}
+
+iniciar() {
+    poblar_encontrar()
+}

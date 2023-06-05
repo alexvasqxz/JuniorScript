@@ -1,0 +1,43 @@
+mi_programa 🤡🤡🤡🤡
+
+### Forma Iterativa
+mi_funcion 😈😈😈(n : entero) : entero {
+
+    condicion(n <= 1){
+        regresar (n)
+    }
+
+    variable a, b, c : entero
+    a = 0
+    b = 1
+    c = 0
+
+    desde (variable i : entero = 2 hasta n + 1){
+        c = a + b
+        a = b
+        b = c
+    }
+
+    regresar(c)
+}
+
+### Forma Recursiva
+mi_funcion 😱😱😱(n : entero) : entero {
+    condicion(n <= 1){
+    regresar(n)
+    } alternativa {
+        regresar(😱😱😱(n - 1) + 😱😱😱(n - 2))
+    }
+}
+
+iniciar() {
+
+    variable 😡, fibo_iterativo : entero
+    😡 = 8
+    fibo_iterativo = 😈😈😈(😡)
+    imprimir("El numero Fibonacci de  ", 😡, " es: ", fibo_iterativo)
+
+    variable fibo_recursivo : entero
+    fibo_recursivo = 😱😱😱(😡)
+    imprimir("El numero Fibonacci de  ", 😡, " es: ", fibo_recursivo)
+}
