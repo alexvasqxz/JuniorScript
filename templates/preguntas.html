@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='faq.css') }}">
+<title>JuniorScript</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <a class="back-button" href="{{ url_for('inicio') }}">Regresar</a>
+    <h1 class="title">Preguntas Frecuentes</h1>
+    <div class="faq">
+        <div class="question">
+            <h3>Question 1</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div class="question">
+            <h3>Question 2</h3>
+            <p>Nulla vel sem aliquet, lobortis ex in, fermentum odio.</p>
+        </div>
+        <div class="question">
+            <h3>Question 3</h3>
+            <p>Vestibulum eu nulla eget tortor rutrum iaculis.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2023 JuniorScript. Todos los derechos reservados. Copyright Gustavo Vásquez
+    </div>
+</div>
+{% endblock %}

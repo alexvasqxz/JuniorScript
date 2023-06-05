@@ -76,7 +76,8 @@ class CodigoExpresionesEstatutos:
                 self.pilaOperandos.append((temp_address, result_type, 'temp'))
             else:
                 raise Exception(f"ERROR: Tipos Incompatibles '{left_type, right_type}'")
-    def create_estatuto_quad(self, quadObj, scope, semanticaObj):
+
+    def create_estatuto_quad(self, quadObj, scope, semanticaObj, print_count = None):
         if (not bool(self.pilaOperandos)):
             return
 
@@ -91,7 +92,10 @@ class CodigoExpresionesEstatutos:
         else :
             top_operand = self.pilaOperandos.pop()
             op_to_print = top_operand[0]
-            quadObj.agregar(operador, None, None, op_to_print)
+            if print_count is not None:
+                quadObj.agregar(operador, f"print{print_count}", None, op_to_print)
+            else:
+                quadObj.agregar(operador, None, None, op_to_print)
 
     def agregar_fondo(self):
         self.pilaOperadores.append('(')

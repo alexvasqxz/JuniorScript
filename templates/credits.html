@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='credits.css') }}">
+<title>JuniorScript</title>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <a class="back-button" href="{{ url_for('inicio') }}">Regresar</a>
+    <h1 class="title">Acerca del Proyecto</h1>
+
+    <div class="section">
+        <p>JuniorScript es un emocionante proyecto diseñado para abordar la creciente necesidad de enseñar a los niños y adolescentes en México a programar y familiarizarse con la tecnología. En un mundo cada vez más digital, es fundamental proporcionar a los jóvenes las habilidades necesarias para prosperar en el siglo XXI.</p>
+        <p>En México, existe una brecha en la educación en programación y tecnología para los niños y adolescentes. Aunque la demanda de profesionales en este campo está en constante aumento, la enseñanza de habilidades técnicas no se ha incorporado adecuadamente en los programas educativos tradicionales. Esta brecha representa una oportunidad perdida para muchos jóvenes mexicanos que podrían beneficiarse de las oportunidades laborales y creativas que ofrece la programación.</p>
+        <p>JuniorScript se ha propuesto cambiar esto. Nuestro objetivo principal es brindar a los niños y adolescentes en México una plataforma de aprendizaje de programación accesible, amigable y divertida. Nos enorgullece ofrecer una interfaz intuitiva y atractiva que hace que el aprendizaje de la programación sea fácil y entretenido.</p>
+        <p>Nuestra plataforma JuniorScript cubre la mayoría de los conceptos fundamentales que se encuentran en cualquier lenguaje de programación. Desde los conceptos básicos de variables y bucles, hasta estructuras de control más avanzadas, nuestros cursos están diseñados para ofrecer un aprendizaje profundo y completo. Nos aseguramos de que los niños y adolescentes no solo adquieran conocimientos superficiales, sino que realmente comprendan los principios fundamentales detrás de la programación.</p>
+        <p>Creemos que la programación puede ser divertida y emocionante para los jóvenes. Mediante el uso de ejercicios interactivos, desafíos y proyectos prácticos, JuniorScript fomenta la creatividad y la resolución de problemas en un entorno lúdico. Queremos inspirar a los niños y adolescentes a descubrir su pasión por la tecnología y desarrollar habilidades que les servirán a lo largo de sus vidas.</p>
+        <p>Estamos comprometidos con el futuro de los jóvenes en México y nos emociona ser parte de su viaje de aprendizaje en programación y tecnología. Con JuniorScript, estamos construyendo las bases para una generación de innovadores y creadores digitales en México.</p>
+
+    </div>
+
+    <div class="section">
+        <div class="developer-info">
+            <img src="../static/images/developer.jpg" alt="Developer Picture" class="developer-picture">
+            <div class="developer-description">
+                <h3>Gustavo Vásquez - Desarrollador</h3>
+                <p>Gustavo Vásquez es un apasionado de la tecnología y un defensor del impacto social a través de la misma. Impulsado por hacer una diferencia a través de la tecnología, ha canalizado su experiencia en empresas como Lyft, Meta y Amazon para perfeccionar sus habilidades en software y análisis de datos, destacando en la identificación de oportunidades de negocio y en el impacto positivo en las personas.</p>
+                <p>Además de sus logros profesionales, Gustavo ha demostrado liderazgo a través de su participación en diversas organizaciones estudiantiles. Ha sido embajador de Microsoft y Out for Undergrad, donde ha promovido la inclusión y la diversidad en la tecnología. También ha sido parte del capítulo de las Naciones Unidas, colaborando en proyectos globales para abordar desafíos sociales.</p>
+                <p>Gustavo se compromete a utilizar su experiencia técnica y habilidades de liderazgo para lograr un impacto significativo en el mundo. Su dedicación a la tecnología como una herramienta para generar un cambio positivo lo convierte en una pieza fundamental en el proyecto JuniorScript. Su experiencia y pasión contribuirán a la creación de una plataforma accesible y amigable que capacitará a los niños y adolescentes en México en el campo de la programación y la tecnología.</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2023 JuniorScript. Todos los derechos reservados. Copyright Gustavo Vásquez
+    </div>
+</div>
+
+{% endblock %}
+
+
+

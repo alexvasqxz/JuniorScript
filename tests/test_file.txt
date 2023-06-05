@@ -9,8 +9,10 @@ mi_funcion recursiva(oops : entero) : entero{
     }
 }
 
+### Se ignora
 iniciar() {
     variable purt : entero
     purt = 50
     imprimir(recursiva(purt))
+    imprimir("Hola Mundo")
 }

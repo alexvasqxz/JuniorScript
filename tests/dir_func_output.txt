@@ -8,7 +8,7 @@ Directorio de Funciones
             5,
             0,
             0,
-            0
+            1
         ],
         "return_values": {},
         "variables": {
@@ -38,6 +38,11 @@ Directorio de Funciones
                 "dataType": 1,
                 "value": 50,
                 "address": 30003
+            },
+            "\"Hola Mundo\"": {
+                "dataType": 4,
+                "value": "\"Hola Mundo\"",
+                "address": 60000
             }
         }
     },
