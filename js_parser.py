@@ -20,12 +20,14 @@ from logic.quadruple import Quadruple
 # Memoria Virtual
 from logic.maquina_virtual import MaquinaVirtual
 
+app_output = []
+
 def JSParser():
     # ------------------------------------------------------------
     # Variables Globales
     # ------------------------------------------------------------
     count_funciones = 1
-
+    count_print = 1
     # ------------------------------------------------------------
     # DIAGRAMAS DE SINTAXIS
     # ------------------------------------------------------------
@@ -232,7 +234,7 @@ def JSParser():
 
     def p_escribir(p):
         '''
-        escribir : ESCRITURA LPAREN escribirB RPAREN
+        escribir : ESCRITURA LPAREN escribirB RPAREN punto_impresion_1
         escribirB : expresion punto_codigoI_10 escribirBB
                 | CTEFRASE punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB
                 | CTELETRA punto_semantico_17 punto_codigoI_2 punto_codigoI_10 escribirBB
@@ -290,8 +292,9 @@ def JSParser():
         '''
         puntos_semantica_1 :
         '''
-        global semantica, dir_func, count_funciones
+        global semantica, dir_func, count_funciones, count_print
         count_funciones = 1
+        count_print = 1
         semantica = DirectorioFunciones()
         dir_func = semantica.directorio
 
@@ -578,8 +581,9 @@ def JSParser():
         '''
         punto_codigoI_10 :
         '''
+        global count_print
         codigoI.push_operador('imprimir')
-        codigoI.create_estatuto_quad(quadruplos, curr_scope, semantica)
+        codigoI.create_estatuto_quad(quadruplos, curr_scope, semantica, count_print)
 
     """ Descripcion:
      """
@@ -859,23 +863,40 @@ def JSParser():
         '''
         punto_crear_vm :
         '''
+        global app_output
         maquina_virtual = MaquinaVirtual(quadruplos.obtener_quadruplos(), dir_func)
-        maquina_virtual.ejecutar()
+        app_output = maquina_virtual.ejecutar()
+
+    def p_punto_impresion_1(p):
+        '''
+        punto_impresion_1 :
+        '''
+        global count_print
+        count_print += 1
 
     return yacc.yacc()
 
 
-def test_parser():
-    junior_script = JSParser()
+def get_file_text(file_name):
     try:
-        file = open("./tests/test_file.txt", "r")
-        print(f"----------------- JuniorScript -----------------")
+        file = open(f"./tests/{file_name}", "r")
         archivo = file.read()
         file.close()
-        junior_script.parse(archivo)
+        return archivo
+    except EOFError:
+        print('ERROR')
+
+def run_parser(code_text):
+    junior_script = JSParser()
+    print(f"🐍💻📕🎒🤖 JuniorScript 🐍💻📕🎒🤖")
+    try:
+        junior_script.parse(code_text)
+        aplicacion_resultado = '\n'.join(f'{i}. {" ".join(str(item) for item in sublist)}' for i, sublist in enumerate(app_output))
+        return aplicacion_resultado
     except EOFError:
         print('ERROR')
 
 
 if __name__ == '__main__':
-    test_parser()
+    texto_prueba = get_file_text("test_file.txt")
+    run_parser(texto_prueba)

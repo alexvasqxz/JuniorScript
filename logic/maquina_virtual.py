@@ -14,6 +14,9 @@ class MaquinaVirtual:
         # Crear Memoria Local para Main (Stack)
         self.local_stack = MemoryStack(directorio_funciones['main'])
         self.direcciones_virtuales = DireccionesVirtuales()
+        # Output para Aplicación
+        self.app_output = []
+        self.app_output.append(["🐍💻📕🎒🤖 Impresiones JuniorScript 🐍💻📕🎒🤖"])
 
     def leer_instrucciones(self):
         instruction_pointer = 0
@@ -32,8 +35,7 @@ class MaquinaVirtual:
                 self.expresiones_aritmeticas_helper(operador, left_operand, right_operand, quad_result)
                 instruction_pointer += 1
             elif operador == 30:
-                self.imprimir(quad_result)
-                instruction_pointer += 1
+                instruction_pointer = self.imprimir(instruction_pointer)
             elif operador == 31:
                 self.leer(quad_result)
                 instruction_pointer += 1
@@ -83,14 +85,31 @@ class MaquinaVirtual:
             quad_result = self.get_value_helper(quad_result)
             self.set_value_helper(quad_result, left_value)
 
-    def imprimir(self, result):
-        if self.direcciones_virtuales.get_type_with_address(result) != 5:
-            print(self.get_value_helper(result))
-        # Pointer
-        else:
-            address_value = self.get_value_helper(result)
-            print(self.get_value_helper(address_value))
+    def imprimir(self, ip):
+        # Obtener direcciones del mismo estatuto imprimir
+        current_quad = self.quadruples[ip]
+        next_quad = self.quadruples[ip+1]
+        temp_list = []
+        while(current_quad[1] == next_quad[1]):
+            temp_list.append(current_quad[3])
+            ip +=1
+            current_quad = next_quad
+            next_quad = self.quadruples[ip+1]
+        temp_list.append(current_quad[3])
+        ip += 1
 
+        # Imprimir las direcciones obtenidas y guardarlas en la lista
+        # que sera enviada a la aplicación
+        for index, address in enumerate(temp_list):
+            if self.direcciones_virtuales.get_type_with_address(address) != 5:
+                print(self.get_value_helper(address))
+                temp_list[index] = self.get_value_helper(address)
+            else:
+                value = self.get_value_helper(address)
+                print(self.get_value_helper(value))
+                temp_list[index] = self.get_value_helper(value)
+        self.app_output.append(temp_list)
+        return ip
     def leer(self, result):
         type = self.direcciones_virtuales.get_type_with_address(result)
         value = ''
@@ -222,7 +241,6 @@ class MaquinaVirtual:
             self.data_segment.set_value(result_address, value)
 
     def ejecutar(self):
-        print(self.quadruples)
         self.leer_instrucciones()
         print('------DATA SEGMENT--------')
         print("Enteros: ", self.data_segment.segmento_entero)
@@ -234,4 +252,6 @@ class MaquinaVirtual:
         print("Decimales: ", self.local_stack.segmento_decimal)
         print("Logicos: ", self.local_stack.segmento_logico)
         print("Letreros: ", self.local_stack.segmento_letra)
+
+        return self.app_output
 

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='compiler.css') }}">
+<title>JuniorScript</title>
+{% endblock %}
+
+{% block body %}
+<div id="container">
+    <div id="navbar">
+        <div id="back-btn">
+            <a href="{{ url_for('inicio') }}">Regresar</a>
+        </div>
+        <div id="nav-buttons">
+            <button type="submit" form="code-form">Ejecutar</button>
+            <div class="dropdown">
+                <button class="dropdown-btn">Examples</button>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('recursos') }}">Funciones y Variables</a>
+                    <a href="{{ url_for('recursos') }}">Cálculo de Factorial</a>
+                    <a href="{{ url_for('credits') }}">Serie de Fibonacci</a>
+                    <a href="{{ url_for('compiler') }}">Arreglos y Matrices</a>
+                    <a href="{{ url_for('compiler') }}">Encontrar algún valor</a>
+                    <a href="{{ url_for('compiler') }}">Ordenar un arreglo</a>
+                    <a href="{{ url_for('compiler') }}">Multiplicar Matrices</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="code-form" action="/compiler" method="POST">
+        <textarea id="editor" name="editor" wrap="on">{{ code|safe }}</textarea>
+    </form>
+    <div id="output">
+        <pre>{{ result|safe }}</pre>
+    </div>
+</div>
+{% endblock %}

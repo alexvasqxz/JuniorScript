@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-bottom: 30px;
+}
+
+.title-word {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+.title-word:first-child {
+  color: #FF5252; /* Pastel Red */
+}
+
+.title-word:last-child {
+  color: #448AFF; /* Pastel Blue */
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-button, .small-button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background-color: #00BFA5; /* Pastel Teal */
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.play-button:hover, .small-button:hover {
+  background-color: #64FFDA; /* Light Pastel Teal */
+}
+
+.small-button {
+  font-size: 20px;
+}
+
+.small-button:first-child {
+  margin-right: 10px;
+}
+
+.small-button:last-child {
+  margin-left: 10px;
+}
+
+.small-button:first-child, .small-button:last-child {
+  background-color: #FF80AB; /* Pastel Pink */
+}
+
+.small-button:first-child:hover, .small-button:last-child:hover {
+  background-color: #FF4081; /* Light Pastel Pink */
+}
+
+/* Copyright text */
+.copyright {
+  font-size: 14px;
+  color: #555;
+  margin-top: 50px;
+  text-align: center;
+}
