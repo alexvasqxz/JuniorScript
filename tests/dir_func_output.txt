@@ -4,12 +4,7 @@ Directorio de Funciones
         "id": "\ud83d\ude04\ud83d\ude04\ud83d\ude04",
         "type": 0,
         "quad_init": 0,
-        "resources": [
-            7,
-            3,
-            0,
-            1
-        ],
+        "resources": [],
         "return_values": {},
         "variables": {
             "i": {

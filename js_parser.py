@@ -461,10 +461,9 @@ def JSParser():
         '''
         punto_semantico_16 :
         '''
-        global curr_scope
+        global curr_scope, dir_func
         curr_scope = 'Programa'
-        dir_func = semantica.clear_functions(curr_scope)
-        # PRUEBAS
+
         with open("./tests/dir_func_output.txt", "w") as output_file:
             output_file.write("Directorio de Funciones\n")
             output_file.write(json.dumps(dir_func, indent=4))
@@ -473,6 +472,8 @@ def JSParser():
             output_file.write("Lista de Cuadruplos\n")
             for quadruple in quadruplos.obtener_quadruplos():
                 output_file.write(str(quadruple) + '\n')
+        # Clear Symbol Table
+        dir_func = semantica.clear_functions(curr_scope)
 
     """ Descripcion:
     Se crea la tabla de constantes con scope global (programa) """
@@ -898,5 +899,5 @@ def run_parser(code_text):
 
 
 if __name__ == '__main__':
-    texto_prueba = get_file_text("7.multiplicar_matrices.txt")
+    texto_prueba = get_file_text("template.txt")
     run_parser(texto_prueba)

@@ -147,10 +147,10 @@ class DirectorioFunciones:
         lista_recursos = [global_recursos[1], global_recursos[2], global_recursos[3], global_recursos[4]]
         self.directorio[scope]['resources'] = lista_recursos
         # Se borran las tablas de variables y constantes estando ya contabilizadas
-        # del(self.directorio[scope]['variables'])
-        # del (self.directorio[scope]['constantes'])
+        del(self.directorio[scope]['variables'])
+        del (self.directorio[scope]['constantes'])
         # Se borran las tablas de funciones
-        return self.directorio
+        return self.directorio[scope]
 
     def assign_virtual_address(self, scope, type, dataType, size):
         return self.direcciones_virtuales.create_virtual_dir(scope, type, dataType, size)
