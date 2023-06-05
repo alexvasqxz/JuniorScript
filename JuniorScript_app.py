@@ -43,5 +43,9 @@ def load_file(filename):
     return content
 
 
+def create_app():
+    app.run(debug=True, port='4999')
+
+
 if __name__ == '__main__':
-    app.run(debug=True, port='4013')
+    create_app()
